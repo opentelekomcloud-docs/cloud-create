@@ -36,7 +36,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'telekom-cloud-create'
+project = 'cloud-create'
 copyright = '2022, Open Telekom Cloud Developers'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
