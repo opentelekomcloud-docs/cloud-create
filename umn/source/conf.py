@@ -35,7 +35,7 @@ otcdocs_doc_title = 'User Guide'
 otcdocs_doc_type = 'umn'
 otcdocs_service_category = 'other'
 otcdocs_service_title = 'Cloud Create'
-otcdocs_service_type = 'tcc'
+otcdocs_service_type = 'cc'
 otcdocs_search_environment = 'hc_de'
 otcdocs_search_url = "https://opensearch.eco.tsi-dev.otc-service.com/"
 
@@ -106,7 +106,7 @@ html_copy_source = False
 # -- Options for PDF output --------------------------------------------------
 latex_documents = [
     ('index',
-     'tcc-umn.tex',
+     'cc-umn.tex',
      u'Cloud Create - User Guide',
      u'OpenTelekomCloud', 'manual'),
 ]

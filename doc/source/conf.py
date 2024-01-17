@@ -36,7 +36,7 @@ otcdocs_doc_title = ''
 otcdocs_doc_type = ''
 otcdocs_service_category = 'other'
 otcdocs_service_title = 'Cloud Create'
-otcdocs_service_type = 'tcc'
+otcdocs_service_type = 'cc'
 otcdocs_search_environment = 'hc_de'
 otcdocs_search_url = "https://opensearch.eco.tsi-dev.otc-service.com/"
 

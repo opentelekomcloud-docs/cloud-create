@@ -1,8 +1,8 @@
-Telekom Cloud Create
-====================
+Cloud Create
+============
 
 .. directive_wrapper::
    :class: container-sbv
 
    .. service_card::
-      :service_type: tcc
+      :service_type: cc
