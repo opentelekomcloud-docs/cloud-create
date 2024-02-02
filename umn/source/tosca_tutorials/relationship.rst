@@ -4,91 +4,83 @@
 How to define a ConnectsTo relationship between service catalogs
 ****************************************************************
 
-This example shows how to define a relationship for nodecellar (a :code:`SOURCE` node) to connect to mongodb (a :code:`TARGET`
+This example shows how to define a relationship for NodeA (a :code:`SOURCE` node) to connect to NodeB (a :code:`TARGET`
 node) as in Figure 1.
 
-* We will define :code:`capabilities` on the mongodb node containing all information for nodecellar node to setup a connection.
+* We will define :code:`capabilities` on the NodeB containing all information for NodeA to setup a connection.
 * We will define the :code:`relationship` interfaces to setup the connection.
-
-.. figure:: /_static/images/tosca-tutorial/nodecella_mongodb.png
-
-  Figure 1. A topology with nodecellar connects to mongodb on a compute node
 
 Steps
 =====
 
-Step 1. Define an endpoint capability in the TARGET node (mongodb)
+Step 1. Define an endpoint capability in the TARGET node (NodeB)
 ------------------------------------------------------------------
 
 An endpoint capability contains information of a :code:`TARGET` node for a :code:`SOURCE` node to setup the connection.
 
-In the mongodb component, we define the following :code:`capabilities` block:
+In NodeB, we define the following :code:`capabilities` block:
 
 .. code-block:: yaml
 
   node_types:
-    otc.nodes.SoftwareComponent.MongoDB:
+    otc.nodes.SoftwareComponent.NodeB:
       ...
       capabilities:
-        mongo_db:
+        db_endpoint:
           type: tosca.capabilities.Endpoint.Database
 
-In this example, we defined a new capability :code:`mongo_db` from the TOSCA type :code:`tosca.capabilities.Endpoint.Database`. The capability :code:`mongo_db` will inherit all default properties from the TOSCA type (e.g., :code:`port`, :code:`protocol`, :code:`url_path`) and show in the editor as in Figure 2.
+In this example, we defined a new capability :code:`db_endpoint` from the TOSCA type :code:`tosca.capabilities.Endpoint.Database`. The capability :code:`db_endpoint` will inherit all default properties from the TOSCA type (e.g., :code:`port`, :code:`protocol`, :code:`url_path`).
 
-In the editor, users can specifiy values for the capability :code:`mongo_db`. For example, they may set the :code:`port` to :code:`27017`.
-
-.. figure:: /_static/images/tosca-tutorial/database_capability.png
-
-  Figure 2. Capability
+In the designer, users can specifiy values for the capability :code:`db_endpoint`. For example, they may set the :code:`port` to :code:`27017`.
 
 .. tip::
 
-  The :code:`tosca.capabilities.Endpoint` also has a runtime attribute :code:`ip_address` (not shown in the Figure). The orchestrator will automatically set the IP address of the hosted compute node to this attribute. A :code:`SOURCE` node can use this runtime attribute to setup a connection.
+  The :code:`tosca.capabilities.Endpoint` also has a runtime attribute :code:`ip_address`. The orchestrator will automatically set the IP address of the hosted compute node to this attribute. A :code:`SOURCE` node can use this runtime attribute to setup a connection.
 
-Step 2. Define a requirement in the SOURCE node (nodecellar)
+Step 2. Define a requirement in the SOURCE node (NodeA)
 ------------------------------------------------------------
 
-In the nodecellar node, add the following :code:`requirements` block:
+In the NodeA node, add the following :code:`requirements` block:
 
 .. code-block:: yaml
 
   node_types:
-    otc.nodes.WebApplication.Nodecellar:
+    otc.nodes.NodeA:
       derived_from: tosca.nodes.WebApplication
       ...
       requirements:
-        - mongo_db:
-            # nodecellar requires a node that has the capability Endpoint.Database
+        - db_endpoint:
+            # NodeA requires a node that has the capability Endpoint.Database
             capability: tosca.capabilities.Endpoint.Database
-            # nodecellar uses this relationship to setup the connection (see step 3)
-            relationship: otc.relationships.NodejsConnectToMongo
+            # NodeA uses this relationship to setup the connection (see step 3)
+            relationship: otc.relationships.NodeAConnectToNodeB
             # (Optional) specifiy relationship instance one-to-one
-            # it means, one nodecellar has one mongodb
+            # it means, one NodeA has one NodeB
             occurrences: [1, 1]
 
 Step 3: Define the relationship
 -------------------------------
 
-Define a new relationship :code:`otc.relationships.NodejsConnectToMongo`, how nodecellar setups the connection with mongodb:
+Define a new relationship :code:`otc.relationships.NodeAConnectToNodeB`, how NodeA setups the connection with NodeB:
 
 .. code-block:: yaml
 
   relationship_types:
-    otc.relationships.NodejsConnectToMongo:
+    otc.relationships.NodeAConnectToNodeB:
       derived_from: tosca.relationships.ConnectsTo
       interfaces:
         Configure:
           pre_configure_source:
             inputs:
-              # The input DB_IP gets the runtime attribute ip_address of mongodb
-              DB_IP: { get_attribute: [TARGET, mongo_db, ip_address] }
-              # The input DB_PORT gets the mongodb port property
-              DB_PORT: { get_property: [TARGET, port] }
-              # The input NODECELLAR_PORT gets the nodecellar port property
-              NODECELLAR_PORT: {get_property: [SOURCE, port]}
-            implementation: scripts/set-mongo-url.sh
+              # The input NODEA_PORT gets the port property of NodeA
+              NODEA_PORT: { get_property: [SOURCE, port] }
+              # The input NODEB_PORT gets the port property of NodeB
+              NODEB_PORT: { get_property: [TARGET, port] }
+              # The input NODEB_IP gets the runtime attribute ip_address of NodeB
+              NODEB_IP: { get_attribute: [TARGET, db_endpoint, ip_address] }
+            implementation: scripts/setup-connection.sh
 
-In the above example, we defined the interface :code:`pre_configure_source` by providing a shell script (e.g., :code:`set-mongo-url.sh`). The script uses the input parameters :code:`DB_IP`, :code:`DB_PORT`, :code:`NODECELLAR_PORT` to configure nodecellar to connect to mongodb.
+In the above example, we defined the interface :code:`pre_configure_source` by providing a shell script (e.g., :code:`setup-connection.sh`). The script uses the input parameters :code:`NODEA_PORT`, :code:`NODEB_PORT`, and :code:`NODEB_IP` to configure NodeA to connect to NodeB.
 
 .. note::
 
