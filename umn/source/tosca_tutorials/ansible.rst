@@ -2,11 +2,12 @@
 How to define a service catalog using an ansible playbook
 *********************************************************
 
-In the previous example, we used a python script to implement a software catalog. In this example, we use an ansible playbook to create a mongodb.
+In the previous example, we used a python script to implement a software catalog. In this example, we use Ansible to create Apache server.
 
-.. figure:: /_static/images/tosca-tutorial/tosca-mongodb.png
+.. figure:: /_static/images/tosca-tutorial/tosca-apache.png
+  :width: 800
 
-  Figure 1. Mongodb example
+  Figure 1. Apache example
 
 1. Steps
 ========
@@ -22,12 +23,12 @@ Step 1. Import TOSCA types
 Step 2. Implement the interfaces
 --------------------------------
 
-Implement the node :code:`MongoDB` with the :code:`create` interfaces and provide an ansible script for the interface (e.g., :code:`mongodb_install.yaml`):
+Implement the node :code:`Apache` with the :code:`create` interfaces and provide an Ansible playbook for the interface (e.g., :code:`apache-create.yaml`):
 
 .. code-block:: yaml
 
   node_types:
-    myservice.nodes.SoftwareComponent.MongoDB:
+    myservice.nodes.SoftwareComponent.Apache:
       derived_from: tosca.nodes.SoftwareComponent
       ...
       interfaces:
@@ -35,10 +36,9 @@ Implement the node :code:`MongoDB` with the :code:`create` interfaces and provid
           create:
             inputs:
               # HOST is the keyword to get more information about the hosted compute node at runtime
-              IP_ADDRESS: { get_attribute: [HOST, private_address] }
-              MONGODB_PORT: { get_property: [SELF, port] }
+              APACHE_LISTEN_IP: { get_attribute: [HOST, private_address] }
             # ansible script
-            implementation: playbooks/mongodb_install.yaml
+            implementation: playbooks/apache-create.yaml
 
 .. note::
 
@@ -52,95 +52,35 @@ Implement the node :code:`MongoDB` with the :code:`create` interfaces and provid
 Step 3. Implement an ansible playbook for the interface
 -------------------------------------------------------
 
-Write an ansible script (e.g., :code:`mongodb_install.yaml`), which imports a third party ansible role :code:`undergreen.ansible-role-mongodb` and uses it to install mongodb:
+Write the Ansible playbook (e.g., :code:`apache-create.yaml`) to install Apache. In this example, we import a third party ansible role :code:`geerlingguy.apache` to install Apache:
 
 .. code-block:: yaml
 
-  # playbooks/mongodb_install.yaml
-  - name: Install MongoDB
+  # playbooks/apache-create.yaml
+  - name: Install Apache
     # "hosts" must be set to all. Otherwise the deployment will fail.
     hosts: all
-    strategy: free
-    become: true
-    become_method: sudo
     tasks:
-      - name: Install MongoDB using a 3rd party role
+      - name: Install Apache
+        become: true
         import_role:
-          name: undergreen.ansible-role-mongodb
+          name: geerlingguy.apache
         vars:
-          # The environment variables IP_ADDRESS and MONGODB_PORT are the
-          # input parameters of the create interface.
-          mongodb_net_bindip: "{{ IP_ADDRESS }}"
-          mongodb_net_port: "{{ MONGODB_PORT }}"
+          # The environment variable APACHE_LISTEN_IP is the input parameter of the create interface.
+          apache_listen_ip: "{{ APACHE_LISTEN_IP }}"
           ...
 
-In the same folder of the ansible script, we have an ansible role available at :code:`playbooks/roles/undergreen.ansible-role-mongodb`
+In the same folder of the Ansible playbook, we have an Ansible role available at :code:`playbooks/roles/geerlingguy.apache`
 
-.. figure:: /_static/images/tosca-tutorial/mongodb_ansible_directory.png
+.. figure:: /_static/images/tosca-tutorial/apache_ansible_directory.png
+  :width: 300
 
   Figure 3. Playbook directory
 
 Expected result
 ^^^^^^^^^^^^^^^
 
-The orchestration engine will apply the ansible playbook :code:`mongodb_install.yaml` on the remote compute node, which in turn imports the ansible role :code:`undergreen.ansible-role-mongodb` to create the mongodb.
-
-Step 3b. (alternative) Zip the whole playbook folder
-----------------------------------------------------
-
-Define ansible roles
-^^^^^^^^^^^^^^^^^^^^
-
-* In this scenario, we create a folder (e.g., :code:`playbook`) contaning more than one :code:`roles:code:` (e.g., :code:`create`, :code:`configure`, :code:`delete`, :code:`start`, and :code:`stop`).
-* Each roles has an entry script (e.g., the entry script :code:`create.yml` imports the role :code:`create`).
-
-.. figure:: /_static/images/tosca-tutorial/zip_playbook.png
-
-  Figure 4. The entry script create.yml
-
-Zip the playbook folder
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Zip the **content** of the :code:`playbook` folder into the file :code:`playbook/playbook.ansible`
-
-.. code-block:: bash
-
-  cd playbook && rm -f playbook.ansible && zip -r playbook.ansible *
-
-Implement the interface
-^^^^^^^^^^^^^^^^^^^^^^^
-
-In the :code:`create` interfaces, we specify the zip file as an implementation and set the :code:`PLAYBOOK_ENTRY` to the entry script :code:`create.yml`:
-
-.. code-block:: yaml
-
-  interfaces:
-    Standard:
-      create:
-        inputs:
-          # the entry script in the playbook folder
-          PLAYBOOK_ENTRY: create.yml
-        # the zip file of the playbook folder content
-        implementation: playbook/playbook.ansible
-
-Step 4. Define the outputs (optional)
--------------------------------------
-
-* In the ansible script, use :code:`set_fact` to define an output:
-
-.. code-block:: yaml
-
-  - name: my tasks
-    hosts: all
-    tasks:
-      - name: Set an output
-        set_fact:
-          OUTPUT: "A result of my tasks"
-
-Expected result
-^^^^^^^^^^^^^^^
-
-The orchestration engine will apply the entry script :code:`create.yml`, which in turn imports the role :code:`create` (in the zip file) to create the component on the remote compute.
+The orchestration engine will apply the ansible playbook :code:`apache-create.yaml` on the remote compute node, which in turn uses the Ansible role :code:`geerlingguy.apache` to create Apache.
 
 2. Known limitations
 ====================
@@ -189,5 +129,4 @@ The orchestration engine will apply the entry script :code:`create.yml`, which i
 3. Links
 ========
 
-* See `full example how to use ansible script <https://github.com/opentelekomcloud-blueprints/tosca-tutorials/blob/master/examples/mongodb/types.yaml>`_
-* See `full example how to use playbook as a zip file <https://github.com/opentelekomcloud-blueprints/tosca-tutorials/blob/master/examples/apache/types.yml>`_
+* See `full example how to use ansible script <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/apache/types.yml>`_
