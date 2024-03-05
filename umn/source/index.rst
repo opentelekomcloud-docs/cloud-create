@@ -21,6 +21,7 @@ Quick introduction
    secrets
    git
    orchestration_workflow
+   releases
 
 1. Overview
 ===========
@@ -89,27 +90,15 @@ In short, Cloud Create manages the whole life cycle of an application: from desi
 3. New features
 ===============
 
-OpenShift template (upcoming in v2.13)
---------------------------------------
+OpenShift template (v2.13)
+--------------------------
 
-Users can create OpenShift from the template and customize or extend it according to their needs. To deploy OpenShift, users provide the pullSecret (i.e., a subscription key) from OpenShift. After the deployment, a dedicate OpenShift cluster is up and running. Users will get the maintenance and support from Redhat as long as their subscription key is valid.
+Users can create a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud from the :ref:`OpenShift`.
 
 .. figure:: /_static/images/features/openshift.png
   :width: 800
 
   Figure 6. OpenShift template
-
-.. note:: Deployment of OpenShift is supported on Open Telekom Cloud only.
-
-Deployment history (released in v2.12)
---------------------------------------
-
-Users can view deployment logs in the **History** so they can audit all actions in the past.
-
-.. figure:: /_static/images/features/deployment_history.png
-  :width: 800
-
-  Figure 7. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.
 
 4. FAQ
 ======
