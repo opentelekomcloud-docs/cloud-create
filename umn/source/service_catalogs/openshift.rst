@@ -29,7 +29,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 a. Specify base_domain
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. A DNS Public Zone will be created on Open Telekom Cloud with this name. Therefore this name **requires to be unique** within the DNS of Open Telekom Cloud.
+Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. A DNS Public Zone will be created on Open Telekom Cloud with this name. Therefore this domain name **must be unique** in the Domain Name Service of Open Telekom Cloud.
 
 .. figure:: /_static/images/service-catalogs/openshift_config1.png
   :width: 700
@@ -47,7 +47,7 @@ b. Specify pull_secret
 
   Figure 2. Copy pull secret
 
-3. Paste the content in the **pull_secret** under Section **Secrets Inputs**.
+3. Paste the content in the **pull_secret** in the Section **Secrets Inputs**.
 
 .. figure:: /_static/images/service-catalogs/openshift_pull_secrect.png
   :width: 700
@@ -64,8 +64,8 @@ c. Specify os_password
 d. (Optional) Specify ssh_public_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Specify the **ssh_public_key** (e.g., :code:`ssh-ed25519 AAAAC3N...`). This is the public key to inject in the bastion host, master and worker nodes so that you can SSH to them later on.
-* If ssh_public_key is not specified, we will auto-select one of your existing key pair in the Open Telekom Cloud console instead.
+* Specify the **ssh_public_key** with your SSH public key (e.g., :code:`ssh-ed25519 AAAAC3N...`). This public key will be injected in the bastion host, master and worker nodes so that you can SSH to them later on.
+* If ssh_public_key is **not specified**, we will auto-select one of your **existing key pair** from the Open Telekom Cloud console instead.
 
 .. figure:: /_static/images/service-catalogs/openshift_config2.png
   :width: 700
@@ -75,7 +75,7 @@ d. (Optional) Specify ssh_public_key
 e. (Optional) Specify other paramters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Specify the **number_workers** (e.g., 2). OpenShift requires a minimum of 2 worker nodes.
+1. Specify the **number_workers** (e.g., 2). OpenShift requires a minimum of 2 worker nodes in total.
 2. Specify the **nat_gateway_specs** (e.g., Small). This is the flavor of the NAT Gateway for outgoing traffic.
 3. Specify the **worker_num_cpus** (e.g., 4) and **worker_mem_size** (e.g., 16 GB). OpenShift requires a minimum of 4vCPU and 16 GB memory for the worker node.
 
@@ -87,20 +87,25 @@ e. (Optional) Specify other paramters
 3. Expect result
 ================
 
-* After creating all compute resources, the orchestration engine goes to sleep and waits for the OpenShift installation to continue and completes.
-* After 31 minutes, the **CheckOpenShiftStatus** job wakes up and checks the OpenShift status and completes the deployment.
+* It takes about 2 minutes to create all compute resources on Open Telekom Cloud. Afterwards, the OpenShift bootstrap process continues to setup the master and worker nodes.
+* After about 31 minutes, the **CheckOpenShiftStatus** job checks the OpenShift boostrap process and reports the status.
+
+.. figure:: /_static/images/service-catalogs/openshift_check_result.png
+  :width: 700
+
+  Figure 5. CheckOpenShiftStatus waits 31 minutes and checks the status
 
 3.1. Access the console
 -----------------------
 
-You can access the OpenShift console as follows.
+After the deployment completes, you can access the OpenShift console as follows.
 
 * Copy **console_hostname**, **oauth_hostanme**, and the **INGRESS_VIP** from the deployment outputs.
 
 .. figure:: /_static/images/service-catalogs/openshift_result1.png
   :width: 700
 
-  Figure 5. Copy the hostname and VIP address
+  Figure 6. Copy the hostname and VIP address
 
 * Paste **console_hostname** and **oauth_hostanme** and the **INGRESS_VIP** in your **/etc/hosts**
 
@@ -114,21 +119,24 @@ You can access the OpenShift console as follows.
 
 .. code-block:: bash
 
+  # The output of the "console_url"
   https://console-openshift-console.apps.openshift.tri-test.com
 
 .. figure:: /_static/images/service-catalogs/openshift_result2.png
   :width: 700
 
-  Figure 6. Access the OpenShift console
+  Figure 7. Access the OpenShift console
 
 3.2. Access the bastion host
 ----------------------------
+
+During the OpenShift bootstrap process, you can access to the bastion host as follows:
 
 * Copy **public_address** of the **Bastionhost**
 
 .. figure:: /_static/images/service-catalogs/openshift_result3.png
 
-  Figure 7. The public IP address of the bastion host
+  Figure 8. The public IP address of the bastion host
 
 * Access the bastion host with the IP
 
