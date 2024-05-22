@@ -21,7 +21,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 ------------------
 
 1. Create a new application using the template **OpenShift** or **OpenShift HA** with a selected version (e.g., 4.13.19)
-2. Go to **Deploy Setup**.
+2. Go to **Quick Deploy**.
 
 2.2. Deloy Setup
 ----------------
@@ -200,3 +200,186 @@ During the OpenShift bootstrap process, you can access to the bastion host as fo
     operator-lifecycle-manager-packageserver   4.13.19   True        False         False      169m
     service-ca                                 4.13.19   True        False         False      175m
     storage                                    4.13.19   True        False         False      170m
+
+4. How to create storages
+=========================
+
+4.1. Elastic Volume Service (EVS)
+---------------------------------
+
+In OpenShift you can provision an EVS on Open Telekom Cloud dynamically:
+
+1. Create a new **storage class** (e.g., :code:`ssd-csi`) with a volume type (e.g., :code:`SSD`):
+
+.. code-block:: yaml
+
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: ssd-csi
+    provisioner: cinder.csi.openstack.org
+    parameters:
+      type: SSD # Choose 'SSD' for 'Ultra high I/O', 'SAS' for 'High I/O', 'SATA' for 'Common I/O'
+    reclaimPolicy: Delete
+    allowVolumeExpansion: true
+    volumeBindingMode: WaitForFirstConsumer # PVC is PENDING until the Pod is created. As a result, the volume is created in the same AZ as the POD.
+
+(Alternative) Create a storage class with specific AZ (e.g., :code:`eu-de-01`) so that volumes will be created only in this AZ:
+
+.. code-block:: yaml
+
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: eu-de-01-ssd-csi
+    provisioner: cinder.csi.openstack.org
+    parameters:
+      type: SSD # Choose 'SSD' for 'Ultra high I/O', 'SAS' for 'High I/O', 'SATA' for 'Common I/O'
+    reclaimPolicy: Delete
+    allowVolumeExpansion: true
+    allowedTopologies:
+    - matchLabelExpressions:
+      - key: topology.cinder.csi.openstack.org/zone
+        values:
+        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', 'eu-de-03'
+
+2. Create a **PersistentVolumeClaim** (e.g., :code:`ssd-pvc`) with the storage class :code:`ssd-csi`:
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ssd-pvc
+      namespace: <YOUR_NAMESPACE>
+    spec:
+      storageClassName: ssd-csi
+      accessModes:
+        - ReadWriteOnce
+      volumeMode: Filesystem
+      resources:
+        requests:
+          storage: 10Gi
+
+3. Create a Pod :code:`example` with the PersistentVolumeClaim :code:`ssd-pvc`:
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: example
+      labels:
+        app: httpd
+      namespace: <YOUR_NAMESPACE>
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: httpd
+          image: 'image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest'
+          ports:
+            - containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts: # Add the following lines to the 'example' Pod to test the PVC
+            - name: ssd-volume
+              mountPath: /test
+      volumes:
+        - name: ssd-volume
+          persistentVolumeClaim:
+            claimName: ssd-pvc
+
+
+
+4. On OpenShift console, see Pod is running:
+
+.. figure:: /_static/images/service-catalogs/openshift_pod.png
+
+  Figure 9. Pod example is running
+
+5. On Open Telekom Cloud, see EVS is created:
+
+.. figure:: /_static/images/service-catalogs/openshift_evs.png
+
+  Figure 10. A new EVS is created with the volume type "Ultra High I/O"
+
+4.2. Scalable File Service & SFS Turbo
+--------------------------------------
+
+You can create a SFS on Open Telekom Cloud manually and create a `PersistentVolume using NFS <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_ in OpenShift, which connects to SFS via NFS protocol:
+
+1. Go to the `webconsole of Open Telekom Cloud <https://console.otc.t-systems.com/>`_ and create a SFS or SFS Turbo:
+
+.. figure:: /_static/images/service-catalogs/openshift_sfs.png
+  :width: 900
+
+  Figure 11. Create SFS via webconsole
+
+* Choose the VPC and subnet of your OpenShift so that the SFS is created in the same subnet. The VPC :code:`cc-environment-openshift00` in this example was created by Cloud Create, which starts with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`.
+* Choose the security group `sg-worker`. This is the security group of the worker nodes.
+
+2. Copy the SFS endpoint
+
+.. figure:: /_static/images/service-catalogs/openshift_sfs2.png
+
+  Figure 12. Copy the SFS endpoint :code:`10.0.207.136`
+
+3. Create a PersistentVolume (e.g., :code:`sfs-pv`) with the SFS endpoint:
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      name: sfs-pv
+    spec:
+      capacity:
+        storage: 500Gi
+      accessModes:
+      - ReadWriteMany
+      nfs:
+        server: 10.0.207.136 # SFS endpoint
+        path: /
+      persistentVolumeReclaimPolicy: Retain
+
+4. Create a PersistentVolumeClaim (e.g., :code:`sfs-pvc`) with the :code:`sfs-pv`:
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: sfs-pvc
+      namespace: <YOUR_NAMESPACE>
+    spec:
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 500Gi
+      volumeName: sfs-pv
+      storageClassName: "" # Important
+
+5. Create a Pod to use :code:`sfs-pvc`
+
+5. Tear down
+============
+
+* In Cloud Create, go to **Action** / **Undeploy** to delete the OpenShift cluster.
+* The PVC storages, which were created by OpenShift, will not be deleted automatically. You have to delete them manually.
+
+.. figure:: /_static/images/service-catalogs/openshift_tear_down.png
+
+  Figure 12. Check PVC with Available status
+
+6. Links
+========
+
+* Our `OpenShift app template in TOSCA <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/templates/openshift/4.13/topology.yml>`_.
+* How to create a `PersistentVolume using NFS in OpenShift <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_.
