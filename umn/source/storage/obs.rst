@@ -21,6 +21,8 @@ Users who deploy an application with OBS, they must have the permission :code:`O
 
 * :code:`obs:bucket:ListBucket` (permissions to list all objects in the bucket).
 
+* :code:`obs:bucket:ListBucketVersions` (permissions to list object versions in a bucket).
+
 3. How to use
 =============
 
