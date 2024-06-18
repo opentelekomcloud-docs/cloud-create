@@ -26,7 +26,12 @@ Quick introduction
 1. Overview
 ===========
 
-Cloud Create provides cloud developers a development and management platform to create applications on multi-cloud fast. In step 1, cloud architects design and develop the application for a tenant A. In step 2, an administrator of the tenant A deploys the application on Open Telekom Cloud, Swiss Cloud, and or Google Cloud.
+Cloud Create is a **free-to-use** Development and Management Platform, which enables cloud developers to create applications on Open Telekom Cloud **fast**.
+
+1. Cloud architects create applications from premade templates.
+2. They can visually design and adjust the application to fit their needs.
+3. An administrator deploys and updates the application on Open Telekom Cloud.
+4. Cloud architects can save a design as a private template for personal use or share it public with other users.
 
 .. figure:: /_static/images/features/overview.png
   :width: 900
@@ -35,57 +40,69 @@ Cloud Create provides cloud developers a development and management platform to 
 
 .. note::
   * Cloud architects and administrators can be the same user.
-  * Deployment on Swiss Open Telekom Cloud is an upcoming feature.
+  * Deployment on Swiss Open Telekom Cloud and the function "Save & Share templates" are upcoming features.
 
 1.1. How cloud architects design the application
 ------------------------------------------------
 
-Cloud architects can design the application either from scratch or from an **application template**. To design the application, they drag and drop the components together like lego bricks as in the following example:
+Cloud architects can design the application from scratch or from **premade templates**:
+
+.. figure:: /_static/images/features/overview-templates.png
+  :width: 800
+
+  Figure 2. Select an app template to start.
+
+They can quickly deploy a template or start a new design from it:
+
+.. figure:: /_static/images/features/overview-templates2.png
+  :width: 800
+
+  Figure 3. Quick deploy OpenShift or Design using this template.
+
+Cloud Create also comes up with a visual designer for less-coding or no-coding. Developers can drag and drop the components together like lego bricks as in the following example:
 
 .. figure:: /_static/images/features/overview-design.png
   :width: 800
 
-  Figure 2. An application topology with network, compute, ansible, bash scripts, and Grafana component.
+  Figure 4. An application example with network, compute, ansible, bash scripts, and Grafana component.
 
-* In the above example, (public/private) network and compute are **infrastructure components**. AnsibleTasks, Bash, and Grafana are **service components**.
-* By using the Ansible and Bash components, cloud architects can write code to install softwares on a compute directly. Grafana is a ready-to-use deployable software solution.
-* All components are provided by Open Telekom Cloud upon feature requests. In addition, users can define service components in TOSCA (i.e., a YAML file format) and import them to the designer. This import feature enables a **dynamic integration** with any software solutions (e.g., Grafana) and external SaaS with Open Telekom Cloud. More details on Section :ref:`How to define and import and a new service`.
+* In the above example, the network and compute are **infrastructure** components. AnsibleTasks, Bash, and Grafana are **service** components.
+* By using the Ansible and Bash components, developers can write code to execute on a compute directly.
+* Grafana is an example of a ready-to-use service available in the designer. Developers can define new services and import them to the designer as well. More details on Section :ref:`How to define and import and a new service`.
 
 .. note::
-   * All service components are `opensource and available on our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_.
+   * App templates and service components are `opensource and available on our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_.
 
 1.2. How administrators deploy the application
 ----------------------------------------------
 
-Before the deployment can start, administrators select a **Version**, provide deployment **Inputs**, which were designed by the cloud architects, and select a cloud provider (e.g., Open Telekom Cloud) to deploy. In addition, the workflow to deploy the components are auto-generated and ready for administrators to review.
+Before the deployment can start, administrators select a **Version**, provide **Inputs**, which were designed by the cloud architects, and select a cloud provider (e.g., Open Telekom Cloud) to deploy. In addition, administrators can review the auto-generated workflow before it starts.
 
 .. figure:: /_static/images/features/overview-deploy.png
   :width: 800
 
-  Figure 3. Administrators select Open Telekom Cloud (OTC) to deploy
+  Figure 5. Administrators select Open Telekom Cloud (OTC) to deploy
 
-During the deployment, users can interactively click on a workflow step and see **Terraform** is applied for the infrastructure components. For the service components, the deployment script of the service (e.g., Ansible) is applied on the target compute.
+During the deployment, administrators can interactively click on a workflow step and see **Terraform** is applied for the infrastructure components. For the service components, the deployment script of the service (e.g., Ansible) is applied on the target compute.
 
 .. figure:: /_static/images/features/deployment_logs.png
   :width: 800
 
-  Figure 4. An example Terraform is generated and applied for a Compute
+  Figure 6. An example Terraform is generated and applied for a Compute
 
 2. Why Cloud Create?
 ====================
 
-The following table shows the differences between the web console and the marketplaces of any cloud providers:
+The following table shows the differences between the Web console / other tools and Cloud Create:
 
 .. figure:: /_static/images/features/features_compare.png
   :width: 800
 
-  Figure 5. Features comparison
+  Figure 7. Features comparison
 
-Both the web console, marketplace, and Cloud Create can deploy one cloud service. However, an application nowadays consists of multiple cloud services but not just one. Furthermore, each application has individual needs to adapt to the cloud differently. The web console and marketplace can bring up one service up and running separately but cannot automate an application with multiple services.
+Both the Web console and Cloud Create can deploy one cloud service. However, an application nowadays consists of multiple cloud services but not just one. Furthermore, each application has individual needs to adapt to the cloud differently. The Web console can bring up one service up and running separately but cannot automate an application with multiple services.
 
 With Cloud Create, after creating an application from a template, you can modify the application to fit your individual needs. For example, one of our customer used Cloud Create to create their application from the OpenShift template, then they added a worker node with the GPU capability and wrote an Ansible script to deploy packages on the bastion host, etc. The given example shows that the modification can happen in every corner, from the cloud infrastructure to the software layer of your application. Finally, you can run update between versions on operation day 2 as well. To update between versions, Cloud Create auto-calculates the differences between the two versions and auto-generates the update workflow steps from one version to other one.
-
-In short, Cloud Create manages the whole life cycle of an application: from design, adaptation, to deploy, and update.
 
 3. New features
 ===============
@@ -95,20 +112,15 @@ OpenShift template (v2.13)
 
 Users can create a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud from the :ref:`OpenShift`.
 
-.. figure:: /_static/images/features/openshift.png
-  :width: 800
-
-  Figure 6. OpenShift template
-
 4. FAQ
 ======
 
-4.1. What are the differences between Cloud Create and the web console
+4.1. What are the differences between Cloud Create and the Web console
 ----------------------------------------------------------------------
 
-With the `web console <https://console.otc.t-systems.com>`_, users can only create the cloud **infrastructure** manually. It means, they can create a network, a storage, a VM separately but without automation.
+With the `Web console <https://console.otc.t-systems.com>`_, users can only create the cloud infrastructure manually. It means, they can create a network, a storage, a VM separately but without automation.
 
-On the other hand, Cloud Create enables developers to design and automate the deployment of the whole application, which includes the cloud infrastructure and the **services** (i.e., not just the cloud infrastructure). In addition, developers can design the application in various versions and run update between them. Finally, Cloud Create provides application templates (e.g., OpenShift) to re-use and extend.
+On the other hand, Cloud Create enables developers to design and automate the deployment of the whole application including the cloud infrastructure and services. In addition, developers can design the application in various versions and run update between them. Finally, Cloud Create provides premade templates (e.g., OpenShift) to re-use and extend.
 
 4.2. How can I login in to Cloud Create
 ---------------------------------------
@@ -117,8 +129,8 @@ You can log in to Cloud Create using an IAM user account with the **Tenant Admin
 
 If you do not have a user account in the IAM, see :ref:`How to login`.
 
-4.3. Which components are supported for Open Telekom Cloud and Google Cloud
----------------------------------------------------------------------------
+4.3. Which components are supported
+-----------------------------------
 
 An overview of all supported components is available in Section :ref:`Components overview`.
 
@@ -127,7 +139,7 @@ An overview of all supported components is available in Section :ref:`Components
 
 Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, OpenShift template, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
 
-All application templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_. You can create pull requests to add more components and fix bugs.
+All premade templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_. You can create pull requests to add more components and fix bugs.
 
 4.5. Which Terraform version do you use
 ---------------------------------------
