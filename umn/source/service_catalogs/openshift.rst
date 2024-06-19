@@ -10,8 +10,8 @@ OpenShift template
 The following tutorial shows you how to register a (trial) subscription key from Red Hat and uses it to create an OpenShift cluster using the OpenShift template.
 
 .. important::
-  * The OpenShift template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud using your subscription license key. Once installed, Red Hat OpenShift uses Kubernetes Operators for push-button, automatic platform updates for the container host, Kubernetes cluster, and application services running on the cluster. It also includes the following built-in technologies: Knative, Istio, Prometheus, Jenkins, Node.js, Operators, and Red Hat AMQ Streams.
-  * Your subscription will cover technical support from Red Hat and upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
+  * The OpenShift template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud with Bring Your Own License (BYOL).
+  * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
   * Supported versions: 4.12.39 and 4.13.x.
 
 2. How to use
