@@ -22,8 +22,8 @@ Subnets and regions     :ref:`google static subnets`                            
 Security groups         :ref:`Create security group rules manually<Security group manual>`                           Yes                   Yes
 Security groups         :ref:`Auto-generated security group rules <Security group auto generated>`                   Yes                   Yes
 SNAT / Cloud Gateway    VMs with no floating ip can make outgoing requests to the Internet                           Yes                   No (2w)
-DNS                     :ref:`Auto-generated DNS record set type A pointing to floating IP of network port <DNS>`    Yes                   No
-DNS                     :ref:`Auto-generated DNS record set type A pointing to floating IP of network port <DNS>`    Yes                   No
+DNS                     :ref:`Create DNS record set type A pointing to floating IP of network port <DNS>`            Yes                   No
+DNS                     :ref:`Create DNS record set type A pointing to private IP of network port <DNS Private>`     Yes                   No
 VirtualIP               Create a Virtual IP Address and bind to multiple network ports as allowed addresses pair     Yes                   No
 ======================  ===========================================================================================  ====================  ==============
 
