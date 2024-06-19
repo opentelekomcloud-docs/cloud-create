@@ -9,7 +9,7 @@ The following table shows an overview of all components that you can use to desi
 Network
 =======
 
-.. note:: Cloud Gateway is not yet supported in Google Cloud so a private compute cannot access the Internet. It means you cannot install packages from a public repository for a private compute.
+.. note:: Cloud Gateway is not yet supported in Google Cloud. Without the Cloud Gateway, a private compute cannot access the Internet. It means you cannot install packages from a public repository on a private compute.
 
 ======================  ===========================================================================================  ====================  ==============
 Components              Scenarios                                                                                    Open Telekom Cloud    Google Cloud

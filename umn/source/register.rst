@@ -8,14 +8,12 @@ How to create a user account & login
 ===============================
 
 * Go to: https://designer.otc-service.com
-* Login using an IAM user account with the **Tenant Administrator** role (*). This is the same credentials when you log in to the web console, **not the ICU account**.
+* Login using an IAM user account with the **Tenant Administrator** role. This is the same credentials when you log in to the web console, **not the ICU account**.
 
 .. figure:: /_static/images/register-login.png
   :width: 400
 
   Figure 1. Login to Cloud Create using domain name, username, and password
-
-.. note:: (*) To design and deploy the application, login with a user account with the role **Tenant Administrator**. Alternatively, if you only need to design the application, login with a user account with the role **Tenant Guest**. This is particular useful when you want a cloud architect to design the application for you but do not allow him or her to deploy anything in your tenant.
 
 You cannot login?
 -----------------
@@ -43,7 +41,7 @@ In case you do not have an IAM user account, please ask your domain administrato
 2.1. Create a project (optional, if you don't have one)
 -------------------------------------------------------
 
-* Login to the `web console <https://console.otc.t-systems.com>`_.
+* Login to the `Web console <https://console.otc.t-systems.com>`_.
 * Go to: **Identity Management**
 
 .. figure:: /_static/images/register-iam-button.png
@@ -90,8 +88,6 @@ In case you do not have an IAM user account, please ask your domain administrato
   :width: 900
 
   Figure 6. Select role Tenant Administrator for the group
-
-.. tip:: If you want a user to design the application for you but do not allow him or her to deploy anything in your project, select the role **Tenant Guest** instead.
 
 * In **Step 2. Select Scope**, choose **Region-specific projects**.
 * Search for the project `eu-de_test` and select it.
