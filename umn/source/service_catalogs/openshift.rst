@@ -10,9 +10,9 @@ OpenShift template
 The following tutorial shows you how to register a (trial) subscription key from Red Hat and uses it to create an OpenShift cluster using the OpenShift template.
 
 .. important::
-  * The OpenShift template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud with Bring Your Own License (BYOL).
+  * The OpenShift template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL).
   * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
-  * Supported versions: 4.12.39 and 4.13.x.
+  * Versions available in the template: :code:`4.12.39`, :code:`4.13.19`, :code:`4.16.19`. Please contact us if you need a specific version.
 
 2. How to use
 =============
@@ -20,7 +20,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 2.1. How to deploy
 ------------------
 
-1. Create a new application using the template **OpenShift** or **OpenShift HA** with a selected version (e.g., 4.13.19)
+1. Create a new application using the template **OpenShift** or **OpenShift HA** with a selected version (e.g., 4.16.19)
 2. Go to **Quick Deploy**.
 
 2.2. Deloy Setup
@@ -29,12 +29,17 @@ The following tutorial shows you how to register a (trial) subscription key from
 a. Specify base_domain
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. A DNS Public Zone will be created on Open Telekom Cloud with this name. Therefore this domain name **must be unique** in the Domain Name Service of Open Telekom Cloud.
+Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. A DNS Public Zone will be created on OTC with this name. Therefore this domain name **must be unique** in the Domain Name Service of OTC.
 
 .. figure:: /_static/images/service-catalogs/openshift_config1.png
   :width: 700
 
   Figure 1. Specify a domain name
+
+.. important::
+
+  **Swiss OTC** does not support a DNS Public Zone. Here you can bring your own DNS and set it here. After the deployment completes, add a record set type A pointing to the ingress VIP of the OpenShift cluster. See instruction in :ref:`access with nameservers`.
+
 
 b. Specify pull_secret
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -65,7 +70,7 @@ d. (Optional) Specify ssh_public_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Specify the **ssh_public_key** with your SSH public key (e.g., :code:`ssh-ed25519 AAAAC3N...`). This public key will be injected in the bastion host, master and worker nodes so that you can SSH to them later on.
-* If ssh_public_key is **not specified**, we will auto-select one of your **existing key pair** from the Open Telekom Cloud console instead.
+* If ssh_public_key is **not specified**, we will auto-select one of your **existing key pair** from the OTC console instead.
 
 .. figure:: /_static/images/service-catalogs/openshift_config2.png
   :width: 700
@@ -87,7 +92,7 @@ e. (Optional) Specify other paramters
 3. Expect result
 ================
 
-* It takes about 2 minutes to create all compute resources on Open Telekom Cloud. Afterwards, the OpenShift bootstrap process continues to setup the master and worker nodes.
+* It takes about 2 minutes to create all compute resources on OTC. Afterwards, the OpenShift bootstrap process continues to setup the master and worker nodes.
 * After about 31 minutes, the **CheckOpenShiftStatus** job checks the OpenShift boostrap process and reports the status.
 
 .. figure:: /_static/images/service-catalogs/openshift_check_result.png
@@ -98,7 +103,10 @@ e. (Optional) Specify other paramters
 3.1. Access the console
 -----------------------
 
-After the deployment completes, you can access the OpenShift console as follows.
+First, you need to resolve the hostname of the OpenShift console as follows.
+
+Option 1. Add hostname in /etc/host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Copy **console_hostname**, **oauth_hostanme**, and the **INGRESS_VIP** from the deployment outputs.
 
@@ -115,7 +123,29 @@ After the deployment completes, you can access the OpenShift console as follows.
   80.158.36.243 console-openshift-console.apps.openshift.tri-test.com
   80.158.36.243 oauth-openshift.apps.openshift.tri-test.com
 
-* Access the OpenShift console URL via the web browser with the **kubeadmin_username** and **kubeadmin_password** from the deployment outputs.
+.. _access with nameservers:
+
+Option 2. Add nameservers
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On OTC, a DNS public zone is created with the record sets type A pointing to the ingress VIP address of the OpenShift cluster as follows:
+
+.. figure:: /_static/images/service-catalogs/openshift-dns.png
+  :width: 900
+
+  Figure 7. A DNS public zone is created on OTC
+
+It means, if you add the nameservers :code:`ns1.open-telekom-cloud.com` (80.158.48.19) or :code:`ns2.open-telekom-cloud.com` (93.188.242.252) to your machine, you can access the OpenShift console URL.
+
+.. important::
+  **Swiss OTC** does not support a DNS Public Zone. However, you can register a DNS somewhere else. For example, first you register a domain name on a free DNS like `ClouDNS <https://www.cloudns.net>`_ (e.g., :code:`tri-test.ddns-ip.net`). Then you set it to the input **base_domain** (in Step 2.2a). Finally, you set a record set type A on ClouDNS pointing to the ingress VIP of the OpenShift cluster:
+
+  .. figure:: /_static/images/service-catalogs/openshift-dns2.png
+    :width: 600
+
+    Figure 8. An example with a free DNS on ClouDNS
+
+Now you can access the OpenShift console URL via the web browser with the **kubeadmin_username** and **kubeadmin_password** from the deployment outputs.
 
 .. code-block:: bash
 
@@ -125,7 +155,7 @@ After the deployment completes, you can access the OpenShift console as follows.
 .. figure:: /_static/images/service-catalogs/openshift_result2.png
   :width: 700
 
-  Figure 7. Access the OpenShift console
+  Figure 9. Access the OpenShift console
 
 3.2. Access the bastion host
 ----------------------------
@@ -136,7 +166,7 @@ During the OpenShift bootstrap process, you can access to the bastion host as fo
 
 .. figure:: /_static/images/service-catalogs/openshift_result3.png
 
-  Figure 8. The public IP address of the bastion host
+  Figure 10. The public IP address of the bastion host
 
 * Access the bastion host with the IP
 
@@ -201,13 +231,64 @@ During the OpenShift bootstrap process, you can access to the bastion host as fo
     service-ca                                 4.13.19   True        False         False      175m
     storage                                    4.13.19   True        False         False      170m
 
-4. How to create storages
+4. Post-installation
+====================
+
+4.1. TODO after installation
+----------------------------
+
+4.1.1. Change kubeadmin password
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cloud Create auto-generates the kubeadmin password in plaintext for you. Log in the OpenShift console and change it.
+
+4.1.2. Delete bootstrap resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The **bootstrap** VM is only needed during the installation. After the installation completes, you can delete it via the Web console.
+
+.. figure:: /_static/images/service-catalogs/openshift-delete-bootstrap.png
+  :width: 900
+
+  Figure 11. Go to Web console and delete the VM "bootstrap"
+
+4.2. Maintaining credentials
+----------------------------
+
+On OTC, a user password is expired every 3 months (by default). After it is expired, OpenShift cannot authenticate to OTC to provision volumes so you may get the following error:
+
+.. code-block:: bash
+
+  MountVolume.SetUp failed for volume "pvc-xxx" : rpc error: code = Internal desc = GetVolume failed with error Unable to re-authenticate:
+  Expected HTTP response code [200] when accessing [GET https://evs.eu-de.otc.t-systems.com/v3/yyy/volumes/zzz],
+  but got 401 instead Authentication required: Authentication failed
+
+**Solution**
+
+1. Go to the Web Console and update your password on in the Section **Security Settings**.
+
+.. tip:: You can increase the password expired time in the Section **Password Policy**.
+
+2. Update OpenShift with your new password:
+
+* Go to the OpenShift Console.
+* Go to **Workloads** / **Secrets**.
+* Find and edit the secret **openstack-credentials**.
+* Update the value **password** in both “clouds.conf” and “clouds.yaml”.
+
+.. figure:: /_static/images/service-catalogs/openshift-update-password.png
+  :width: 900
+
+  Figure 12. Update the secret openstack-credentials
+
+
+5. How to create storages
 =========================
 
-4.1. Elastic Volume Service (EVS)
+5.1. Elastic Volume Service (EVS)
 ---------------------------------
 
-In OpenShift you can provision an EVS on Open Telekom Cloud dynamically:
+In OpenShift you can provision an EVS on OTC dynamically:
 
 1. Create a new **storage class** (e.g., :code:`ssd-csi`) with a volume type (e.g., :code:`SSD`):
 
@@ -301,25 +382,25 @@ In OpenShift you can provision an EVS on Open Telekom Cloud dynamically:
 
 .. figure:: /_static/images/service-catalogs/openshift_pod.png
 
-  Figure 9. Pod example is running
+  Figure 13. Pod example is running
 
-5. On Open Telekom Cloud, see EVS is created:
+5. On OTC, see EVS is created:
 
 .. figure:: /_static/images/service-catalogs/openshift_evs.png
 
-  Figure 10. A new EVS is created with the volume type "Ultra High I/O"
+  Figure 14. A new EVS is created with the volume type "Ultra High I/O"
 
-4.2. Scalable File Service & SFS Turbo
+5.2. Scalable File Service & SFS Turbo
 --------------------------------------
 
-You can create a SFS on Open Telekom Cloud manually and create a `PersistentVolume using NFS <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_ in OpenShift, which connects to SFS via NFS protocol:
+You can create a SFS on OTC manually and create a `PersistentVolume using NFS <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_ in OpenShift, which connects to SFS via NFS protocol:
 
-1. Go to the `webconsole of Open Telekom Cloud <https://console.otc.t-systems.com/>`_ and create a SFS or SFS Turbo:
+1. Go to the `webconsole of OTC <https://console.otc.t-systems.com/>`_ and create a SFS or SFS Turbo:
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs.png
   :width: 900
 
-  Figure 11. Create SFS via webconsole
+  Figure 15. Create SFS via webconsole
 
 * Choose the VPC and subnet of your OpenShift so that the SFS is created in the same subnet. The VPC :code:`cc-environment-openshift00` in this example was created by Cloud Create, which starts with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`.
 * Choose the security group `sg-worker`. This is the security group of the worker nodes.
@@ -328,7 +409,7 @@ You can create a SFS on Open Telekom Cloud manually and create a `PersistentVolu
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs2.png
 
-  Figure 12. Copy the SFS endpoint :code:`10.0.207.136`
+  Figure 16. Copy the SFS endpoint :code:`10.0.207.136`
 
 3. Create a PersistentVolume (e.g., :code:`sfs-pv`) with the SFS endpoint:
 
@@ -368,7 +449,7 @@ You can create a SFS on Open Telekom Cloud manually and create a `PersistentVolu
 
 5. Create a Pod to use :code:`sfs-pvc`
 
-5. Tear down
+6. Tear down
 ============
 
 * In Cloud Create, go to **Action** / **Undeploy** to delete the OpenShift cluster.
@@ -376,10 +457,11 @@ You can create a SFS on Open Telekom Cloud manually and create a `PersistentVolu
 
 .. figure:: /_static/images/service-catalogs/openshift_tear_down.png
 
-  Figure 12. Check PVC with Available status
+  Figure 17. Check PVC with Available status
 
-6. Links
+7. Links
 ========
 
 * Our `OpenShift app template in TOSCA <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/templates/openshift/4.13/topology.yml>`_.
 * How to create a `PersistentVolume using NFS in OpenShift <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_.
+* `Maintaining credentials in OpenShift <https://docs.openshift.com/container-platform/4.14/post_installation_configuration/changing-cloud-credentials-configuration.html#manually-rotating-cloud-creds_changing-cloud-credentials-configuration>`_.

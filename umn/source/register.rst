@@ -13,7 +13,7 @@ How to create a user account & login
 .. figure:: /_static/images/register-login.png
   :width: 400
 
-  Figure 1. Login to Cloud Create using domain name, username, and password
+  Figure 1. Login with domain name, username, and password
 
 You cannot login?
 -----------------
