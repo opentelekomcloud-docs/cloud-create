@@ -1,8 +1,8 @@
-.. _How to define and import and a new service:
+.. _How to define and import a new service:
 
-******************************************
-How to define and import and a new service
-******************************************
+**************************************
+How to define and import a new service
+**************************************
 
 This section shows how to define new services using TOSCA, then import them to the designer.
 

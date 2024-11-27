@@ -1,8 +1,8 @@
+.. _DNS:
+
 *******************
 How to create a DNS
 *******************
-
-.. _DNS:
 
 You can create a Domain Name Service so that users can access your compute via the domain name instead of a floating or private IP address.
 
@@ -24,16 +24,15 @@ You can create a Domain Name Service so that users can access your compute via t
 
   Figure 2. Input
 
-.. note::
+.. important::
 
-  The domain must be globally unique in the Domain Name Service of Open Telekom Cloud.
+  * The domain must be globally unique in the Domain Name Service of Open Telekom Cloud.
 
 .. note::
 
   * Blank subdomain: Traffic will be routed to the domain :code:`myexample.com`.
   * Subdomain "www": Traffic will be routed to :code:`www.myexample.com`, which is usually used for a website.
   * Subdomain "*": Traffic will be routed to any subdomain of the domain.
-
 
 Expect result
 -------------
@@ -64,6 +63,10 @@ Test
 .. note::
 
   * The DNS zone takes effect only after you update the nameservers of your domain at the domain registrar to: :code:`ns1.open-telekom-cloud.com` and :code:`ns2.open-telekom-cloud.com`
+
+.. important::
+
+  **Swiss Open Telekom Cloud** does not support DNS public zone, but only DNS private zone. When you set a dns_name to a network port, a DNS private zone will be created instead.
 
 .. _DNS Private:
 
