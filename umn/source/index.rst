@@ -189,18 +189,22 @@ We use Terraform 1.5.4 under the Mozilla Public License v2.0 (MPL 2.0).
 
 Before version :code:`2.15.x`, we supported Ansible :code:`2.10.7`.
 
-Starting from version :code:`2.15.x`, we support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`), which is compatible for `target VM with Python 3.7 - 3.12 <https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html>`_ installed. For examples:
+Starting from version :code:`2.15.x`, we support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`), which is compatible with `target VM having Python 3.7 - 3.12 <https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html>`_ installed. The following table shows an example that our :code:`AnsibleTasks` component works with target OS RHEL 9 but not RHEL 8.
 
-+--------------+----------------+-------------------------------------+
-| Target OS    | Python version | Compatible with Ansible core 2.17.4 |
-+==============+================+=====================================+
-| Ubuntu 20.04 | 3.8            | yes                                 |
-+--------------+----------------+-------------------------------------+
-| Ubuntu 22.04 | 3.10           | yes                                 |
-+--------------+----------------+-------------------------------------+
-| Ubuntu 24.04 | 3.12           | yes                                 |
-+--------------+----------------+-------------------------------------+
-| RHEL 9       | 3.9            | yes                                 |
-+--------------+----------------+-------------------------------------+
-| RHEL 8       | 3.6            | no                                  |
-+--------------+----------------+-------------------------------------+
++-----------------------------+----------------+-------------------------------------+
+| Target OS                   | Python version | Compatible with Ansible core 2.17.4 |
++=============================+================+=====================================+
+| Ubuntu 20.04                | 3.8            | yes                                 |
++-----------------------------+----------------+-------------------------------------+
+| Ubuntu 22.04                | 3.10           | yes                                 |
++-----------------------------+----------------+-------------------------------------+
+| Ubuntu 24.04                | 3.12           | yes                                 |
++-----------------------------+----------------+-------------------------------------+
+| RHEL 9                      | 3.9            | yes                                 |
++-----------------------------+----------------+-------------------------------------+
+| RHEL 8                      | 3.6            | no                                  |
++-----------------------------+----------------+-------------------------------------+
+| Standard_openSUSE-Leap_15.6 | 3.6            | no                                  |
++-----------------------------+----------------+-------------------------------------+
+| Enterprise_SLES_15.6        | 3.6            | no                                  |
++-----------------------------+----------------+-------------------------------------+
