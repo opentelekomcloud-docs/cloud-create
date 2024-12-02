@@ -20,6 +20,7 @@ You cannot login?
 
 * You may login with an **ICU account**. ICU account is not supported.
 * You may have **Virtual MFA Device** enabled for login authentication. Please choose either SMS, Email, or disable it instead (Go to the console / click on username / My credentials / Login authentication).
+* We support domain names started with the prefix **OTC**. If you have a special domain name that does not start with this prefix, please contact us to enable it.
 
 2. How to choose a project
 ==========================
