@@ -45,7 +45,7 @@ Cloud Create is a **free-to-use** Cloud Management Platform to create applicatio
 
 Users can:
 
-1. Create an app from a premade template (e.g., the OpenShift template).
+1. Create an app from a premade template (e.g., the :ref:`openshift`).
 2. Visually design and customize the template to fit their needs.
 3. Deploy and update the application on Open Telekom Cloud.
 4. Save a design as a private template for personal use or share it public with other users.
@@ -175,7 +175,7 @@ An overview of all supported components is available in Section :ref:`Components
 4.3. Is Cloud Create opensource
 -------------------------------
 
-Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, OpenShift template, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
+Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, the :ref:`openshift`, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
 
 All premade templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_. You can create pull requests to add more components and fix bugs.
 
@@ -208,3 +208,18 @@ Starting from version :code:`2.15.x`, we support Ansible :code:`10.5.0` (i.e., A
 +-----------------------------+----------------+-------------------------------------+
 | Enterprise_SLES_15.6        | 3.6            | no                                  |
 +-----------------------------+----------------+-------------------------------------+
+
+5. Webinar
+==========
+
+.. image:: /_static/images/features/webinar.png
+    :width: 700
+    :alt: Webinar OpenShift meets Open Telekom Cloud | T-Systems
+    :target: https://www.youtube.com/watch?v=tHcKIE-U2s8
+
+In this Webinar, you will learn:
+
+* OpenShift license and support.
+* Differences between Kubernetes/CCE vs. OpenShift.
+* Demo how to deploy OpenShift.
+* Demo insights of the OpenShift console and its key features.
