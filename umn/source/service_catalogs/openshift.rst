@@ -459,7 +459,22 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 
   Figure 17. Check PVC with Available status
 
-7. Links
+7. Webinar
+==========
+
+.. image:: /_static/images/features/webinar.png
+    :width: 700
+    :alt: Webinar OpenShift meets Open Telekom Cloud | T-Systems
+    :target: https://www.youtube.com/watch?v=tHcKIE-U2s8
+
+In this Webinar, you will learn:
+
+* OpenShift license and support.
+* Differences between Kubernetes/CCE vs. OpenShift.
+* Demo how to deploy OpenShift.
+* Demo insights of the OpenShift console and its key features.
+
+8. Links
 ========
 
 * Our `OpenShift app template in TOSCA <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/templates/openshift/4.13/topology.yml>`_.
