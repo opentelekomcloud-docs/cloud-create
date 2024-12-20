@@ -8,7 +8,7 @@ How to create a user account & login
 ===============================
 
 * Go to: https://designer.otc-service.com
-* Login using an IAM user account with the **Tenant Administrator** role. This is the same credentials when you log in to the web console, **not the ICU account**.
+* Login using an **IAM user account** with the **Tenant Administrator** role, which is created in the Web console. If you do not have an IAM account, see Section :ref:`How to create an IAM user account`.
 
 .. figure:: /_static/images/register-login.png
   :width: 400
@@ -18,31 +18,21 @@ How to create a user account & login
 You cannot login?
 -----------------
 
-* You may login with an **ICU account**. ICU account is not supported.
-* You may have **Virtual MFA Device** enabled for login authentication. Please choose either SMS, Email, or disable it instead (Go to the console / click on username / My credentials / Login authentication).
-* We support domain names started with the prefix **OTC**. If you have a special domain name that does not start with this prefix, please contact us to enable it.
-
-2. How to choose a project
-==========================
-
-* After logging in, you can choose a **project**, where you want to design and deploy your applications:
-
-.. figure:: /_static/images/register-choose-projects.png
-  :width: 900
-
-  Figure 2. Choose a project
+1. You may login with an **ICU account** or you login from **Telekom MMS IdP via an SSO**. In this case, you can first login to the Web console (via SSO) and then create a new IAM account in the Web console. With the IAM account, you can login to Cloud Create. See Section :ref:`How to create an IAM user account`.
+2. You may have **Virtual MFA Device** enabled for login authentication. Please choose either SMS, Email, or disable it instead (Go to the console / click on username / My credentials / Login authentication).
+3. You may login with a domain name NOT started with **OTC**. If you have a special domain name that does not start with this prefix, please contact us to enable it.
 
 .. _How to create an IAM user account:
 
-3. How to create an IAM user account
+2. How to create an IAM user account
 ====================================
 
-In case you do not have an IAM user account, please ask your domain administrator to create one for you. The following tutorial shows how to create a new user and assign the given user to a project in the IAM:
+In case you do not have an IAM user account, please ask your domain administrator to create one for you. The following tutorial shows how to create an IAM user account and assign the given user to a project in the IAM:
 
 2.1. Create a project (optional, if you don't have one)
 -------------------------------------------------------
 
-* Login to the `Web console <https://console.otc.t-systems.com>`_.
+* Login to the Web console of `OTC <https://console.otc.t-systems.com>`_ / `Swiss OTC <https://console.sc.otc.t-systems.com>`_.
 * Go to: **Identity Management**
 
 .. figure:: /_static/images/register-iam-button.png
@@ -115,6 +105,16 @@ Now users in the group `test` have the permissions to provision cloud resources 
 .. figure:: /_static/images/register-create-user2.png
   :width: 900
 
-  Figure 8. Add user to group test
+  Figure 9. Add user to group test
 
 Now the new user `testuser` has the role `Tenant Administrator` to provision cloud resources in the project `eu-de_test` and can login to Cloud Create.
+
+3. How to choose a project
+==========================
+
+* After logging in, you can choose a **project**, where you want to design and deploy your applications:
+
+.. figure:: /_static/images/register-choose-projects.png
+  :width: 900
+
+  Figure 10. Choose a project
