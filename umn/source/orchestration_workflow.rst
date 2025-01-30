@@ -31,22 +31,14 @@ Figure 2 shows an example: At the beginning of the workflow, the orchestrator cr
 .. note:: In comparison to HEAT, Cloud Create does not require an active AMQP connection on the VMs all the time.
 
 
-1.2 Fully isolated workflow
----------------------------
-
-For each ansible execution in the workflow, the orchestrator starts a new **ansible controller container** and executes ansible from inside the container. After a workflow step completes or fails, the orchestrator terminates the container. As a result, a workflow execution from multiple tenants are fully isolated with each other.
-
-.. figure:: /_static/images/4-workflow_ansible_docs.png
-  :width: 800
-
-  Figure 2. Orchestrator starts a sandbox container
-
-1.3 Key Management System supported
+1.2 Key Management System supported
 -----------------------------------
 
 When users deploy their applications, the orchestration engine uses the user OpenStack token to work on behalf of them and provision resources on Open Telekom Cloud. It means, the orchestration engine itself cannot make any changes to the tenant without the user authentication. This is similar to the :code:`OpenStack Heat` orchestration engine, which also uses the OpenStack token to provision resource on behalf of the authenticated users.
 
-Recall that the orchestrator uses ansible to deploy service catalogs on the computes via SSH. For this purpose, the orchestrator auto-generates an SSH key for each deployment. The public part of the SSH key is installed on the VMs (via cloud-init). The private part is encrypted in the Key Management System using the user OpenStack token. Without the user OpenStack token, the orchestrator itself cannot decrypt this private key.
+Recall that the orchestrator uses ansible to deploy service catalogs on the computes via SSH. For this purpose, the orchestrator auto-generates an SSH key for each deployment. The public part of the SSH key (name :code:`yorc`) is installed on the VMs. The private part is encrypted in our Key Management System using the user OpenStack token. Without the user OpenStack token, the orchestrator itself cannot decrypt this private key.
+
+After the deployment completes, you can remove the public key :code:`yorc` on the VMs if you want. However, if you remove this public key, you cannot use Cloud Create to run any further updates on the VMs.
 
 2. Error handling of the orchestration engine
 =============================================
