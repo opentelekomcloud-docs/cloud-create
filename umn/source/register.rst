@@ -8,19 +8,22 @@ How to create a user account & login
 ===============================
 
 * Go to: https://designer.otc-service.com
-* Login using an **IAM user account** with the **Tenant Administrator** role, which is created in the Web console. If you do not have an IAM account, see Section :ref:`How to create an IAM user account`.
+* Login using an **IAM user account** with the **Tenant Administrator** role. This is the the account created in the Identity Management of the Web console. If you do not have an IAM account, see Section :ref:`How to create an IAM user account`.
 
 .. figure:: /_static/images/register-login.png
   :width: 400
 
   Figure 1. Login with domain name, username, and password
 
+.. attention::
+
+  If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console of Open Telekom Cloud and then create a new IAM account in the Web console. With the IAM account, you can login to Cloud Create.
+
 You cannot login?
 -----------------
 
-1. You may login with an **ICU account** or you login from **Telekom MMS IdP via an SSO**. In this case, you can first login to the Web console (via SSO) and then create a new IAM account in the Web console. With the IAM account, you can login to Cloud Create. See Section :ref:`How to create an IAM user account`.
-2. You may have **Virtual MFA Device** enabled for login authentication. Please choose either SMS, Email, or disable it instead (Go to the console / click on username / My credentials / Login authentication).
-3. You may login with a domain name NOT started with **OTC**. If you have a special domain name that does not start with this prefix, please contact us to enable it.
+1. You may have **Virtual MFA Device** enabled for login authentication. Please choose either SMS, Email, or disable it instead (Go to the console / click on username / My credentials / Login authentication).
+2. You may login with a domain name NOT started with **OTC**. If you have a special domain name that does not start with this prefix, please contact us to enable it.
 
 .. _How to create an IAM user account:
 

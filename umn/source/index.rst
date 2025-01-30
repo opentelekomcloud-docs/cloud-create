@@ -163,9 +163,9 @@ Cloud Create automates all cloud services in the template. In addition, you can 
 4.1. How can I login in to Cloud Create
 ---------------------------------------
 
-You can log in to Cloud Create using an IAM user account with the **Tenant Administrator** role. This is the same credentials when you log in to the web console, **not the ICU account**.
+You can log in to Cloud Create using an **IAM user account** with the **Tenant Administrator** role. This is the the account created in the Identity Management of the Web console. If you do not have an IAM account, see Section :ref:`How to create an IAM user account`.
 
-If you do not have a user account in the IAM, see :ref:`How to login`.
+If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console and then create a new IAM account in the Web console. With the IAM account, you can login to Cloud Create.
 
 4.2. Which components are supported
 -----------------------------------
