@@ -38,7 +38,7 @@ Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain nam
 
 .. important::
 
-  **Swiss OTC** does not support a DNS Public Zone. Here you can bring your own DNS and set it here. After the deployment completes, add a record set type A pointing to the ingress VIP of the OpenShift cluster. See instruction in :ref:`access with nameservers`.
+  **Swiss OTC** does not support a DNS Public Zone. However, you can bring your own domain name and set it here. For example, you can register a free domain name on ClouDNS (e.g., tri-test.ddns-ip.net). Then you set it to the base_domain. After the deployment completes, you can use this domain name to access the OpenShift console. See instruction in :ref:`access with nameservers`.
 
 
 b. Specify pull_secret

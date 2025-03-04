@@ -8,7 +8,7 @@ How to create a user account & login
 ===============================
 
 * Go to: https://designer.otc-service.com
-* Login using an **IAM user account** with the **Tenant Administrator** role. This is the the account created in the Identity Management of the Web console. If you do not have an IAM account, see Section :ref:`How to create an IAM user account`.
+* Login using an **IAM user account** with the **Tenant Administrator** role. This is the user account created in the Identity Management of the Web console. If you do not have an IAM user account, see Section :ref:`How to create an IAM user account`.
 
 .. figure:: /_static/images/register-login.png
   :width: 400
@@ -17,7 +17,7 @@ How to create a user account & login
 
 .. attention::
 
-  If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console of Open Telekom Cloud and then create a new IAM account in the Web console. With the IAM account, you can login to Cloud Create.
+  If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console and then create a new IAM user account in the Web console. With the IAM user account, you can login to Cloud Create.
 
 You cannot login?
 -----------------
