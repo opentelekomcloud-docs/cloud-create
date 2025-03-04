@@ -4,8 +4,31 @@
 Release notes
 *************
 
-v2.15 - Swiss Open Telekom Cloud
-================================
+v2.16
+=====
+
+1. Deployment in Netherlands
+----------------------------
+
+You can now deploy all templates in Netherlands. After login, switch to a project in the region Netherlands.
+
+.. figure:: /_static/images/features/v2.16-netherlands.png
+  :width: 800
+
+  Figure 1. Switch to a project in Netherlands
+
+2. Improve deploy setup messages
+--------------------------------
+
+The deploy setup logs display messages in 3 categories: error, warning, and info. We also validate the deployment for you and display any errors, warnings, or information you should know in each category, respectively.
+
+.. figure:: /_static/images/features/v2.16-setup-logs.png
+  :width: 800
+
+  Figure 2. New deploy setup logs
+
+v2.15
+=====
 
 1. Swiss Open Telekom Cloud
 ---------------------------
@@ -15,7 +38,7 @@ Users can now login with IAM accounts from Swiss Open Telekom Cloud as well. Whe
 .. figure:: /_static/images/features/v2.15-login-swiss-otc.png
   :width: 800
 
-  Figure 1. Login with domain name from Swiss Open Telekom Cloud.
+  Figure 3. Login with domain name from Swiss Open Telekom Cloud.
 
 Read more about :ref:`Swiss OTC`.
 
@@ -57,7 +80,7 @@ The gallery template enables users to create app from public templates. They can
 .. figure:: /_static/images/features/overview-templates.png
   :width: 800
 
-  Figure 2. OpenShift template
+  Figure 4. OpenShift template
 
 v2.13 - OpenShift template
 ==========================
@@ -67,7 +90,7 @@ Users can create a `Self-managed OpenShift Container Platform <https://www.redha
 .. figure:: /_static/images/features/openshift.png
   :width: 800
 
-  Figure 3. OpenShift template
+  Figure 5. OpenShift template
 
 v2.12 - History
 ===============
@@ -77,4 +100,4 @@ Users can view deployment logs in the **History** so they can audit all actions 
 .. figure:: /_static/images/features/deployment_history.png
   :width: 800
 
-  Figure 4. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.
+  Figure 6. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.
