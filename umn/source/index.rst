@@ -106,61 +106,10 @@ During the deployment, administrators can interactively click on a workflow step
 
   Figure 7. An example Terraform is generated and applied for a Compute
 
-3. Why Cloud Create?
-====================
-
-3.1. Resource Formation Service vs. Cloud Create
-------------------------------------------------
-
-The following table shows the differences between Resource Formation Service (RFS) and Cloud Create:
-
-+-------------------------------------------------+----------------------------+--------------+
-| Features                                        | Resource Formation Service | Cloud Create |
-+=================================================+============================+==============+
-| A template solution                             | yes                        | yes          |
-+-------------------------------------------------+----------------------------+--------------+
-| Support infrastructure stack                    | yes                        | yes          |
-+-------------------------------------------------+----------------------------+--------------+
-| Support service stack (Ansible, Bash, software) | no                         | yes          |
-+-------------------------------------------------+----------------------------+--------------+
-| Support stack upgrade                           | no                         | yes          |
-+-------------------------------------------------+----------------------------+--------------+
-
-a. Template solution
-^^^^^^^^^^^^^^^^^^^^
-
-Both RFS and Cloud Create are a template solution. In particular, RFS is a template solution for the infrastructure stack (e.g., Network, Storage, CCE, etc.).
-
-Cloud Create is a template solution for both infrastructure stack and service stack (i.e., a full stack solution).
-
-It means, Cloud Create can deploy OpenShift and many more external cloud solutions on top of Open Telekom Cloud. RFS cannot deploy OpenShift.
-
-b. Stack upgrade
-^^^^^^^^^^^^^^^^
-
-RFS does not support stack upgrade. It means, after you deploy a stack, you cannot change the deployment.
-
-Cloud Create supports stack upgrade. Both the infrastructure and service stack in the template can be changed after the deployment (e.g., users can scale up and down the OpenShift worker nodes or run Ansible scripts on a compute after the deployment).
-
-
-3.2. Web console vs. Cloud Create
----------------------------------
-
-The following table shows the differences between the Web console and Cloud Create:
-
-.. figure:: /_static/images/features/features_compare.png
-  :width: 800
-
-  Figure 8. Features comparison
-
-Both the Web console and Cloud Create can deploy one cloud service. However, an application nowadays consists of multiple cloud services but not just one. The Web console can bring up one service up and running separately but cannot automate an application with multiple services.
-
-Cloud Create automates all cloud services in the template. In addition, you can modify the template to fit your individual needs (e.g., write an Ansible script to deploy additional packages, etc). Finally, you can run update between versions as well. To update between versions, Cloud Create auto-calculates the differences between the two versions and auto-generates the update workflow steps.
-
-4. FAQ
+3. FAQ
 ======
 
-4.1. How can I login in to Cloud Create
+3.1. How can I login in to Cloud Create
 ---------------------------------------
 
 You can log in to Cloud Create using an **IAM user account** with the **Tenant Administrator** role. This is the the user account created in the Identity Management of the Web console. If you do not have an IAM user account, see Section :ref:`How to create an IAM user account`.
@@ -169,24 +118,24 @@ You can log in to Cloud Create using an **IAM user account** with the **Tenant A
 
   If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console and then create a new IAM user account in the Web console. With the IAM user account, you can login to Cloud Create.
 
-4.2. Which components are supported
+3.2. Which components are supported
 -----------------------------------
 
 An overview of all supported components is available in Section :ref:`Components overview`.
 
-4.3. Is Cloud Create opensource
+3.3. Is Cloud Create opensource
 -------------------------------
 
 Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, the :ref:`openshift`, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
 
 All premade templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_. You can create pull requests to add more components and fix bugs.
 
-4.4. Which Terraform version do you use
+3.4. Which Terraform version do you use
 ---------------------------------------
 
 We use Terraform 1.5.4 under the Mozilla Public License v2.0 (MPL 2.0).
 
-4.5. Which Ansible version do you support
+3.5. Which Ansible version do you support
 -----------------------------------------
 
 Before version :code:`2.15.x`, we supported Ansible :code:`2.10.7`.
@@ -211,7 +160,7 @@ Starting from version :code:`2.15.x`, we support Ansible :code:`10.5.0` (i.e., A
 | Enterprise_SLES_15.6        | 3.6            | no                                  |
 +-----------------------------+----------------+-------------------------------------+
 
-5. Webinar
+4. Webinar
 ==========
 
 .. image:: /_static/images/features/webinar.png
