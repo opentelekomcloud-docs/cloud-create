@@ -19,7 +19,7 @@ A Bash component has some properties, which will be available in the **configure
 
 * **HOST**: set to the name of the compute node, which the Bash component is hosted on (e.g., :code:`Compute_1`).
 
-* **ip_address**: set to the runtime IP address of the compute node, which hosts this component.
+* **IP_ADDRESS**: set to the runtime IP address of the compute node, which hosts this component.
 
 2. User-defined environment variables
 =====================================
