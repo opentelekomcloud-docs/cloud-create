@@ -29,9 +29,9 @@ Step 2. Write a script
   #!/usr/bin/env bash
 
   echo "Start configuring $NODE on compute $HOST"
-  echo "I have the ip address: $ip_address"
+  echo "I have the ip address: $IP_ADDRESS"
 
-In this example, :code:`$NODE`, :code:`$HOST`, and :code:`$ip_address` are pre-defined environment variables. They will be resolved to the component name (e.g., :code:`Bash_1`), the hosted compute (e.g., :code:`Compute_1`), and the IP address of the compute (e.g., :code:`10.0.0.3`), respectively at runtime.
+In this example, :code:`$NODE`, :code:`$HOST`, and :code:`$IP_ADDRESS` are pre-defined environment variables. They will be resolved to the component name (e.g., :code:`Bash_1`), the hosted compute (e.g., :code:`Compute_1`), and the IP address of the compute (e.g., :code:`10.0.0.3`), respectively at runtime.
 
 .. tip:: For more environment variables, see Section :ref:`bash env vars`.
 
