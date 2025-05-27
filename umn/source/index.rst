@@ -19,6 +19,7 @@ Quick introduction
    google/index
    service_catalogs/index
    tosca_tutorials/index
+   save_template
    secrets
    git
    orchestration_workflow

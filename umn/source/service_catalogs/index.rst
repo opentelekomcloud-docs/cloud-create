@@ -15,8 +15,8 @@ A part from the services provided by Cloud Create, users can also model their se
   :hidden:
 
   openshift
+  cce
   prometheus
-  hardening
   mysql
   rds
   apache
