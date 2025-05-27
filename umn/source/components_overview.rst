@@ -55,7 +55,6 @@ Service components
 Components               Scenarios
 =======================  =========================================================================================================================================
 Prometheus monitoring    :ref:`Create a monitoring system to collect metrics from VMs and send alerts <Prometheus>`
-Hardening                :ref:`Hardening the OS and SSH on a VM to compliant with Privacy and Security Assessment process of Deutsche Telekom Group <Hardening>`
 Nextcloud                Create the Nextcloud app with different template versions
 Apache                   Deploy an Apache Webserver. on a VM and configure its vhost
 MySQLServer              Deploy MySQL server on a VM, create multiple database
