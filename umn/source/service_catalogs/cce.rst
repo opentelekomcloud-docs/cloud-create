@@ -61,6 +61,8 @@ The CCE node in the template has one instance by default. You can scale it up, e
 
   Figure 3. Scale the CCENode to 2 instances
 
+**Expect result**
+
 After the deployment completes, you will have two instances **ccenode-0** and **ccenode-1**. They have the **same settings** (e.g., same flavor, availability zone, volume size, etc.).
 
 .. figure:: /_static/images/service-catalogs/cce4.png
@@ -99,17 +101,26 @@ In the designer:
 
   Figure 6. Default annotation
 
-2.4. How to set labels for a CCE node
--------------------------------------
+2.4. How to set tags for a CCE node
+-----------------------------------
 
 In the designer:
 
-* Click on a **CCENode** / **Set labels**.
+* Click on a **CCENode** / **Set k8s_tags**.
 
 .. figure:: /_static/images/service-catalogs/cce7.png
   :width: 700
 
-  Figure 7. Set the label foo with value bar for the CCENode
+  Figure 7. Set the tag "foo" with value "bar" for a CCENode
+
+**Expect result**
+
+After deployment completes, go to **Nodes** / select the node / **More** / **Manage label** and see the tags:
+
+.. figure:: /_static/images/service-catalogs/cce7b.png
+  :width: 700
+
+  Figure 8. Tag "foo" with value "bar" is set
 
 2.5. How to control the k8s resources from the designer
 -------------------------------------------------------
@@ -122,14 +133,16 @@ In the designer:
 .. figure:: /_static/images/service-catalogs/cce8.png
   :width: 700
 
-  Figure 8. The CustomSetup script
+  Figure 9. The CustomSetup script
 
-* After deployment completes, click on the **CustomSetup** script to see the output:
+**Expect result**
+
+After deployment completes, click on the **CustomSetup** script to see the output:
 
 .. figure:: /_static/images/service-catalogs/cce9.png
   :width: 700
 
-  Figure 9. The CustomSetup script outputs all k8s nodes
+  Figure 10. The CustomSetup script outputs all k8s nodes
 
 2.6. How to access the bastion host
 -----------------------------------
