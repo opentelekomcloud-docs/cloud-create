@@ -1,3 +1,5 @@
+.. _template:
+
 **********************************
 How to save a design as a template
 **********************************
@@ -10,8 +12,7 @@ You can save a design as a private or public template.
 1.1. Use case
 -------------
 
-* A cloud engineer designs an application and saves it as a template so that other users of the same project can re-design or quick deploy it.
-* The cloud engineer in this case can be from the same organization or an external consultant service. In the later case, the domain administrator creates an IAM account for the cloud engineer to design the template. The oganization can quick deploy an app from the template later.
+You can design an app and save your app as a private template. The private template will be available for all users of the same project to reuse. This function is useful if you want to design a premade template and share it with your team or organization.
 
 1.2. How to
 -----------
