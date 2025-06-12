@@ -29,7 +29,7 @@ Quick introduction
 
 .. attention::
 
-  You can now deploy OpenShift v4.16 in all 3 locations: Germany, Netherlands, and Switzerland. See :ref:`Release notes`.
+  v2.17 has been released: You can now save an app as a private template and share it within your project. See :ref:`Release notes`.
 
 1. Overview
 ===========
@@ -48,28 +48,25 @@ Users can:
 
 1. Create an app from a premade template (e.g., the :ref:`openshift`).
 2. Visually design and customize the template to fit their needs.
-3. Deploy and update the application on Open Telekom Cloud.
-4. Save a design as a private template for personal use or share it public with other users.
+3. Deploy and update the app on Open Telekom Cloud.
+4. Save the app as a private template and share it within your project, or publish it on Open Telekom Cloud for everyone to reuse.
 
 .. figure:: /_static/images/features/overview.png
   :width: 900
 
   Figure 2. Features
 
-.. note::
-  * The function "Save & Share templates" are upcoming features.
-
 2.1. How cloud architects design the application
 ------------------------------------------------
 
-Cloud architects can design the application from scratch or from premade templates. First, they select a template:
+Cloud architects and engineers can design the application from scratch or from premade templates. First, they select a template:
 
 .. figure:: /_static/images/features/overview-templates.png
   :width: 800
 
   Figure 3. Select an app template to start.
 
-Then they choose to "quick deploy" or start a new design from the template:
+Then choose "quick deploy" or start a new design from the template:
 
 .. figure:: /_static/images/features/overview-templates2.png
   :width: 800
@@ -129,7 +126,7 @@ An overview of all supported components is available in Section :ref:`Components
 
 Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, the :ref:`openshift`, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
 
-All premade templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_. You can create pull requests to add more components and fix bugs.
+All premade templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_.
 
 3.4. Which Terraform version do you use
 ---------------------------------------
@@ -139,9 +136,7 @@ We use Terraform 1.5.4 under the Mozilla Public License v2.0 (MPL 2.0).
 3.5. Which Ansible version do you support
 -----------------------------------------
 
-Before version :code:`2.15.x`, we supported Ansible :code:`2.10.7`.
-
-Starting from version :code:`2.15.x`, we support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`), which is compatible with `target VM having Python 3.7 - 3.12 <https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html>`_ installed. The following table shows an example that our :code:`AnsibleTasks` component works with target OS RHEL 9 but not RHEL 8.
+We currently support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`), which is compatible with `target VM having Python 3.7 - 3.12 <https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html>`_ installed. The following table shows the compatibility matrix with Operating Systems:
 
 +-----------------------------+----------------+-------------------------------------+
 | Target OS                   | Python version | Compatible with Ansible core 2.17.4 |
