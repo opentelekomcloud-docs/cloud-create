@@ -320,14 +320,14 @@ In OpenShift you can provision an EVS on OTC dynamically:
       name: eu-de-01-ssd-csi
     provisioner: cinder.csi.openstack.org
     parameters:
-      type: SSD # Choose 'SSD' for 'Ultra high I/O', 'SAS' for 'High I/O', 'SATA' for 'Common I/O'
+      type: SSD # Choose 'SSD' (for 'Ultra high I/O'), 'SAS' (for 'High I/O')
     reclaimPolicy: Delete
     allowVolumeExpansion: true
     allowedTopologies:
     - matchLabelExpressions:
       - key: topology.cinder.csi.openstack.org/zone
         values:
-        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', 'eu-de-03'
+        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for OTC), 'eu-ch2a' and 'eu-ch2b' (for Swiss OTC).
 
 2. Create a **PersistentVolumeClaim** (e.g., :code:`ssd-pvc`) with the storage class :code:`ssd-csi`:
 
