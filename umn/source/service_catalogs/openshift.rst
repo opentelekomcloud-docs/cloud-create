@@ -12,7 +12,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 .. important::
   * The OpenShift template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL).
   * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
-  * Versions available in the template: :code:`4.12.39`, :code:`4.13.19`, :code:`4.16.19`. Please contact us if you need a specific version.
+  * Versions available in the template: :code:`4.16.19`. Please contact us if you need a specific version.
 
 2. How to use
 =============
@@ -22,6 +22,11 @@ The following tutorial shows you how to register a (trial) subscription key from
 
 1. Create a new application using the template **OpenShift** or **OpenShift HA** with a selected version (e.g., 4.16.19)
 2. Go to **Quick Deploy**.
+
+.. figure:: /_static/images/service-catalogs/openshift_select_template.png
+  :width: 700
+
+  Figure 1. Choose the template OpenShift
 
 2.2. Deloy Setup
 ----------------
@@ -34,7 +39,7 @@ Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain nam
 .. figure:: /_static/images/service-catalogs/openshift_config1.png
   :width: 700
 
-  Figure 1. Specify a domain name
+  Figure 2. Specify a domain name
 
 .. important::
 
@@ -50,14 +55,14 @@ b. Specify pull_secret
 .. figure:: /_static/images/service-catalogs/openshift_redhat_console.png
   :width: 700
 
-  Figure 2. Copy pull secret
+  Figure 3. Copy pull secret
 
 3. Paste the content in the **pull_secret** in the Section **Secrets Inputs**.
 
 .. figure:: /_static/images/service-catalogs/openshift_pull_secrect.png
   :width: 700
 
-  Figure 2. Paste the pull secret
+  Figure 4. Paste the pull secret
 
 c. Specify os_password
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -75,7 +80,7 @@ d. (Optional) Specify ssh_public_key
 .. figure:: /_static/images/service-catalogs/openshift_config2.png
   :width: 700
 
-  Figure 3. Specify your SSH public key
+  Figure 5. Specify your SSH public key
 
 e. (Optional) Specify other paramters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -87,7 +92,7 @@ e. (Optional) Specify other paramters
 .. figure:: /_static/images/service-catalogs/openshift_config3.png
   :width: 700
 
-  Figure 4. Specify your SSH public key
+  Figure 6. Specify your SSH public key
 
 3. Expect result
 ================
@@ -98,7 +103,7 @@ e. (Optional) Specify other paramters
 .. figure:: /_static/images/service-catalogs/openshift_check_result.png
   :width: 700
 
-  Figure 5. CheckOpenShiftStatus waits 31 minutes and checks the status
+  Figure 7. CheckOpenShiftStatus waits 31 minutes and checks the status
 
 3.1. Access the console
 -----------------------
@@ -113,7 +118,7 @@ Option 1. Add hostname in /etc/host
 .. figure:: /_static/images/service-catalogs/openshift_result1.png
   :width: 700
 
-  Figure 6. Copy the hostname and VIP address
+  Figure 8. Copy the hostname and VIP address
 
 * Paste **console_hostname** and **oauth_hostanme** and the **INGRESS_VIP** in your **/etc/hosts**
 
@@ -133,7 +138,7 @@ On OTC, a DNS public zone is created with the record sets type A pointing to the
 .. figure:: /_static/images/service-catalogs/openshift-dns.png
   :width: 900
 
-  Figure 7. A DNS public zone is created on OTC
+  Figure 9. A DNS public zone is created on OTC
 
 It means, if you add the nameservers :code:`ns1.open-telekom-cloud.com` (80.158.48.19) or :code:`ns2.open-telekom-cloud.com` (93.188.242.252) to your machine, you can access the OpenShift console URL.
 
@@ -143,7 +148,7 @@ It means, if you add the nameservers :code:`ns1.open-telekom-cloud.com` (80.158.
   .. figure:: /_static/images/service-catalogs/openshift-dns2.png
     :width: 600
 
-    Figure 8. An example with a free DNS on ClouDNS
+    Figure 10. An example with a free DNS on ClouDNS
 
 Now you can access the OpenShift console URL via the web browser with the **kubeadmin_username** and **kubeadmin_password** from the deployment outputs.
 
@@ -155,7 +160,7 @@ Now you can access the OpenShift console URL via the web browser with the **kube
 .. figure:: /_static/images/service-catalogs/openshift_result2.png
   :width: 700
 
-  Figure 9. Access the OpenShift console
+  Figure 11. Access the OpenShift console
 
 3.2. Access the bastion host
 ----------------------------
@@ -166,7 +171,7 @@ During the OpenShift bootstrap process, you can access to the bastion host as fo
 
 .. figure:: /_static/images/service-catalogs/openshift_result3.png
 
-  Figure 10. The public IP address of the bastion host
+  Figure 12. The public IP address of the bastion host
 
 * Access the bastion host with the IP
 
@@ -250,7 +255,7 @@ The **bootstrap** VM is only needed during the installation. After the installat
 .. figure:: /_static/images/service-catalogs/openshift-delete-bootstrap.png
   :width: 900
 
-  Figure 11. Go to Web console and delete the VM "bootstrap"
+  Figure 13. Go to Web console and delete the VM "bootstrap"
 
 4.2. Maintaining credentials
 ----------------------------
@@ -279,7 +284,7 @@ On OTC, a user password is expired every 3 months (by default). After it is expi
 .. figure:: /_static/images/service-catalogs/openshift-update-password.png
   :width: 900
 
-  Figure 12. Update the secret openstack-credentials
+  Figure 14. Update the secret openstack-credentials
 
 
 5. How to create storages
@@ -315,14 +320,14 @@ In OpenShift you can provision an EVS on OTC dynamically:
       name: eu-de-01-ssd-csi
     provisioner: cinder.csi.openstack.org
     parameters:
-      type: SSD # Choose 'SSD' for 'Ultra high I/O', 'SAS' for 'High I/O', 'SATA' for 'Common I/O'
+      type: SSD # Choose 'SSD' (for 'Ultra high I/O'), 'SAS' (for 'High I/O')
     reclaimPolicy: Delete
     allowVolumeExpansion: true
     allowedTopologies:
     - matchLabelExpressions:
       - key: topology.cinder.csi.openstack.org/zone
         values:
-        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', 'eu-de-03'
+        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for OTC), 'eu-ch2a' and 'eu-ch2b' (for Swiss OTC).
 
 2. Create a **PersistentVolumeClaim** (e.g., :code:`ssd-pvc`) with the storage class :code:`ssd-csi`:
 
@@ -382,13 +387,13 @@ In OpenShift you can provision an EVS on OTC dynamically:
 
 .. figure:: /_static/images/service-catalogs/openshift_pod.png
 
-  Figure 13. Pod example is running
+  Figure 15. Pod example is running
 
 5. On OTC, see EVS is created:
 
 .. figure:: /_static/images/service-catalogs/openshift_evs.png
 
-  Figure 14. A new EVS is created with the volume type "Ultra High I/O"
+  Figure 16. A new EVS is created with the volume type "Ultra High I/O"
 
 5.2. Scalable File Service & SFS Turbo
 --------------------------------------
@@ -400,7 +405,7 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 .. figure:: /_static/images/service-catalogs/openshift_sfs.png
   :width: 900
 
-  Figure 15. Create SFS via webconsole
+  Figure 17. Create SFS via webconsole
 
 * Choose the VPC and subnet of your OpenShift so that the SFS is created in the same subnet. The VPC :code:`cc-environment-openshift00` in this example was created by Cloud Create, which starts with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`.
 * Choose the security group `sg-worker`. This is the security group of the worker nodes.
@@ -409,7 +414,7 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs2.png
 
-  Figure 16. Copy the SFS endpoint :code:`10.0.207.136`
+  Figure 18. Copy the SFS endpoint :code:`10.0.207.136`
 
 3. Create a PersistentVolume (e.g., :code:`sfs-pv`) with the SFS endpoint:
 
@@ -457,7 +462,7 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 
 .. figure:: /_static/images/service-catalogs/openshift_tear_down.png
 
-  Figure 17. Check PVC with Available status
+  Figure 19. Check PVC with Available status
 
 7. Links
 ========
