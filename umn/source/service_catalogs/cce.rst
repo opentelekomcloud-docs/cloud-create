@@ -101,8 +101,8 @@ In the designer:
 
   Figure 6. Default annotation
 
-2.4. How to set tags for a CCE node
------------------------------------
+2.4. How to set labels for a CCE node
+-------------------------------------
 
 In the designer:
 
@@ -160,6 +160,41 @@ After deployment completes, click on the **CustomSetup** script to see the outpu
     ubuntu@cc-environment-cce01-bastionhost-0:~$ kubectl get nodes
     NAME        STATUS   ROLES    AGE     VERSION
     10.0.0.62   Ready    <none>   7m23s   v1.30.4-r0-30.0.12.3
+
+2.6. How to update the current deployment
+-----------------------------------------
+
+You can update the current deployment from one version to another one:
+
+1. Clone the current version (e.g., :code:`0.1.0-SNAPSHOT` is currently deployed) by clicking on **Clone this application**
+
+.. figure:: /_static/images/service-catalogs/cce_update1.png
+  :width: 700
+
+  Figure 11. Clone the version :code:`0.1.0-SNAPSHOT`
+
+2. In the new version (:code:`0.1.1-SNAPSHOT`), make any changes in the design (e.g., add a new node).
+
+.. figure:: /_static/images/service-catalogs/cce_update2.png
+  :width: 700
+
+  Figure 12. Add a new node :code:`CCENode_az2`
+
+3. Go to Deploy Setup / Select the target **Version** to update (:code:`0.1.1-SNAPSHOT`).
+
+4. Review the differences between the current version and the new one (:code:`0.1.0-SNAPSHOT` -> :code:`0.1.1-SNAPSHOT`), if any nodes are added/removed, or any properties have been changed.
+
+.. figure:: /_static/images/service-catalogs/cce_update3.png
+  :width: 700
+
+  Figure 12. The table shows a new node :code:`CCENode_az2` will be added
+
+5. Click **Update** and review the result
+
+.. figure:: /_static/images/service-catalogs/cce_update4.png
+  :width: 700
+
+  Figure 12. The new node :code:`CCENode_az2` is installed
 
 3. Links
 ========
