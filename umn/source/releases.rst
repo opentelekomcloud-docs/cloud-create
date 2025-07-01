@@ -4,6 +4,27 @@
 Release notes
 *************
 
+v2.18
+=====
+
+Cloud Container Engine template
+-------------------------------
+
+Launch Production-Ready Cloud Container Engine (CCE) Clusters in One Click with Cloud Create.
+
+Say goodbye to complex setup scripts and hours of infrastructure toil. With Cloud Create, you can deploy a fully operational CCE cluster—complete with a NAT gateway, secure bastion host, and pre-configured :code:`kubectl` client—in just one click.
+
+Your :code:`kubectl` client is ready to go right from the bastion host, giving you immediate access to manage and configure your cluster directly from our intuitive visual designer. No manual setup. No waiting.
+
+Whether you're testing a new idea or deploying a production-grade environment, Cloud Create gets you there faster—securely and seamlessly.
+
+Read more: :ref:`cce`.
+
+.. figure:: /_static/images/service-catalogs/cce1.png
+  :width: 900
+
+  Figure 1. The CCE template
+
 v2.17
 =====
 
@@ -15,7 +36,7 @@ You can now design your app and save it as a private template. The private templ
 .. figure:: /_static/images/private_template1.png
   :width: 700
 
-  Figure 1. Save as template
+  Figure 2. Save as template
 
 v2.16
 =====
@@ -28,7 +49,7 @@ You can now deploy all templates in Netherlands. After login, switch to a projec
 .. figure:: /_static/images/features/v2.16-netherlands.png
   :width: 800
 
-  Figure 2. Switch to a project in Netherlands
+  Figure 3. Switch to a project in Netherlands
 
 Improve deploy setup messages
 -----------------------------
@@ -38,7 +59,7 @@ The deploy setup logs display messages in 3 categories: error, warning, and info
 .. figure:: /_static/images/features/v2.16-setup-logs.png
   :width: 800
 
-  Figure 3. New deploy setup logs
+  Figure 4. New deploy setup logs
 
 v2.15
 =====
@@ -51,7 +72,7 @@ Users can now login with IAM accounts from Swiss Open Telekom Cloud as well. Whe
 .. figure:: /_static/images/features/v2.15-login-swiss-otc.png
   :width: 800
 
-  Figure 4. Login with domain name from Swiss Open Telekom Cloud.
+  Figure 5. Login with domain name from Swiss Open Telekom Cloud.
 
 Read more about :ref:`Swiss OTC`.
 
@@ -96,7 +117,7 @@ The gallery template enables users to create app from public templates. They can
 .. figure:: /_static/images/features/overview-templates.png
   :width: 800
 
-  Figure 5. OpenShift template
+  Figure 6. OpenShift template
 
 v2.13
 =====
@@ -109,7 +130,7 @@ Users can create a `Self-managed OpenShift Container Platform <https://www.redha
 .. figure:: /_static/images/features/openshift.png
   :width: 800
 
-  Figure 6. OpenShift template
+  Figure 7. OpenShift template
 
 v2.12
 =====
@@ -122,4 +143,4 @@ Users can view deployment logs in the **History** so they can audit all actions 
 .. figure:: /_static/images/features/deployment_history.png
   :width: 800
 
-  Figure 7. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.
+  Figure 8. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.

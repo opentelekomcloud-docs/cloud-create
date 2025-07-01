@@ -29,7 +29,7 @@ Quick introduction
 
 .. attention::
 
-  v2.17 has been released: You can now save an app as a private template and share it within your project. See :ref:`Release notes`.
+  **v2.18 released:** Launch Production-Ready Cloud Container Engine (CCE) Clusters in One Click with Cloud Create. Read more: :ref:`cce`.
 
 1. Overview
 ===========
