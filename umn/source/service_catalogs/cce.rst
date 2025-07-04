@@ -4,12 +4,20 @@
 Cloud Container Engine template
 *******************************
 
+.. note::
+
+  Released in v2.18
+
 1. About
 ========
 
-* Use this template to deploy a CCE cluster with a NAT gateway, worker nodes, a bastion host, and a :code:`kubectl` client.
-* The :code:`kubectl` client is pre-configured with a kubeconfig file on the bastion host and is ready to connect to the CCE cluster.
-* You can adjust the CustomSetup script on the bastion host to configure k8s resources inside the CCE cluster with the :code:`kubectl` command.
+**Launch Production-Ready Cloud Container Engine (CCE) Clusters in One Click with Cloud Create**
+
+Say goodbye to complex setup scripts and hours of infrastructure toil. With Cloud Create, you can deploy a fully operational CCE cluster—complete with a NAT gateway, secure bastion host, and pre-configured :code:`kubectl` client—in just one click.
+
+Your :code:`kubectl` client is ready to go right from the bastion host, giving you immediate access to manage and configure your cluster directly from our intuitive visual designer. No manual setup. No waiting.
+
+Whether you're testing a new idea or deploying a production-grade environment, Cloud Create gets you there faster—securely and seamlessly.
 
 .. figure:: /_static/images/service-catalogs/cce1.png
   :width: 900
@@ -22,11 +30,11 @@ Cloud Container Engine template
 2.1. Enable CCE on the Web console (on first use)
 -------------------------------------------------
 
-If this is the first time you use CCE, you have to authorize it on the Web console first.
+If this is the first time you use CCE **in a project**, you have to authorize it first.
 
-1. Login to the Web console of `OTC <https://console.otc.t-systems.com>`_ / `Swiss OTC <https://console.sc.otc.t-systems.com>`_.
-2. Go to **Cloud Container Engine**
-3. On first use, the Web console shows an **Authorization Description** > Click OK.
+1. Login to the Web console of `OTC <https://console.otc.t-systems.com>`_ / or `Swiss OTC <https://console.sc.otc.t-systems.com>`_.
+2. Switch to the project you want to deploy CCE / go to **Cloud Container Engine**.
+3. The Web console shows an **Authorization Description** > Click OK.
 
 .. figure:: /_static/images/service-catalogs/cce_enable.png
   :width: 700
@@ -54,14 +62,34 @@ If this is the first time you use CCE, you have to authorize it on the Web conso
 +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 | node_flavor_id         | Specifies the flavor id for the worker node.                                                                                                                                                                                                                                                                                                                                                                                     | 's3.large.2'   |
 +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
-| node_availability_zone | Specifies the name of the available zone (AZ).                                                                                                                                                                                                                                                                                                                                                                                   | 'az-01'        |
+| node_availability_zone | Specifies the name of the available zone ('az-01', 'az-02', 'az-03'). The AZs will be mapped to the coresponding AZs in the region you deploy (e.g., 'az-01' maps to 'eu-de-01' for region EU-DE).                                                                                                                                                                                                                               | 'az-01'        |
 +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 | root_volume_size       | Specifies size of the system disk in GB.                                                                                                                                                                                                                                                                                                                                                                                         | 50             |
 +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 | data_volumes_size      | Specifies size of the data disk in GB.                                                                                                                                                                                                                                                                                                                                                                                           | 100            |
 +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 
-2.3. How to scale an existing CCE node
+2.3. How to assign an EIP to the CCE cluster
+--------------------------------------------
+
+1. Click on the **CCECluster** node.
+2. Connect the :code:`eip` to the Public network.
+
+.. figure:: /_static/images/service-catalogs/cce-eip.png
+  :width: 700
+
+  Figure 4. Connect :code:`eip` to the Public network
+
+**Expect result**
+
+The K8s APIs of your CCE cluster will be available for public access via the EIP.
+
+.. figure:: /_static/images/service-catalogs/cce-eip2.png
+  :width: 700
+
+  Figure 5. The CCE cluster has an EIP 80.x.x.x assigned
+
+2.4. How to scale an existing CCE node
 --------------------------------------
 
 The CCE node in the template has one instance by default. You can scale it up, e.g., to 2 instances as follows:
@@ -72,7 +100,7 @@ The CCE node in the template has one instance by default. You can scale it up, e
 .. figure:: /_static/images/service-catalogs/cce3.png
   :width: 700
 
-  Figure 4. Scale the CCENode to 2 instances
+  Figure 6. Scale the CCENode to 2 instances
 
 **Expect result**
 
@@ -81,9 +109,9 @@ After the deployment completes, you will have two instances **ccenode-0** and **
 .. figure:: /_static/images/service-catalogs/cce4.png
   :width: 700
 
-  Figure 5. Result
+  Figure 7. Result
 
-2.4. How to add a new CCE node to the CCE cluster
+2.5. How to add a new CCE node to the CCE cluster
 -------------------------------------------------
 
 The template has one CCENode by default. You can add a new CCE node to the cluster but with a **different setting** (e.g., different flavor, availability zone, volume size, etc.):
@@ -94,9 +122,9 @@ The template has one CCENode by default. You can add a new CCE node to the clust
 .. figure:: /_static/images/service-catalogs/cce5.png
   :width: 700
 
-  Figure 6. Add CCENode_2 to the CCECluster
+  Figure 8. Add CCENode_2 to the CCECluster
 
-2.5. How to update the plugins
+2.6. How to update the plugins
 ------------------------------
 
 In the designer:
@@ -108,13 +136,12 @@ In the designer:
 
     cluster.install.addons.external/install: [{"addonTemplateName":"icagent"}]"
 
-
 .. figure:: /_static/images/service-catalogs/cce6.png
   :width: 700
 
-  Figure 7. Default annotation
+  Figure 9. Default annotation
 
-2.6. How to set labels for a CCE node
+2.7. How to set labels for a CCE node
 -------------------------------------
 
 In the designer:
@@ -124,7 +151,7 @@ In the designer:
 .. figure:: /_static/images/service-catalogs/cce7.png
   :width: 700
 
-  Figure 8. Set the tag "foo" with value "bar" for a CCENode
+  Figure 10. Set the tag "foo" with value "bar" for a CCENode
 
 **Expect result**
 
@@ -133,9 +160,9 @@ After deployment completes, go to **Nodes** / select the node / **More** / **Man
 .. figure:: /_static/images/service-catalogs/cce7b.png
   :width: 700
 
-  Figure 9. Tag "foo" with value "bar" is set
+  Figure 11. Tag "foo" with value "bar" is set
 
-2.7. How to control the k8s resources from the designer
+2.8. How to control the k8s resources from the designer
 -------------------------------------------------------
 
 In the designer:
@@ -146,7 +173,7 @@ In the designer:
 .. figure:: /_static/images/service-catalogs/cce8.png
   :width: 700
 
-  Figure 10. The CustomSetup script
+  Figure 12. The CustomSetup script
 
 **Expect result**
 
@@ -155,9 +182,9 @@ After deployment completes, click on the **CustomSetup** script to see the outpu
 .. figure:: /_static/images/service-catalogs/cce9.png
   :width: 700
 
-  Figure 11. The CustomSetup script outputs all k8s nodes
+  Figure 13. The CustomSetup script outputs all k8s nodes
 
-2.8. How to access the bastion host
+2.9. How to access the bastion host
 -----------------------------------
 
 * After the deployment completes, you can SSH to the bastion host
@@ -174,8 +201,8 @@ After deployment completes, click on the **CustomSetup** script to see the outpu
     NAME        STATUS   ROLES    AGE     VERSION
     10.0.0.62   Ready    <none>   7m23s   v1.30.4-r0-30.0.12.3
 
-2.9. How to update the current deployment
------------------------------------------
+2.10. How to update the current deployment
+------------------------------------------
 
 You can update the current deployment from one version to another one:
 
@@ -184,14 +211,14 @@ You can update the current deployment from one version to another one:
 .. figure:: /_static/images/service-catalogs/cce_update1.png
   :width: 700
 
-  Figure 12. Clone the version :code:`0.1.0-SNAPSHOT`
+  Figure 14. Clone the version :code:`0.1.0-SNAPSHOT`
 
 2. In the new version (:code:`0.1.1-SNAPSHOT`), make any changes in the design (e.g., add a new node).
 
 .. figure:: /_static/images/service-catalogs/cce_update2.png
   :width: 700
 
-  Figure 13. Add a new node :code:`CCENode_az2`
+  Figure 15. Add a new node :code:`CCENode_az2`
 
 3. Go to Deploy Setup / Select the target **Version** to update (:code:`0.1.1-SNAPSHOT`).
 
@@ -200,14 +227,14 @@ You can update the current deployment from one version to another one:
 .. figure:: /_static/images/service-catalogs/cce_update3.png
   :width: 700
 
-  Figure 14. The table shows a new node :code:`CCENode_az2` will be added
+  Figure 16. The table shows a new node :code:`CCENode_az2` will be added
 
 5. Click **Update** and review the result
 
 .. figure:: /_static/images/service-catalogs/cce_update4.png
   :width: 700
 
-  Figure 15. The new node :code:`CCENode_az2` is installed
+  Figure 17. The new node :code:`CCENode_az2` is installed
 
 3. Links
 ========

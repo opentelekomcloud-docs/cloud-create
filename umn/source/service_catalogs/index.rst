@@ -16,8 +16,9 @@ A part from the services provided by Cloud Create, users can also model their se
 
   openshift
   cce
+  argocd
+  nextcloud
   prometheus
   mysql
   rds
   apache
-  nextcloud
