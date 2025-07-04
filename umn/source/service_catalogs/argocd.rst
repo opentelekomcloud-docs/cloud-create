@@ -11,6 +11,9 @@ Argo CD template
 1. About
 ========
 
+.. figure:: /_static/images/service-catalogs/argocd.png
+  :width: 900
+
 **GitOps-Driven App Deployment on CCE—Powered by Argo CD and Cloud Create**
 
 With Cloud Create, deploying your applications to the cloud has never been easier—or faster. In just a few clicks, you can spin up a Cloud Container Engine (CCE) cluster and launch your apps using Argo CD, the leading GitOps tool.
