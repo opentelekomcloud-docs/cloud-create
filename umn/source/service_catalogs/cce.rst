@@ -11,13 +11,13 @@ Cloud Container Engine template
 1. About
 ========
 
-**Launch Production-Ready Cloud Container Engine (CCE) Clusters in One Click with Cloud Create**
+Launch a fully operational Cloud Container Engine (CCE) cluster with everything you need, right out of the box.
 
-Say goodbye to complex setup scripts and hours of infrastructure toil. With Cloud Create, you can deploy a fully operational CCE cluster—complete with a NAT gateway, secure bastion host, and pre-configured :code:`kubectl` client—in just one click.
+Say goodbye to complex setup scripts and hours of infrastructure toil. With Cloud Create, you can deploy a fully operational CCE cluster - complete with a NAT gateway, secure bastion host, and pre-configured :code:`kubectl` client - in just one click.
 
 Your :code:`kubectl` client is ready to go right from the bastion host, giving you immediate access to manage and configure your cluster directly from our intuitive visual designer. No manual setup. No waiting.
 
-Whether you're testing a new idea or deploying a production-grade environment, Cloud Create gets you there faster—securely and seamlessly.
+Whether you're testing a new idea or deploying a production-grade environment, the CCE template gets you there faster, securely, and seamlessly.
 
 .. figure:: /_static/images/service-catalogs/cce1.png
   :width: 900
