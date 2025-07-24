@@ -1,0 +1,810 @@
+******
+API v2
+******
+
+.. important:: This API will be released in Cloud Create v2.20.
+
+=========
+Templates
+=========
+
+List templates
+--------------
+
+This endpoint lists all templates (both public and private ones).
+
++--------+-------------------+
+| Method | Path              |
++========+===================+
+| GET    | /api/v2/templates |
++--------+-------------------+
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request GET \
+    https://designer.otc-service.com/api/v2/templates
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+      "data": [
+        {
+          "id": "OpenShift:4.16.19",
+          "template_name": "OpenShift",
+          "template_version": "4.16.19",
+          "public_template": true,
+          "description": "This template deploys a Self-managed OpenShift Container Platform on Open Telekom Cloud with worker nodes in one availability zone..."
+        },
+        {
+          "id": "08e591c9-d241-4334-be0a-dba4dee0b6a6",
+          "template_name": "MyArgoCD",
+          "template_version": "1.0.0",
+          "public_template": false,
+          "description": "This is my private template."
+        }
+      ],
+      "error": null
+    }
+
+Get template
+------------
+
+This endpoint shows detail information about a given template, including all inputs, secrets, and outputs for the deployment.
+
++--------+------------------------+
+| Method | Path                   |
++========+========================+
+| GET    | /api/v2/templates/{id} |
++--------+------------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **id** (string: <required>) – Specifies the template id.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request GET \
+    https://designer.otc-service.com/api/v2/templates/OpenShift:4.16.19
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+      "data": {
+        "id": "OpenShift:4.16.19",
+        "template_name": "OpenShift",
+        "template_version": "4.16.19",
+        "template_author": "Dr. Tri Vo",
+        "public_template": true,
+        "documentation_link": "https://docs.otc.t-systems.com/cloud-create/umn/service_catalogs/openshift.html",
+        "description": "This template deploys a Self-managed OpenShift Container Platform on Open Telekom Cloud with worker nodes in one availability zone...",
+        "creation_date": "2024-11-27T14:56:00.353+00:00",
+        "last_update_date": "2024-11-27T14:56:00.353+00:00",
+        "inputs": {
+          "ssh_public_key": {
+            "type": "string",
+            "required": false,
+            "description": "Specify the SSH public key so that you can SSH to the Bastionhost, OpenShift control, and worker nodes after the deployment...",
+            "default": null
+          },
+          "base_domain": {
+            "type": "string",
+            "required": true,
+            "description": "Specify the base domain for the OpenShift cluster <example.com>...",
+            "default": null
+          },
+          "cluster_name": {
+            "type": "string",
+            "required": true,
+            "description": "Specify the cluster name <openshift>",
+            "default": "openshift"
+          },
+          "number_workers": {
+            "type": "integer",
+            "required": true,
+            "description": "Specify how many worker nodes to create. OpenShift requires minimum 2 worker nodes to setup all operators...",
+            "default": "2"
+          },
+          "nat_gateway_spec": {
+            "type": "string",
+            "required": true,
+            "description": "The specification of the NAT Gateway. 'Micro' supports up to 1,000 SNAT connections. 'Small' supports up to 10,000 SNAT connections...",
+            "default": "Small"
+          },
+          "worker_num_cpus": {
+            "type": "integer",
+            "required": false,
+            "description": "Number of CPUs associated with the worker node. OpenShift requires minimum 4 vCPUs for worker node.",
+            "default": "4"
+          },
+          "worker_mem_size": {
+            "type": "scalar-unit.size",
+            "required": false,
+            "description": "Size of memory associated with the worker node. OpenShift requires minimum 16 GB for worker node.",
+            "default": "16 GB"
+          },
+          "worker_availability_zone": {
+            "type": "string",
+            "required": false,
+            "description": "Choose the availability zone for the worker nodes. The value 'az-*' is equivalent to 'eu-de-*' for the deployment in region Germany, and 'eu-ch2-*' for the deployment in Switzerland.",
+            "default": "az-01",
+          }
+        },
+        "secrets": {
+          "pull_secret": {
+            "type": "string",
+            "required": true,
+            "description": "Specify the pull secret."
+          },
+          "os_password": {
+            "type": "string",
+            "required": true,
+            "description": "Specify the password to authenticate to the API keystone."
+          }
+        },
+        "outputs": {
+          "OpenShiftInstall_infra_id": {
+            "description": ""
+          },
+          "OpenShiftInstall_console_hostname": {
+            "description": ""
+          },
+          "OpenShiftInstall_kubeadmin_username": {
+            "description": "The default username to login to OpenShift console for administration."
+          },
+          "Bastionhost_public_address": {
+            "description": "The primary public IP address assigned by the cloud provider that applications may use to access the Compute node."
+          },
+          "OpenShiftInstall_kubeadmin_password": {
+            "description": ""
+          },
+          "INGRESS_VIP_public_address": {
+            "description": "The floating ip address assigned to this VIP, if it connects to a public network."
+          },
+          "OpenShiftInstall_info": {
+            "description": "Useful information to display to the users after the deployment completes."
+          },
+          "OpenShiftInstall_console_url": {
+            "description": ""
+          },
+          "Workers_private_address": {
+            "description": "The primary private IP address assigned by the cloud provider that applications may use to access the Compute node."
+          },
+          "OpenShiftInstall_oauth_hostname": {
+            "description": ""
+          }
+        }
+      },
+      "error": null
+    }
+
+
+============
+Applications
+============
+
+List applications
+-----------------
+
+This endpoint lists all applications.
+
++--------+----------------------+
+| Method | Path                 |
++========+======================+
+| GET    | /api/v2/applications |
++--------+----------------------+
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request GET \
+    https://designer.otc-service.com/api/v2/applications
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+      "data": [
+        {
+          "id": "00e6164b739646df8cecf3f2430d70e0",
+          "application_name": "ArgoCD00",
+          "description": "My ArgoCD app"
+        },
+        {
+          "id": "9b78b9f4cd004b42b0f7fcbcd77bbf62",
+          "application_name": "OpenShift00",
+          "description": "My OpenShift app"
+        }
+      ],
+      "error": null
+    }
+
+
+.. _getapp:
+
+Get application
+---------------
+
+This endpoint shows detail information about a given application.
+
++--------+---------------------------+
+| Method | Path                      |
++========+===========================+
+| GET    | /api/v2/applications/{id} |
++--------+---------------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **id** (string: <required>) – Specifies the application id.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request GET \
+    https://designer.otc-service.com/api/v2/applications/00e6164b739646df8cecf3f2430d70e0
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+      "data": {
+        "id": "00e6164b739646df8cecf3f2430d70e0",
+        "application_name": "ArgoCD00",
+        "description": "My ArgoCD app",
+        "creation_date": "2025-06-23T14:07:49.174+00:00",
+        "last_update_date": "2025-06-23T15:01:50.687+00:00"
+        "environments": [
+          {
+            "environment_id": "2ef1f2cc-86e3-4efa-957e-82c06ae3838c",
+            "environment_name": "Environment",
+            "environment_type": "DEVELOPMENT",
+            "deployment_status": "UNDEPLOYED",
+            "application_version": "0.1.0-SNAPSHOT"
+          }
+        ]
+      },
+      "error": null
+    }
+
+Create application
+------------------
+
+This endpoint creates a new application from a given template.
+
++--------+----------------------+
+| Method | Path                 |
++========+======================+
+| POST   | /api/v2/applications |
++--------+----------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **application_name** (string: <optional>) – Specifies the desired application name. If not specified, a unique name will be auto-generated.
+* **description** (string: <optional>) – Description of the application.
+* **template_id** (string: <optional>) – Specifies template id, from which the application will be created. If not specified, the application will be created from a blank template.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    # Create an application from the template OpenShift:4.16.19
+    curl \
+    --header "Content-Type: application/JSON" \
+    --header "Accept: application/JSON" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request POST \
+    --data '{"template_id": "OpenShift:4.16.19"}' \
+    https://designer.otc-service.com/api/v2/applications
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    HTTP/1.1 201 Created
+    Location: /api/v2/applications/541466fd-df06-4a1d-aa7c-3abb0f6ee695
+    Content-Type: application/json
+    {
+      "data": {
+        "id": 541466fd-df06-4a1d-aa7c-3abb0f6ee695",
+        "application_name": "OpenShift00"
+      "error": null
+    }
+
+Delete application
+------------------
+
+This endpoint deletes a given application.
+
++--------+---------------------------------------+
+| Method | Path                                  |
++========+=======================================+
+| DELETE | /api/v2/applications/{application-id} |
++--------+---------------------------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **application-id** (string: <required>) – Specifies the application id.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Content-Type: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request DELETE \
+    https://designer.otc-service.com/api/v2/applications/541466fd-df06-4a1d-aa7c-3abb0f6ee695
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    HTTP/1.1 204 No Content
+
+Sample errors
+^^^^^^^^^^^^^
+
+If the application is still deployed, we return an error:
+
+.. code-block:: bash
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 607,
+        "message": "Application with id '541466fd-df06-4a1d-aa7c-3abb0f6ee695' cannot be deleted since one of its environment is still deployed."
+      }
+    }
+
+===========
+Deployments
+===========
+
+List deployments
+----------------
+
+This endpoint lists all deployments.
+
++--------+---------------------+
+| Method | Path                |
++========+=====================+
+| GET    | /api/v2/deployments |
++--------+---------------------+
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request GET \
+    https://designer.otc-service.com/api/v2/deployments
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+      "data": [
+        {
+          "id": "6c58912e-d6ba-466d-bc41-53fb1238e01f",
+          "application_name": "TestApp00",
+          "application_version": "0.1.0-SNAPSHOT",
+          "location_name": "OTC-EU-DE",
+          "deyployment_status": "DEPLOYED"
+        },
+        {
+          "id": "531f4449-1139-4833-9a7c-176f605a3cbb",
+          "application_name": "ArgoCD00",
+          "application_version": "0.1.0-SNAPSHOT",
+          "location_name": "OTC-EU-DE",
+          "deyployment_status": "UNDEPLOYED"
+        }
+      ],
+      "error": null
+    }
+
+Get deployment
+--------------
+
+This endpoint shows detail information about a given deployment.
+
++--------+--------------------------+
+| Method | Path                     |
++========+==========================+
+| GET    | /api/v2/deployments/{id} |
++--------+--------------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **id** (string: <required>) – Specifies the deployment id.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request GET \
+    https://designer.otc-service.com/api/v2/deployments/531f4449-1139-4833-9a7c-176f605a3cbb
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+      "data": {
+        "id": "531f4449-1139-4833-9a7c-176f605a3cbb",
+        "deployer_username": "username",
+        "location_name": "OTC-EU-DE",
+        "application_id": "cdf1988e554e4c9f9074d12f0ef12958",
+        "application_name": "ArgoCD00",
+        "application_version": "0.1.0-SNAPSHOT",
+        "environment_id": "d458fd8d-8618-4050-b113-38c85f00a808",
+        "start_date": "2025-07-10T12:02:35.838+00:00",
+        "end_date": "2025-07-01T16:28:04.173+00:00", // UNDEPLOYED has end_date
+        "deyployment_status": "UNDEPLOYED"
+      },
+      "error": null
+    }
+
+
+Create deployment
+-----------------
+
+This endpoint deploys an application in a given application environment with given inputs and secrets.
+
++--------+---------------------+
+| Method | Path                |
++========+=====================+
+| POST   | /api/v2/deployments |
++--------+---------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **application_id** (string: <required>) – Specifies the application id.
+* **application_version** (string: <optional>) – Specifies the target application version to deploy. This parameter is required if you have more than one application versions.
+* **applicationenvironment_id** (string: <optional>) – Specifies the application environment identifier to deploy. This parameter is required if you have more than one application environments.
+* **inputs** (object: <optional>) – The dictionary containing key value pairs which represents the deployment inputs. This parameter is required if your selected application version has required inputs.
+* **secrets** (object: <optional>) – The dictionary containing key value pairs which represents the secrets. This parameter is required if your selected application version has required secrets.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    # Deploy the application with the version 0.1.0-SNAPSHOT in the default environment
+    curl \
+    --header "Content-Type: application/JSON" \
+    --header "Accept: application/JSON" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request POST \
+    --data '{"application_id": "541466fd-df06-4a1d-aa7c-3abb0f6ee695", "application_version": "0.1.0-SNAPSHOT", inputs": {...}, "secrets": {...}}' \
+    https://designer.otc-service.com/api/v2/deployments
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    HTTP/1.1 201 Created # Indicates the request has no errors, a new deployment is created and in progress
+    Location: /api/v2/deployments/c853667c-2901-4274-aaec-f747e6649cdd
+    Content-Type: application/json
+    {
+      "data": {
+        "id": c853667c-2901-4274-aaec-f747e6649cdd"
+      },
+      "error": null
+    }
+
+Sample errors
+^^^^^^^^^^^^^
+
+In any case of **user errors**, the deployment will not start and the request returns with HTTP status 4xx. For examples:
+
+1. Resource not found:
+
+.. code-block:: bash
+
+    HTTP/1.1 404 Not Found
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 504,
+        "message": "The application version 0.1.1-SNAPSHOT not found."
+      }
+    }
+
+2. Missing a required parameter:
+
+.. code-block:: bash
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 501,
+        "message": "Missing required parameter 'application_environment_id' in the request. This parameter is required because the application '541466fd-df06-4a1d-aa7c-3abb0f6ee695' has more than one environments."
+      }
+    }
+
+3. Missing a required input:
+
+.. code-block:: bash
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 501,
+        "message": "Missing required inputs 'base_domain' in the request. The inputs are required to deploy the application version '0.1.0-SNAPSHOT'. Please provide them in the request."
+      }
+    }
+
+Quick deploy from template
+--------------------------
+
+This endpoint quick-deploys a template with given inputs and secrets. The deployment auto-creates a new application from the given template, and deploys the application in the default environment.
+
++--------+---------------------+
+| Method | Path                |
++========+=====================+
+| POST   | /api/v2/deployments |
++--------+---------------------+
+
+Parameters
+^^^^^^^^^^
+
+* **template_id** (string: <required>) – Specifies the template id to deploy.
+* **inputs** (object: <optional>) – The dictionary containing key value pairs which represents the deployment inputs. This parameter is required if the template has required inputs.
+* **secrets** (object: <optional>) – The dictionary containing key value pairs which represents the secrets. This parameter is required if the template has required secrets.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    # Quick deploy a new application using the template OpenShift:4.16.19
+    curl \
+    --header "Content-Type: application/JSON" \
+    --header "Accept: application/JSON" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request POST \
+    --data '{"template_id": "OpenShift:4.16.19", inputs": {...}, "secrets": {...}}' \
+    https://designer.otc-service.com/api/v2/deployments
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    HTTP/1.1 201 Created # Indicates the request has no errors, a new deployment is created and in progress
+    Location: /api/v2/deployments/c853667c-2901-4274-aaec-f747e6649cdd
+    Content-Type: application/json
+    {
+      "data": {
+        "id": "c853667c-2901-4274-aaec-f747e6649cdd"
+      },
+      "error": null
+    }
+
+Sample errors
+^^^^^^^^^^^^^
+
+In any case of **user errors**, the application will not be created, the deployment will not start and the request returns with HTTP status 4xx. For examples:
+
+1. Resource not found:
+
+.. code-block:: bash
+
+    HTTP/1.1 404 Not Found
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 504,
+        "message": "Template 'WrongTemplate:0.1.0' cannot be found"
+      }
+    }
+
+2. Missing a required input:
+
+.. code-block:: bash
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 501,
+        "message": "Missing required inputs 'base_domain' in the request."
+      }
+    }
+
+Update deployment
+-----------------
+
+This endpoint updates a given deployment to a target application version with the given inputs.
+
++--------+-------------------------------------+
+| Method | Path                                |
++========+=====================================+
+| PUT    | /api/v2/deployments/{deployment-id} |
++--------+-------------------------------------+
+
+URI Parameters
+^^^^^^^^^^^^^^
+
+* **deployment-id** (string: <required>) – Specifies the deployment id.
+
+Parameters
+^^^^^^^^^^
+
+* **application_version** (string: <required>) – Specifies the target application version to update to.
+* **inputs** (object: <optional>) – The dictionary containing new key value pairs which represents the inputs you want to update. This parameter is required if the target application version requires the inputs.
+* **secrets** (object: <optional>) – The dictionary containing new key value pairs which represents the secrets you want to update. This parameter is required if the target application version requires the secrets.
+
+.. note:: You only need to submit the inputs or secrets, of which values require updates.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Content-Type: application/JSON" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request PUT \
+    --data '{"application_version": "0.1.0-1-SNAPSHOT", inputs": {...}, "secrets": {...}}' \
+    https://designer.otc-service.com/api/v2/deployments/c853667c-2901-4274-aaec-f747e6649cdd
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    HTTP/1.1 204 No Content # indicates the update request is accepted and in progress
+
+Sample errors
+^^^^^^^^^^^^^
+
+In any case of **user errors**, the deployment update will not start and the request returns with errors. For examples:
+
+1. The old version and the new one have no differences, we return error:
+
+.. code-block:: bash
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    {
+      "data": null,
+      "error": {
+        "code": 603,
+        "message": "Found nothing to update from version 0.1.0-SNAPSHOT to version 0.1.0-1-SNAPSHOT."
+      }
+    }
+
+2. Update the deployment to the same version, we return error:
+
+.. code-block:: bash
+
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/json
+    {
+      "data": null,
+      "error": {
+        "code": 502,
+        "message": "The deployment 'c853667c-2901-4274-aaec-f747e6649cdd' has already been deployed with the same version '0.1.0-SNAPSHOT'."
+      }
+    }
+
+Undeploy deployment
+-------------------
+
+This endpoint undeploys a given deployment.
+
++--------+--------------------------+
+| Method | Path                     |
++========+==========================+
+| DELETE | /api/v2/deployments/{id} |
++--------+--------------------------+
+
+URI Parameters
+^^^^^^^^^^^^^^
+
+* **id** (string: <required>) – Specifies the deployment id.
+
+Sample requests
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Auth-Token: $OSTOKEN" \
+    --request DELETE \
+    https://designer.otc-service.com/api/v2/deployments/c853667c-2901-4274-aaec-f747e6649cdd
+
+Sample responses
+^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    HTTP/1.1 204 No Content # indicates the undeployment is accepted and in progress, or UNDEPLOYED
+
+Sample errors
+^^^^^^^^^^^^^
+
+1. The deployment id does not exist, we return an error:
+
+.. code-block:: bash
+
+    HTTP/1.1 404 Not Found
+    Content-Type: application/json
+    {
+      "error": {
+        "code": 504,
+        "message": "Deployment '123' does not exist."
+      }
+    }
+
+2. Call undeploy when it is still in progress, we return error:
+
+.. code-block:: bash
+
+    HTTP/1.1 409 Conflict
+    Content-Type: application/json
+    {
+      "data": null,
+      "error": {
+        "code": 508,
+        "message": "Reject update and undeploy requests for the environment 'e4895ec9-3ff5-4d90-ae28-19679acf7582' because the deployment 'c853667c-2901-4274-aaec-f747e6649cdd' is still in progress."
+      }
+    }
