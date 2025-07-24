@@ -24,8 +24,8 @@ Whether you're testing a new idea or deploying a production-grade environment, t
 
   Figure 1. The CCE template
 
-2. How to use
-=============
+2. Quick Deploy
+===============
 
 2.1. Enable CCE on the Web console (on first use)
 -------------------------------------------------
@@ -44,7 +44,7 @@ If this is the first time you use CCE **in a project**, you have to authorize it
 2.2. Deploy Setup
 -----------------
 
-* In the Deploy Setup, you have the following inputs with default values. Change them if needed.
+* In the Deploy Setup, you have the following inputs with default values. Change them if needed. Then **Deploy**.
 
 .. figure:: /_static/images/service-catalogs/cce2.png
   :width: 700
@@ -69,7 +69,32 @@ If this is the first time you use CCE **in a project**, you have to authorize it
 | data_volumes_size      | Specifies size of the data disk in GB.                                                                                                                                                                                                                                                                                                                                                                                           | 100            |
 +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
 
-2.3. How to assign an EIP to the CCE cluster
+3. Advanced Setup
+=================
+
+3.1. How to control the k8s resources from the designer
+-------------------------------------------------------
+
+In the designer:
+
+* Put any scripts on the Bastionhost (e.g., the **CustomSetup** script).
+* In the script, you can use the **kubectl** command to control the k8s resources of your cluster directly. For example, the following script gets all k8s nodes:
+
+.. figure:: /_static/images/service-catalogs/cce8.png
+  :width: 700
+
+  Figure 4. The CustomSetup script
+
+**Expect result**
+
+After deployment completes, click on the **CustomSetup** script to see the output:
+
+.. figure:: /_static/images/service-catalogs/cce9.png
+  :width: 700
+
+  Figure 5. The CustomSetup script outputs all k8s nodes
+
+3.2. How to assign an EIP to the CCE cluster
 --------------------------------------------
 
 1. Click on the **CCECluster** node.
@@ -78,7 +103,7 @@ If this is the first time you use CCE **in a project**, you have to authorize it
 .. figure:: /_static/images/service-catalogs/cce-eip.png
   :width: 700
 
-  Figure 4. Connect :code:`eip` to the Public network
+  Figure 6. Connect :code:`eip` to the Public network
 
 **Expect result**
 
@@ -87,9 +112,9 @@ The K8s APIs of your CCE cluster will be available for public access via the EIP
 .. figure:: /_static/images/service-catalogs/cce-eip2.png
   :width: 700
 
-  Figure 5. The CCE cluster has an EIP 80.x.x.x assigned
+  Figure 7. The CCE cluster has an EIP 80.x.x.x assigned
 
-2.4. How to scale an existing CCE node
+3.3. How to scale an existing CCE node
 --------------------------------------
 
 The CCE node in the template has one instance by default. You can scale it up, e.g., to 2 instances as follows:
@@ -100,7 +125,7 @@ The CCE node in the template has one instance by default. You can scale it up, e
 .. figure:: /_static/images/service-catalogs/cce3.png
   :width: 700
 
-  Figure 6. Scale the CCENode to 2 instances
+  Figure 8. Scale the CCENode to 2 instances
 
 **Expect result**
 
@@ -109,9 +134,9 @@ After the deployment completes, you will have two instances **ccenode-0** and **
 .. figure:: /_static/images/service-catalogs/cce4.png
   :width: 700
 
-  Figure 7. Result
+  Figure 9. Result
 
-2.5. How to add a new CCE node to the CCE cluster
+3.4. How to add a new CCE node to the CCE cluster
 -------------------------------------------------
 
 The template has one CCENode by default. You can add a new CCE node to the cluster but with a **different setting** (e.g., different flavor, availability zone, volume size, etc.):
@@ -122,9 +147,9 @@ The template has one CCENode by default. You can add a new CCE node to the clust
 .. figure:: /_static/images/service-catalogs/cce5.png
   :width: 700
 
-  Figure 8. Add CCENode_2 to the CCECluster
+  Figure 10. Add CCENode_2 to the CCECluster
 
-2.6. How to update the plugins
+3.5. How to update the plugins
 ------------------------------
 
 In the designer:
@@ -139,9 +164,9 @@ In the designer:
 .. figure:: /_static/images/service-catalogs/cce6.png
   :width: 700
 
-  Figure 9. Default annotation
+  Figure 11. Default annotation
 
-2.7. How to set labels for a CCE node
+3.6. How to set labels for a CCE node
 -------------------------------------
 
 In the designer:
@@ -151,41 +176,19 @@ In the designer:
 .. figure:: /_static/images/service-catalogs/cce7.png
   :width: 700
 
-  Figure 10. Set the tag "foo" with value "bar" for a CCENode
+  Figure 12. Set the tag "foo" with value "bar" for a CCENode
 
 **Expect result**
 
-After deployment completes, go to **Nodes** / select the node / **More** / **Manage label** and see the tags:
+After deployment completes, go to **Nodes** / **More** / **Manage label** and see the tags:
 
 .. figure:: /_static/images/service-catalogs/cce7b.png
   :width: 700
 
-  Figure 11. Tag "foo" with value "bar" is set
+  Figure 13. Label "foo" with value "bar" is set
 
-2.8. How to control the k8s resources from the designer
--------------------------------------------------------
-
-In the designer:
-
-* Put any scripts on the Bastionhost (e.g., the **CustomSetup** script).
-* In the script, you can use the **kubectl** command to control the k8s resources of your cluster directly. For example, the following script gets all k8s nodes:
-
-.. figure:: /_static/images/service-catalogs/cce8.png
-  :width: 700
-
-  Figure 12. The CustomSetup script
-
-**Expect result**
-
-After deployment completes, click on the **CustomSetup** script to see the output:
-
-.. figure:: /_static/images/service-catalogs/cce9.png
-  :width: 700
-
-  Figure 13. The CustomSetup script outputs all k8s nodes
-
-2.9. How to access the bastion host
------------------------------------
+4. Access the bastion host
+==========================
 
 * After the deployment completes, you can SSH to the bastion host
 
@@ -201,8 +204,8 @@ After deployment completes, click on the **CustomSetup** script to see the outpu
     NAME        STATUS   ROLES    AGE     VERSION
     10.0.0.62   Ready    <none>   7m23s   v1.30.4-r0-30.0.12.3
 
-2.10. How to update the current deployment
-------------------------------------------
+5. Deployment update
+====================
 
 You can update the current deployment from one version to another one:
 
@@ -236,7 +239,7 @@ You can update the current deployment from one version to another one:
 
   Figure 17. The new node :code:`CCENode_az2` is installed
 
-3. Links
+6. Links
 ========
 
 * Our `CCE template in TOSCA <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/templates/cce/topology.yml>`_.
