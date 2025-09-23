@@ -24,12 +24,12 @@ Quick introduction
    git
    orchestration_workflow
    releases
-
+   tutorial_videos
 
 
 .. attention::
 
-  **v2.18 released:** Launch a fully operational Cloud Container Engine cluster with everything you need, right out of the box. Read more: the :ref:`cce`.
+  **v2.19 released:** GitOps-driven app deployment, powered by Argo CD. Read more: the :ref:`argocd`.
 
 1. Overview
 ===========
@@ -178,18 +178,3 @@ We currently support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`),
 +-----------------------------+----------------+-------------------------------------+
 | Enterprise_SLES_15.6        | 3.6            | no                                  |
 +-----------------------------+----------------+-------------------------------------+
-
-4. Webinar
-==========
-
-.. image:: /_static/images/features/webinar.png
-    :width: 700
-    :alt: Webinar OpenShift meets Open Telekom Cloud | T-Systems
-    :target: https://www.youtube.com/watch?v=tHcKIE-U2s8
-
-In this Webinar, you will learn:
-
-* OpenShift license and support.
-* Differences between Kubernetes/CCE vs. OpenShift.
-* Demo how to deploy OpenShift.
-* Demo insights of the OpenShift console and its key features.
