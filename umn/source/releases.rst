@@ -4,6 +4,25 @@
 Release notes
 *************
 
+v2.19
+=====
+
+Argo CD template
+----------------
+
+With this template, deploying your cloud-native applications to the cloud has never been easier or faster, no OpenStack expertise knowledge required. In just a few clicks, you can spin up a Cloud Container Engine (CCE) cluster and launch your apps using Argo CD, the leading GitOps tool.
+
+Just point to your Git repository containing your Kubernetes manifests, and Cloud Create takes care of the rest. Argo CD automatically pulls your Kubernetes resources and syncs them to a fresh CCE cluster. Once deployment is complete, your apps are live - fully automated, fully operational.
+
+Need to scale or add more apps later? Simply log into Argo CD and add more apps seamlessly through the Argo CD UI.
+
+Read more: :ref:`argocd`.
+
+.. figure:: /_static/images/service-catalogs/argocd0.png
+  :width: 900
+
+  Figure 1. The Argo CD template
+
 v2.18
 =====
 
@@ -23,7 +42,7 @@ Read more: :ref:`cce`.
 .. figure:: /_static/images/service-catalogs/cce1.png
   :width: 900
 
-  Figure 1. The CCE template
+  Figure 2. The CCE template
 
 v2.17
 =====
@@ -36,7 +55,7 @@ You can now design your app and save it as a private template. The private templ
 .. figure:: /_static/images/private_template1.png
   :width: 700
 
-  Figure 2. Save as template
+  Figure 3. Save as template
 
 v2.16
 =====
@@ -49,7 +68,7 @@ You can now deploy all templates in Netherlands. After login, switch to a projec
 .. figure:: /_static/images/features/v2.16-netherlands.png
   :width: 800
 
-  Figure 3. Switch to a project in Netherlands
+  Figure 4. Switch to a project in Netherlands
 
 Improve deploy setup messages
 -----------------------------
@@ -59,7 +78,7 @@ The deploy setup logs display messages in 3 categories: error, warning, and info
 .. figure:: /_static/images/features/v2.16-setup-logs.png
   :width: 800
 
-  Figure 4. New deploy setup logs
+  Figure 5. New deploy setup logs
 
 v2.15
 =====
@@ -72,7 +91,7 @@ Users can now login with IAM accounts from Swiss Open Telekom Cloud as well. Whe
 .. figure:: /_static/images/features/v2.15-login-swiss-otc.png
   :width: 800
 
-  Figure 5. Login with domain name from Swiss Open Telekom Cloud.
+  Figure 6. Login with domain name from Swiss Open Telekom Cloud.
 
 Read more about :ref:`Swiss OTC`.
 
@@ -117,7 +136,7 @@ The gallery template enables users to create app from public templates. They can
 .. figure:: /_static/images/features/overview-templates.png
   :width: 800
 
-  Figure 6. OpenShift template
+  Figure 7. OpenShift template
 
 v2.13
 =====
@@ -130,7 +149,7 @@ Users can create a `Self-managed OpenShift Container Platform <https://www.redha
 .. figure:: /_static/images/features/openshift.png
   :width: 800
 
-  Figure 7. OpenShift template
+  Figure 8. OpenShift template
 
 v2.12
 =====
@@ -143,4 +162,4 @@ Users can view deployment logs in the **History** so they can audit all actions 
 .. figure:: /_static/images/features/deployment_history.png
   :width: 800
 
-  Figure 8. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.
+  Figure 9. Deployment history shows output of the Bash script 'HelloWorld' executed on a compute.
