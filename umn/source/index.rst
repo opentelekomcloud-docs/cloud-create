@@ -21,7 +21,6 @@ Quick introduction
    tosca_tutorials/index
    save_template
    secrets
-   git
    orchestration_workflow
    releases
    tutorial_videos
@@ -125,7 +124,7 @@ Whether it's a custom VM setup, a specialized software stack, or a reusable infr
 
 .. note::
    * Read more about :ref:`How to define and import a new service`.
-   * Our premade templates and service catalogs are `opensource and available on our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_.
+   * Our premade templates and service catalogs `are opensource and available on Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_ for transparency and contributions.
 
 3. FAQ
 ======
@@ -149,12 +148,12 @@ An overview of all supported components is available in Section :ref:`Components
 
 Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, the :ref:`openshift`, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
 
-All premade templates and service components are opensource and available on `our Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_.
+All premade templates and service catalogs are `opensource and available on Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_ for transparency and contributions.
 
 3.4. Which Terraform version do you use
 ---------------------------------------
 
-We use Terraform 1.5.4 under the Mozilla Public License v2.0 (MPL 2.0).
+We use Terraform 1.5.7 under the Mozilla Public License v2.0 (MPL 2.0).
 
 3.5. Which Ansible version do you support
 -----------------------------------------
