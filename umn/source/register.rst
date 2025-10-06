@@ -8,16 +8,18 @@ How to create a user account & login
 ===============================
 
 * Go to: https://designer.otc-service.com
-* Login using an **IAM user account** with the **Tenant Administrator** role. This is the user account created in the Identity Management of the Web console. If you do not have an IAM user account, see Section :ref:`How to create an IAM user account`.
+* Login using an **IAM user account** with the **Tenant Administrator** role **assigned to a project**. This is the user created in the Identity Management of the Web console. If you do not have an IAM user, see Section :ref:`How to create an IAM user account`.
+
+.. attention::
+
+  If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console and then create a new IAM user in the Web console. With the IAM user, you can login to Cloud Create.
+
+  If you have an IAM user account with the **Security Administrator** role (highest privilege), we strongly recommend you to create a new IAM user account with the **Tenant Administrator** role and assign it to a project (less privilege).
 
 .. figure:: /_static/images/register-login.png
   :width: 400
 
   Figure 1. Login with domain name, username, and password
-
-.. attention::
-
-  If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console and then create a new IAM user account in the Web console. With the IAM user account, you can login to Cloud Create.
 
 You cannot login?
 -----------------
@@ -27,10 +29,14 @@ You cannot login?
 
 .. _How to create an IAM user account:
 
-2. How to create an IAM user account
-====================================
+2. How to create an IAM user
+============================
 
-In case you do not have an IAM user account, please ask your domain administrator to create one for you. The following tutorial shows how to create an IAM user account and assign the given user to a project in the IAM:
+The following tutorial shows how to create an IAM user and assign the given user to a project.
+
+.. note::
+
+  To create an IAM user account, you must have the **Security Administrator** role in the IAM.
 
 2.1. Create a project (optional, if you don't have one)
 -------------------------------------------------------
