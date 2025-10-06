@@ -28,19 +28,21 @@ Quick introduction
 
 .. attention::
 
-  **v2.19 released:** GitOps-driven app deployment, powered by Argo CD. Read more: the :ref:`argocd`.
+  **v2.19 released:** Argo CD template - Instant App Deployment Made Simple. Read more: the :ref:`argocd`.
 
 1. Overview
 ===========
 
-Cloud Create is a **free-to-use** Cloud Management Platform that lets you build and deploy apps in minutes using **premade templates**.
+Cloud Create is a free-to-use **visual cloud management platform** that helps you **reduce cloud engineering footprint**, **accelerate time-to-market**, and deploy everything **from infrastructure to applications** in just one click.
 
-Whether you're working on **Open Telekom Cloud** or **Swiss Open Telekom Cloud**, Cloud Create empowers you to go from idea to running infrastructure with speed and simplicity.
+Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a **visual designer with a growing premade templates** that enables users to deploy complex environments - such as Kubernetes, OpenShift, and Argo CD in minutes. Whether you're working on **Open Telekom Cloud** or **Swiss Open Telekom Cloud**, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
 
 .. figure:: /_static/images/features/overview1.png
-  :width: 700
+  :width: 1000
 
   Figure 1. Overview
+
+(*) upcoming: Rancher, Kubeflow.
 
 2. From Idea to Cloud in Just Four Steps
 ========================================
@@ -64,7 +66,7 @@ Launch your app with a single click. Need to make changes later? Redeploy update
 Turn your customized app into a private template for your team, or publish it publicly on Open Telekom Cloud so others can benefit from your expertise.
 
 .. figure:: /_static/images/features/overview.png
-  :width: 900
+  :width: 1000
 
   Figure 2. From Idea to Cloud in Just Four Steps
 

@@ -10,13 +10,15 @@ Argo CD template
 .. figure:: /_static/images/service-catalogs/argocd.png
   :width: 900
 
-**GitOps-Driven App Deployment on CCE - Powered by Argo CD and Cloud Create**
+**Argo CD template: Instant App Deployment Made Simple**
 
 With this template, deploying your cloud-native applications to the cloud has never been easier or faster, no OpenStack expertise knowledge required. In just a few clicks, you can spin up a Cloud Container Engine (CCE) cluster and launch your apps using Argo CD, the leading GitOps tool.
 
 Just point to your Git repository containing your Kubernetes manifests, and Cloud Create takes care of the rest. Argo CD automatically pulls your Kubernetes resources and syncs them to a fresh CCE cluster. Once deployment is complete, your apps are live - fully automated, fully operational.
 
 Need to scale or add more apps later? Simply log into Argo CD and add more apps seamlessly through the Argo CD UI.
+
+Whether you’re a startup racing to launch or an enterprise bringing new services online, the Argo CD template helps you deliver faster, smarter, and with fewer resources so you can invest more in innovation and less in infrastructure.
 
 .. figure:: /_static/images/service-catalogs/argocd0.png
   :width: 900

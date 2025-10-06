@@ -154,9 +154,9 @@ Step 2. Prepare the required inputs
       --arg os_password "$OS_PASSWORD" \
       --arg pull_secret "$(cat pull_secret.json)" \
       '{ template_id: "OpenShift:4.16.19",
-         inputs: { base_domain: "tri-test.com" },
+         inputs: { base_domain: "tri-test.com", worker_num_cpus: 4, worker_mem_size: "16 GB" },
          secrets: { os_password: $os_password, pull_secret: $pull_secret } }' \
-      > payload.json
+    > payload.json
 
 Now you have the :code:`payload.json`
 
@@ -165,7 +165,9 @@ Now you have the :code:`payload.json`
     {
       "template_id": "OpenShift:4.16.19",
       "inputs": {
-        "base_domain": "tri-test.com"
+        "base_domain": "tri-test.com", // required input of the template
+        "worker_num_cpus": 4,          // optional input (e.g., 4, 8, 16, 32)
+        "worker_mem_size": "16 GB"     // optional input (e.g., "16 GB", "32 GB", "64 GB", "128 GB")
       },
       "secrets": {
         "os_password": "<your password>",
