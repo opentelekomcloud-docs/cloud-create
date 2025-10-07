@@ -134,11 +134,13 @@ Whether it's a custom VM setup, a specialized software stack, or a reusable infr
 3.1. How can I login in to Cloud Create
 ---------------------------------------
 
-You can log in to Cloud Create using an **IAM user account** with the **Tenant Administrator** role. This is the the user account created in the Identity Management of the Web console. If you do not have an IAM user account, see Section :ref:`How to create an IAM user account`.
+You can log in to Cloud Create using an **IAM user account** with the **Tenant Administrator** role assigned to a project. This is the the user account created in the Identity Management of the Web console. If you do not have an IAM user account, see Section :ref:`How to create an IAM user account`.
 
 .. attention::
 
   If you have an **ICU account** or you login from **Telekom MMS IdP via an SSO**, you can first login to the Web console and then create a new IAM user account in the Web console. With the IAM user account, you can login to Cloud Create.
+
+  If you have an IAM user account with the **Security Administrator** role (highest privilege), we strongly recommend you to create a new IAM user account with the **Tenant Administrator** role and assign it to a project (less privilege). Then you can use the new IAM user to login Cloud Create.
 
 3.2. Which components are supported
 -----------------------------------
@@ -179,3 +181,12 @@ We currently support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`),
 +-----------------------------+----------------+-------------------------------------+
 | Enterprise_SLES_15.6        | 3.6            | no                                  |
 +-----------------------------+----------------+-------------------------------------+
+
+3.6. How can I suggest a feature or ask a quick question
+--------------------------------------------------------
+
+Please `ask a question in the Open Telekom Cloud Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
+
+.. figure:: /_static/images/ask-question.png
+  :width: 800
+  :target: https://community.open-telekom-cloud.com/community?id=community_ask_question
