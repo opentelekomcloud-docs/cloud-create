@@ -181,3 +181,12 @@ We currently support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`),
 +-----------------------------+----------------+-------------------------------------+
 | Enterprise_SLES_15.6        | 3.6            | no                                  |
 +-----------------------------+----------------+-------------------------------------+
+
+3.6. How can I suggest a feature or ask a quick question
+--------------------------------------------------------
+
+Please `ask a question in the Open Telekom Cloud Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
+
+.. figure:: /_static/images/ask-question.png
+  :width: 800
+  :target: https://community.open-telekom-cloud.com/community?id=community_ask_question
