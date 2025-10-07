@@ -6,10 +6,6 @@ Components overview
 
 The section shows an overview of all components that you can use to design your application. Some components are not yet supported but we can add more upon requests. If you have any requests, please `contact us <https://open-telekom-cloud.com/de/kontakt>`_.
 
-.. important::
-
-  Google Cloud is currently an experimental feature.
-
 Network
 =======
 

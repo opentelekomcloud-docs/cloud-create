@@ -2,7 +2,7 @@
 Google Cloud
 ************
 
-.. important:: Google Cloud is currently an experimental feature.
+.. note:: Google Cloud is currently an experimental feature. We want to showcase that Cloud Create can deploy apps in multi-cloud.
 
 This section shows how to deploy your application on Google Cloud. You can create your application in multiple regions. Cloud Create can auto-generate one subnet for each region or you can design the subnets manually.
 
