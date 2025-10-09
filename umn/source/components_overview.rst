@@ -4,7 +4,9 @@
 Components overview
 *******************
 
-The section shows an overview of all components that you can use to design your application. Some components are not yet supported but we can add more upon requests. If you have any requests, please `contact us <https://open-telekom-cloud.com/de/kontakt>`_.
+This section shows an overview of all components that you can use to design your application. Some components are not yet supported but we can add more upon requests.
+
+.. hint:: If you want to suggest a feature or ask a quick question, please `ask a question in the Open Telekom Cloud Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
 
 Network
 =======
