@@ -35,7 +35,7 @@ Quick introduction
 
 Cloud Create is a free-to-use **visual cloud management platform** that helps you **reduce cloud engineering footprint**, **accelerate time-to-market**, and deploy everything **from infrastructure to applications** in just one click.
 
-Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a **visual designer with a growing premade templates** that enables users to deploy complex environments - such as Kubernetes, OpenShift, and Argo CD in minutes. Whether you're working on **Open Telekom Cloud** or **Swiss Open Telekom Cloud**, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
+Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a **visual designer with a growing premade templates** that enables you to deploy complex environments - such as Kubernetes, OpenShift, and Argo CD in minutes. Whether you're working on **Open Telekom Cloud** or **Swiss Open Telekom Cloud**, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
 
 .. figure:: /_static/images/features/overview1.png
   :width: 1000
@@ -47,7 +47,7 @@ Unlike traditional cloud platforms that require deep infrastructure knowledge an
 2. From Idea to Cloud in Just Four Steps
 ========================================
 
-Cloud Create makes cloud-native development simple, fast, and collaborative. Whether you're deploying your apps on OpenShift or a Cloud Container Engine (CCE), you can go from ideas to cloud in minutes:
+Cloud Create makes cloud-native development simple, fast, and collaborative. You can go from ideas to cloud in minutes:
 
 **1. Start with a premade template**
 
@@ -70,38 +70,41 @@ Turn your customized app into a private template for your team, or publish it pu
 
   Figure 2. From Idea to Cloud in Just Four Steps
 
-2.1. Visual Cloud Development Made Effortless
----------------------------------------------
+2.1. Start with a premade template
+----------------------------------
 
-With Cloud Create, building and deploying cloud-native apps is as easy as drag, drop, and click. Use our intuitive **visual designer** to architect your full-stack application - starting from **premade templates** or building from scratch:
+With Cloud Create, deploying a ready-to-use solution is easy, starting from **premade templates** or building from scratch:
 
 .. figure:: /_static/images/features/overview-templates.png
   :width: 800
 
   Figure 3. First select a premade template to start
 
-After selecting a premade template, you have the flexibility to **quickly deploy** apps right away - or use them as a starting point to **visually design and customize** your cloud architecture.
+2.2. Visually design and customize
+----------------------------------
+
+After selecting a premade template, you have the flexibility to **quickly deploy** apps right away - or use them as a starting point to **visually design and customize** your apps.
 
 .. figure:: /_static/images/features/overview-templates2.png
   :width: 800
 
   Figure 4. Quick deploy or design using the template
 
-In the design, you can seamlessly combine **infrastructure components** like compute, networking, storage, CCE, and powerful tools like **Bash**, **Ansible**, **Helm**, **Argo CD**, etc.:
+In the design, you can seamlessly combine **infrastructure components** (e.g., compute, networking, storage), **platform components** (e.g., CCE, RDS), and **software components** (e.g., Bash, Ansible, Helm, Argo CD) all together. By combining them in one single design, you have an **end-to-end automation** solution.
 
 .. figure:: /_static/images/features/overview-design2.png
   :width: 800
 
   Figure 5. Visual Design a full-stack application
 
-2.2. Simplified System Administration
--------------------------------------
+2.3. Deploy and update
+----------------------
 
 When your design is ready, simply hit “Deploy” - and Cloud Create will provision everything for you on Open Telekom Cloud in just minutes. Deploying apps with Cloud Create is simple, controlled, and fully transparent:
 
 **1. Select, Configure, and Launch**
 
-In the **Deploy** section, administrators choose the desired **application version**, fill in required **inputs**, and select a **cloud provider** - like Open Telekom Cloud. Before launching, they can easily **review the deployment workflow** to ensure everything is ready.
+In the **Deploy** section, you choose the desired **application version**, fill in required **inputs**, and select a **cloud provider** - like Open Telekom Cloud. Before launching, they can easily **review the deployment workflow** to ensure everything is ready.
 
 .. figure:: /_static/images/features/overview-deploy.png
   :width: 800
@@ -110,23 +113,36 @@ In the **Deploy** section, administrators choose the desired **application versi
 
 **2. Interactive, Step-by-Step Execution**
 
-During deployment, administrators can **follow each step in real time**. Click on any stages to see exactly what's happening - **Terraform** automates infrastructure provisioning, while **Ansible** configures services on the target compute.
+During deployment, you can **follow each step in real time**. Click on any stages to see exactly what's happening - **Terraform** automates infrastructure provisioning, while **Ansible** configures services on the target compute.
 
 .. figure:: /_static/images/features/deployment_logs.png
   :width: 800
 
   Figure 7. An example Terraform is generated and applied for a Compute
 
-2.3. Extend What’s Possible with Custom TOSCA Services
-------------------------------------------------------
+2.4. Save and share your work
+-----------------------------
+
+2.4.1. Extend What’s Possible with Custom TOSCA Services
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With Cloud Create, you're not limited to what's out of the box. Cloud engineers can define new services using the open TOSCA format and seamlessly import them into the visual designer.
 
-Whether it's a custom VM setup, a specialized software stack, or a reusable infrastructure pattern - define it once in TOSCA, then drag-and-drop it like any built-in components.
+Whether it's a custom VM setup, a specialized software stack - define it once in TOSCA, then drag-and-drop it like any built-in components.
 
 .. note::
    * Read more about :ref:`How to define and import a new service`.
    * Our premade templates and service catalogs `are opensource and available on Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_ for transparency and contributions.
+
+2.4.2. Export Terraform & TOSCA
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With Cloud Create, you can share your solution design as premade template, download it in TOSCA format, or export the cloud infrastructure in Terraform.
+
+.. figure:: /_static/images/features/export.png
+  :width: 800
+
+  Figure 8. Export options
 
 3. FAQ
 ======
