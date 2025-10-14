@@ -2,8 +2,6 @@
 API v2
 ******
 
-.. important:: This API will be released in Cloud Create v2.20.
-
 =========
 Templates
 =========

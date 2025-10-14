@@ -2,8 +2,6 @@
 Examples
 ********
 
-.. important:: This API will be released in Cloud Create v2.20.
-
 1. Example to quick deploy OpenShift on Swiss OTC
 =================================================
 

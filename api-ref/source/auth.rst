@@ -2,8 +2,6 @@
 API Authentication
 ******************
 
-.. important:: This API will be released in Cloud Create v2.20.
-
 Before sending a REST request to the API, you get an `OSTOKEN` as follows:
 
 1. Get OSTOKEN

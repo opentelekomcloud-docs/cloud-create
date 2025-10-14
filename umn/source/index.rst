@@ -35,14 +35,16 @@ Quick introduction
 
 Cloud Create is a free-to-use **visual cloud management platform** that helps you **reduce cloud engineering footprint**, **accelerate time-to-market**, and deploy everything **from infrastructure to applications** in just one click.
 
-Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a **visual designer with a growing premade templates** that enables you to deploy complex environments - such as Kubernetes, OpenShift, and Argo CD in minutes. Whether you're working on **Open Telekom Cloud** or **Swiss Open Telekom Cloud**, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
+Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a visual designer with **a growing premade templates** that enables you to deploy complex environments such as OpenShift and Argo CD in minutes. Whether you're working on Open Telekom Cloud or Swiss Open Telekom Cloud, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
+
+Cloud Create is built on open standards and powered by open-source TOSCA templates. Every deployment is transparent - **no hidden scripts, no black boxes**. You can inspect, customize, and extend each template directly from `our public GitHub repository <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_ for **full transparency and reproducibility**.
 
 .. figure:: /_static/images/features/overview1.png
   :width: 1000
 
   Figure 1. Overview
 
-(*) upcoming: Rancher, Kubeflow.
+(*) upcoming: Rancher, Kubeflow, MLflow.
 
 2. From Idea to Cloud in Just Four Steps
 ========================================

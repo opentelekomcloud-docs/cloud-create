@@ -4,7 +4,7 @@ Cloud Create API
 
 .. note::
 
-   API v2 will be available in upcoming release version 2.20. With the new API, you can quick-deploy applications from templates (e.g., quick-deploy OpenShift, CCE, Argo CD, etc.).
+   APIv2 has been released. With the new API, you can quick-deploy applications from premade templates (e.g., OpenShift, CCE, ArgoCD, etc.). The API supports both Open Telekom Cloud and Swiss Open Telekom Cloud.
 
 .. toctree::
    :maxdepth: 1
