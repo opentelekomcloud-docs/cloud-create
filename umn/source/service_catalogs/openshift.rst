@@ -10,9 +10,9 @@ OpenShift template
 The following tutorial shows you how to register a (trial) subscription key from Red Hat and uses it to create an OpenShift cluster using the OpenShift template.
 
 .. important::
-  * The OpenShift template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL).
+  * This template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL). The template automates the same setup from the `OpenStack User Provisioned Infrastructure from Red Hat <https://github.com/openshift/installer/blob/main/docs/user/openstack/install_upi.md>`_.
   * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
-  * Versions available in the template: :code:`4.16.19`. Please contact us if you need a specific version.
+  * Versions available in the template: :code:`4.16.19` and :code:`4.18.27`. Please contact us if you need a specific version.
 
 2. How to use
 =============
@@ -400,23 +400,31 @@ In OpenShift you can provision an EVS on OTC dynamically:
 
 You can create a SFS on OTC manually and create a `PersistentVolume using NFS <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_ in OpenShift, which connects to SFS via NFS protocol:
 
-1. Go to the `webconsole of OTC <https://console.otc.t-systems.com/>`_ and create a SFS or SFS Turbo:
+1. Go to the `webconsole of OTC <https://console.otc.t-systems.com/>`_.
+2. Go to **Scalable File Service** / **Create File System**
+
+* Choose the **VPC** and **subnet** so that the SFS is created in the same subnet of the OpenShift worker nodes. During the deployment, Cloud Create created a VPC with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`. In our example, the VPC is :code:`cc-environment-openshift00`. The subnet of our OpenShift worker nodes is :code:`cc-environment-openshift00-private-subnet`.
+* Left the **Security group** option **unchecked** so that a new security group is created for the SFS.
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs.png
   :width: 900
 
   Figure 17. Create SFS via webconsole
 
-* Choose the VPC and subnet of your OpenShift so that the SFS is created in the same subnet. The VPC :code:`cc-environment-openshift00` in this example was created by Cloud Create, which starts with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`.
-* Choose the security group `sg-worker`. This is the security group of the worker nodes.
+2. After SFS is created successfully, it is assigned with a new security group with all necessary ports opened. (Optional) You can limit the access to SFS from only the OpenShift worker nodes by setting the remote security group to :code:`sg-worker`:
 
-2. Copy the SFS endpoint
+.. figure:: /_static/images/service-catalogs/openshift_sfs_security_group.png
+  :width: 900
+
+  Figure 18. Security group of SFS
+
+3. Copy the SFS endpoint
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs2.png
 
-  Figure 18. Copy the SFS endpoint :code:`10.0.207.136`
+  Figure 19. Copy the SFS endpoint :code:`10.0.207.136`
 
-3. Create a PersistentVolume (e.g., :code:`sfs-pv`) with the SFS endpoint:
+4. Create a PersistentVolume (e.g., :code:`sfs-pv`) with the SFS endpoint:
 
 .. code-block:: yaml
 
@@ -434,7 +442,7 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
         path: /
       persistentVolumeReclaimPolicy: Retain
 
-4. Create a PersistentVolumeClaim (e.g., :code:`sfs-pvc`) with the :code:`sfs-pv`:
+5. Create a PersistentVolumeClaim (e.g., :code:`sfs-pvc`) with the :code:`sfs-pv`:
 
 .. code-block:: yaml
 
@@ -452,7 +460,7 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
       volumeName: sfs-pv
       storageClassName: "" # Important
 
-5. Create a Pod to use :code:`sfs-pvc`
+6. Create a Pod to use :code:`sfs-pvc`
 
 6. Tear down
 ============
@@ -462,7 +470,7 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 
 .. figure:: /_static/images/service-catalogs/openshift_tear_down.png
 
-  Figure 19. Check PVC with Available status
+  Figure 20. Check PVC with Available status
 
 7. Links
 ========
