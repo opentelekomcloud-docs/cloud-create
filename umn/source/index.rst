@@ -44,8 +44,6 @@ Cloud Create is built on open standards and powered by open-source TOSCA templat
 
   Figure 1. Overview
 
-(*) upcoming: Rancher, Kubeflow, MLflow.
-
 2. From Idea to Cloud in Just Four Steps
 ========================================
 
