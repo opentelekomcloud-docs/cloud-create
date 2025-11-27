@@ -10,7 +10,7 @@ OpenShift template
 The following tutorial shows you how to register a (trial) subscription key from Red Hat and uses it to create an OpenShift cluster using the OpenShift template.
 
 .. important::
-  * This template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL). The template automates the same setup from the `OpenStack User Provisioned Infrastructure from Red Hat <https://github.com/openshift/installer/blob/main/docs/user/openstack/install_upi.md>`_.
+  * This template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL). It follows the same setup from `the documentation OpenStack User Provisioned Infrastructure <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_on_openstack/installing-openstack-user>`_.
   * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
   * Versions available in the template: :code:`4.16.19` and :code:`4.18.27`. Please contact us if you need a specific version.
 
@@ -404,14 +404,14 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 2. Go to **Scalable File Service** / **Create File System**
 
 * Choose the **VPC** and **subnet** so that the SFS is created in the same subnet of the OpenShift worker nodes. During the deployment, Cloud Create created a VPC with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`. In our example, the VPC is :code:`cc-environment-openshift00`. The subnet of our OpenShift worker nodes is :code:`cc-environment-openshift00-private-subnet`.
-* Left the **Security group** option **unchecked** so that a new security group is created for the SFS.
+* Left the **Security group** option **unchecked** so that a security group is auto-created for the SFS.
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs.png
   :width: 900
 
   Figure 17. Create SFS via webconsole
 
-2. After SFS is created successfully, it is assigned with a new security group with all necessary ports opened. (Optional) You can limit the access to SFS from only the OpenShift worker nodes by setting the remote security group to :code:`sg-worker`:
+2. After SFS is created successfully, it is assigned with a new security group having all necessary ports opened to :code:`0.0.0.0/0` (by default). Then you can limit the access to SFS from the OpenShift worker nodes by setting the **source** security group to :code:`sg-worker`:
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs_security_group.png
   :width: 900
@@ -462,7 +462,134 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 
 6. Create a Pod to use :code:`sfs-pvc`
 
-6. Tear down
+6. MachineSet API
+=================
+
+You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as follows.
+
+6.1 Apply patch (temporal)
+--------------------------
+
+.. important::
+
+  The `REST API of OTC to create a network port <https://docs.otc.t-systems.com/virtual-private-cloud/api-ref/native_openstack_neutron_apis_v2.0/port/creating_a_port.html>`_ is not fully compliant with the OpenStack API. Therefore, the Machine API of OpenShift fails to create network ports on OTC. Follow the instructions below to apply the patch `cluster-api-provider-openstack:4.18-patched <https://github.com/opentelekomcloud-blueprints/machine-api-provider-openstack/tree/4.18-patched>`_ so that the Machine API can work with the REST API of OTC. When the compliant issues are fixed, this patch is not necessary.
+
+.. code-block:: bash
+
+    # Pause the CVO to stop it from overwriting
+    $ oc scale deploy cluster-version-operator -n openshift-cluster-version --replicas=0
+
+    # Edit the configmap machine-api-operator-images
+    $ oc edit configmap/machine-api-operator-images -n openshift-machine-api
+    # Replace:
+    "clusterAPIControllerOpenStack": "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:8df78826ffbf29ea291cde12a4eb81b8d63103ddb15b01c5af55d22e80448989",
+    # With:
+    "clusterAPIControllerOpenStack": "swr.eu-de.otc.t-systems.com/cloud-create/machine-api-provider-openstack@sha256:60a7811b80265a731d45bdf47c5492398ddc6ef4da02aad6c2a7f67ab66e4247",
+
+    # Update the machine-controller to use our patched image
+    $ oc -n openshift-machine-api set image deployment/machine-api-controllers machine-controller=swr.eu-de.otc.t-systems.com/cloud-create/machine-api-provider-openstack@sha256:60a7811b80265a731d45bdf47c5492398ddc6ef4da02aad6c2a7f67ab66e4247
+
+    # Wait a few minutes for the machine-controller to start
+    $ oc logs -n openshift-machine-api deployment/machine-api-controllers -c machine-controller
+    I1125 16:31:36.679739       1 controller.go:215] "msg"="Starting workers" "controller"="machine-controller" "worker count"=1
+
+6.2 How to create a machineset
+------------------------------
+
+1. In the **Topology** view, click on the **OpenShiftInstall**, copy the values of :code:`cluster_os_image` (e.g., :code:`rhcos-418.94.202501221327-0-openstack.x86_64`) and :code:`infra_id` (e.g., :code:`openshift-vts4p`).
+
+.. figure:: /_static/images/service-catalogs/openshift_machinset1.png
+  :width: 600
+
+  Figure 20. Copy cluster_os_image and infra_id
+
+2. Click on the **Private** network and copy the subnet_name (e.g., :code:`cc-environment-openshift03-private-subnet`).
+
+.. figure:: /_static/images/service-catalogs/openshift_machinset2.png
+  :width: 600
+
+  Figure 21. Copy subnet_name
+
+3. Create the file :code:`machineset-example-eu-de-01.yaml` with the copied values:
+
+.. code-block:: yaml
+
+    # machineset-example-eu-de-01.yaml
+    apiVersion: machine.openshift.io/v1beta1
+    kind: MachineSet
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: openshift-vts4p # <infra_id>
+        machine.openshift.io/cluster-api-machine-role: worker # <role>
+        machine.openshift.io/cluster-api-machine-type: worker # <role>
+      name: openshift-vts4p-worker # <infra_id>-<role>
+      namespace: openshift-machine-api
+    spec:
+      replicas: 1 # <number_of_replicas>
+      selector:
+        matchLabels:
+          machine.openshift.io/cluster-api-cluster: openshift-vts4p # <infra_id>
+          machine.openshift.io/cluster-api-machineset: openshift-vts4p-worker # <infra_id>-<role>
+      template:
+        metadata:
+          labels:
+            machine.openshift.io/cluster-api-cluster: openshift-vts4p # <infra_id>
+            machine.openshift.io/cluster-api-machine-role: worker # <role>
+            machine.openshift.io/cluster-api-machine-type: worker # <role>
+            machine.openshift.io/cluster-api-machineset: openshift-vts4p-worker # <infra_id>-<role>
+        spec:
+          providerSpec:
+            value:
+              apiVersion: machine.openshift.io/v1alpha1
+              cloudName: openstack
+              cloudsSecret:
+                name: openstack-cloud-credentials
+                namespace: openshift-machine-api
+              flavor: s3.xlarge.4 # <nova_flavor>
+              image: ""
+              kind: OpenstackProviderSpec
+              networks:
+              - filter: {}
+                subnets:
+                - filter:
+                    name: cc-environment-openshift03-private-subnet # <subnet_name>
+              rootVolume:
+                diskSize: 120 # minimum 100
+                sourceUUID: rhcos-418.94.202501221327-0-openstack.x86_64 # <cluster_os_image>
+                volumeType: SSD
+              securityGroups:
+              - filter: {}
+                name: sg-worker
+              trunk: false
+              userDataSecret:
+                name: worker-user-data
+              availabilityZone: eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for OTC), 'eu-ch2a' and 'eu-ch2b' (for Swiss OTC).
+
+4. and apply
+
+.. code-block:: bash
+
+    $ oc create -f machineset-example-eu-de-01.yaml
+
+6.3 Expected result
+-------------------
+
+One new worker node is up and running:
+
+.. code-block:: bash
+
+    $ oc get machines -n openshift-machine-api
+    NAME                           PHASE     TYPE          REGION   ZONE      AGE
+    openshift-vts4p-worker-nmwls   Running   s3.xlarge.4            eu-de-01  28m
+
+On the Web console, you can see the new worker node has 2 VIPs assigned (like the other worker nodes): one for the OpenShift's API and one for the ingress traffic. It also has the same security group :code:`sg-worker`.
+
+.. figure:: /_static/images/service-catalogs/openshift_machinset3.png
+  :width: 900
+
+  Figure 22. The worker node has 2 VIPs assigned
+
+7. Tear down
 ============
 
 * In Cloud Create, go to **Action** / **Undeploy** to delete the OpenShift cluster.
@@ -470,11 +597,11 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 
 .. figure:: /_static/images/service-catalogs/openshift_tear_down.png
 
-  Figure 20. Check PVC with Available status
+  Figure 23. Check PVC with Available status
 
-7. Links
+8. Links
 ========
 
-* Our `OpenShift app template in TOSCA <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/templates/openshift/4.13/topology.yml>`_.
+* Our `OpenShift template in TOSCA <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs/blob/main/templates/openshift/4.13/topology.yml>`_.
 * How to create a `PersistentVolume using NFS in OpenShift <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_.
 * `Maintaining credentials in OpenShift <https://docs.openshift.com/container-platform/4.14/post_installation_configuration/changing-cloud-credentials-configuration.html#manually-rotating-cloud-creds_changing-cloud-credentials-configuration>`_.
