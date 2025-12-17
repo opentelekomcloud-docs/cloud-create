@@ -305,7 +305,7 @@ In OpenShift you can provision an EVS on OTC dynamically:
       name: ssd-csi
     provisioner: cinder.csi.openstack.org
     parameters:
-      type: SSD # Choose 'SSD' for 'Ultra high I/O', 'SAS' for 'High I/O', 'SATA' for 'Common I/O'
+      type: SSD # Choose 'SSD' for Ultra-high I/O type, 'GPSSD' for the general purpose SSD type, 'ESSD' for the extreme SSD type, 'SAS' for High I/O type
     reclaimPolicy: Delete
     allowVolumeExpansion: true
     volumeBindingMode: WaitForFirstConsumer # PVC is PENDING until the Pod is created. As a result, the volume is created in the same AZ as the POD.
@@ -320,7 +320,7 @@ In OpenShift you can provision an EVS on OTC dynamically:
       name: eu-de-01-ssd-csi
     provisioner: cinder.csi.openstack.org
     parameters:
-      type: SSD # Choose 'SSD' (for 'Ultra high I/O'), 'SAS' (for 'High I/O')
+      type: SSD # Choose 'SSD' for Ultra-high I/O type, 'GPSSD' for the general purpose SSD type, 'ESSD' for the extreme SSD type, 'SAS' for High I/O type
     reclaimPolicy: Delete
     allowVolumeExpansion: true
     allowedTopologies:
@@ -545,7 +545,7 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
               cloudsSecret:
                 name: openstack-cloud-credentials
                 namespace: openshift-machine-api
-              flavor: s3.xlarge.4 # <nova_flavor>
+              flavor: s3.xlarge.4 # Choose a flavor from OTC with minimum 4 vCPU and 16GB RAM
               image: ""
               kind: OpenstackProviderSpec
               networks:
@@ -574,20 +574,13 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
 6.3 Expected result
 -------------------
 
-One new worker node is up and running:
+The requested worker node is up and running:
 
 .. code-block:: bash
 
     $ oc get machines -n openshift-machine-api
     NAME                           PHASE     TYPE          REGION   ZONE      AGE
     openshift-vts4p-worker-nmwls   Running   s3.xlarge.4            eu-de-01  28m
-
-On the Web console, you can see the new worker node has 2 VIPs assigned (like the other worker nodes): one for the OpenShift's API and one for the ingress traffic. It also has the same security group :code:`sg-worker`.
-
-.. figure:: /_static/images/service-catalogs/openshift_machinset3.png
-  :width: 900
-
-  Figure 22. The worker node has 2 VIPs assigned
 
 7. Tear down
 ============
