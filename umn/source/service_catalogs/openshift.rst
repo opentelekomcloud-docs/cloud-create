@@ -12,7 +12,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 .. important::
   * This template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL). It follows the same setup from `the documentation OpenStack User Provisioned Infrastructure <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_on_openstack/installing-openstack-user>`_.
   * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
-  * Versions available in the template: :code:`4.16.19` and :code:`4.18.27`. Please contact us if you need a specific version.
+  * Versions available in the template: :code:`4.16.19` and :code:`4.18.30`. Please contact us if you need a specific version.
 
 2. How to use
 =============
@@ -20,7 +20,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 2.1. How to deploy
 ------------------
 
-1. Create a new application using the template **OpenShift** or **OpenShift HA** with a selected version (e.g., 4.16.19)
+1. Create a new application using the template **OpenShift** or **OpenShift HA** with a selected version (e.g., 4.18.30)
 2. Go to **Quick Deploy**.
 
 .. figure:: /_static/images/service-catalogs/openshift_select_template.png
@@ -34,7 +34,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 a. Specify base_domain
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. A DNS Public Zone will be created on OTC with this name. Therefore this domain name **must be unique** in the Domain Name Service of OTC.
+Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. You can specify any domain names you prefer. Your domain name will be registered on the nameservers of OTC. After the deployment completes, you can add the nameservers of OTC on your local machine, then the domain can be resolved (See Section :ref:`access_openshift_console`). Alternatively, you can register a public domain name (e.g., a free domain from ClouDNS) and input it here. In the later case, you do not need to add the nameservers of OTC.
 
 .. figure:: /_static/images/service-catalogs/openshift_config1.png
   :width: 700
@@ -104,6 +104,8 @@ e. (Optional) Specify other paramters
   :width: 700
 
   Figure 7. CheckOpenShiftStatus waits 31 minutes and checks the status
+
+.. _access_openshift_console:
 
 3.1. Access the console
 -----------------------
@@ -189,52 +191,53 @@ During the OpenShift bootstrap process, you can access to the bastion host as fo
 
   # Check all nodes are ready
   $ oc get nodes
-  NAME                        STATUS   ROLES                  AGE    VERSION
-  openshift-k55b9-master-0    Ready    control-plane,master   179m   v1.26.9+636f2be
-  openshift-k55b9-master-1    Ready    control-plane,master   179m   v1.26.9+636f2be
-  openshift-k55b9-master-2    Ready    control-plane,master   179m   v1.26.9+636f2be
-  openshift-k55b9-workers-0   Ready    worker                 163m   v1.26.9+636f2be
-  openshift-k55b9-workers-1   Ready    worker                 163m   v1.26.9+636f2be
+  NAME                             STATUS   ROLES                  AGE    VERSION
+  openshift-k55b9-master-0         Ready    control-plane,master   111m   v1.31.14
+  openshift-k55b9-master-1         Ready    control-plane,master   109m   v1.31.14
+  openshift-k55b9-master-2         Ready    control-plane,master   111m   v1.31.14
+  openshift-k55b9-workers-0        Ready    worker                 92m    v1.31.14
+  openshift-k55b9-workers-1        Ready    worker                 89m    v1.31.14
 
 * Check all cluster operators are available
 
 .. code-block:: bash
 
   $ oc get clusteroperators
-    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-    authentication                             4.13.19   True        False         False      156m
-    baremetal                                  4.13.19   True        False         False      174m
-    cloud-controller-manager                   4.13.19   True        False         False      3h1m
-    cloud-credential                           4.13.19   True        False         False      3h4m
-    cluster-autoscaler                         4.13.19   True        False         False      175m
-    config-operator                            4.13.19   True        False         False      175m
-    console                                    4.13.19   True        False         False      161m
-    control-plane-machine-set                  4.13.19   True        False         False      175m
-    csi-snapshot-controller                    4.13.19   True        False         False      175m
-    dns                                        4.13.19   True        False         False      174m
-    etcd                                       4.13.19   True        False         False      174m
-    image-registry                             4.13.19   True        False         False      163m
-    ingress                                    4.13.19   True        False         False      163m
-    insights                                   4.13.19   True        False         False      168m
-    kube-apiserver                             4.13.19   True        False         False      164m
-    kube-controller-manager                    4.13.19   True        False         False      172m
-    kube-scheduler                             4.13.19   True        False         False      172m
-    kube-storage-version-migrator              4.13.19   True        False         False      164m
-    machine-api                                4.13.19   True        False         False      171m
-    machine-approver                           4.13.19   True        False         False      174m
-    machine-config                             4.13.19   True        False         False      174m
-    marketplace                                4.13.19   True        False         False      174m
-    monitoring                                 4.13.19   True        False         False      162m
-    network                                    4.13.19   True        False         False      177m
-    node-tuning                                4.13.19   True        False         False      174m
-    openshift-apiserver                        4.13.19   True        False         False      165m
-    openshift-controller-manager               4.13.19   True        False         False      174m
-    openshift-samples                          4.13.19   True        False         False      168m
-    operator-lifecycle-manager                 4.13.19   True        False         False      174m
-    operator-lifecycle-manager-catalog         4.13.19   True        False         False      175m
-    operator-lifecycle-manager-packageserver   4.13.19   True        False         False      169m
-    service-ca                                 4.13.19   True        False         False      175m
-    storage                                    4.13.19   True        False         False      170m
+  NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
+  authentication                             4.18.30   True        False         False      78m
+  baremetal                                  4.18.30   True        False         False      102m
+  cloud-controller-manager                   4.18.30   True        False         False      109m
+  cloud-credential                           4.18.30   True        False         False      111m
+  cluster-autoscaler                         4.18.30   True        False         False      102m
+  config-operator                            4.18.30   True        False         False      103m
+  console                                    4.18.30   True        False         False      84m
+  control-plane-machine-set                  4.18.30   True        False         False      102m
+  csi-snapshot-controller                    4.18.30   True        False         False      103m
+  dns                                        4.18.30   True        False         False      102m
+  etcd                                       4.18.30   True        False         False      101m
+  image-registry                             4.18.30   True        False         False      88m
+  ingress                                    4.18.30   True        False         False      88m
+  insights                                   4.18.30   True        False         False      102m
+  kube-apiserver                             4.18.30   True        False         False      99m
+  kube-controller-manager                    4.18.30   True        False         False      99m
+  kube-scheduler                             4.18.30   True        False         False      99m
+  kube-storage-version-migrator              4.18.30   True        False         False      91m
+  machine-api                                4.18.30   True        False         False      99m
+  machine-approver                           4.18.30   True        False         False      102m
+  machine-config                             4.18.30   True        False         False      102m
+  marketplace                                4.18.30   True        False         False      102m
+  monitoring                                 4.18.30   True        False         False      82m
+  network                                    4.18.30   True        False         False      106m
+  node-tuning                                4.18.30   True        False         False      87m
+  olm                                        4.18.30   True        False         False      93m
+  openshift-apiserver                        4.18.30   True        False         False      93m
+  openshift-controller-manager               4.18.30   True        False         False      91m
+  openshift-samples                          4.18.30   True        False         False      93m
+  operator-lifecycle-manager                 4.18.30   True        False         False      102m
+  operator-lifecycle-manager-catalog         4.18.30   True        False         False      102m
+  operator-lifecycle-manager-packageserver   4.18.30   True        False         False      94m
+  service-ca                                 4.18.30   True        False         False      103m
+  storage                                    4.18.30   True        False         False      91m
 
 4. Post-installation
 ====================
@@ -257,10 +260,10 @@ The **bootstrap** VM is only needed during the installation. After the installat
 
   Figure 13. Go to Web console and delete the VM "bootstrap"
 
-4.2. Maintaining credentials
-----------------------------
+4.2. Update os_password
+-----------------------
 
-On OTC, a user password is expired every 3 months (by default). After it is expired, OpenShift cannot authenticate to OTC to provision volumes so you may get the following error:
+On OTC, an IAM user password is expired every 3 months (by default). After it is expired, OpenShift cannot authenticate to OTC to provision volumes so you may get the following error:
 
 .. code-block:: bash
 
@@ -270,7 +273,12 @@ On OTC, a user password is expired every 3 months (by default). After it is expi
 
 **Solution**
 
-1. Go to the Web Console and update your password on in the Section **Security Settings**.
+1. Go to the Web Console and update the IAM user password under **Security Settings** / **Basic Information** / **Login password**:
+
+.. figure:: /_static/images/service-catalogs/openshift-update-os-password.png
+  :width: 900
+
+  Figure 14. Update password on the Web console
 
 .. tip:: You can increase the password expired time in the Section **Password Policy**.
 
@@ -278,14 +286,15 @@ On OTC, a user password is expired every 3 months (by default). After it is expi
 
 * Go to the OpenShift Console.
 * Go to **Workloads** / **Secrets**.
-* Find and edit the secret **openstack-credentials**.
-* Update the value **password** in both “clouds.conf” and “clouds.yaml”.
+* Find and edit the secret **openstack-credentials** in the **kube-system** namespace.
+* Update the value **password** in 2 files **clouds.conf** and **clouds.yaml**.
 
 .. figure:: /_static/images/service-catalogs/openshift-update-password.png
   :width: 900
 
-  Figure 14. Update the secret openstack-credentials
+  Figure 15. Update the secret openstack-credentials
 
+The Cloud Credential Operator (CCO) will `rotate the secret <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/postinstallation_configuration/changing-cloud-credentials-configuration#manually-rotating-cloud-creds_changing-cloud-credentials-configuration>`_. The other secrets **openstack-cloud-credentials** (in Figure 15) will be eventually overwritten. The rotation may take a few minutes.
 
 5. How to create storages
 =========================
@@ -387,13 +396,13 @@ In OpenShift you can provision an EVS on OTC dynamically:
 
 .. figure:: /_static/images/service-catalogs/openshift_pod.png
 
-  Figure 15. Pod example is running
+  Figure 16. Pod example is running
 
 5. On OTC, see EVS is created:
 
 .. figure:: /_static/images/service-catalogs/openshift_evs.png
 
-  Figure 16. A new EVS is created with the volume type "Ultra High I/O"
+  Figure 17. A new EVS is created with the volume type "Ultra High I/O"
 
 5.2. Scalable File Service & SFS Turbo
 --------------------------------------
@@ -409,20 +418,20 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 .. figure:: /_static/images/service-catalogs/openshift_sfs.png
   :width: 900
 
-  Figure 17. Create SFS via webconsole
+  Figure 18. Create SFS via webconsole
 
 2. After SFS is created successfully, it is assigned with a new security group having all necessary ports opened to :code:`0.0.0.0/0` (by default). Then you can limit the access to SFS from the OpenShift worker nodes by setting the **source** security group to :code:`sg-worker`:
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs_security_group.png
   :width: 900
 
-  Figure 18. Security group of SFS
+  Figure 19. Security group of SFS
 
 3. Copy the SFS endpoint
 
 .. figure:: /_static/images/service-catalogs/openshift_sfs2.png
 
-  Figure 19. Copy the SFS endpoint :code:`10.0.207.136`
+  Figure 20. Copy the SFS endpoint :code:`10.0.207.136`
 
 4. Create a PersistentVolume (e.g., :code:`sfs-pv`) with the SFS endpoint:
 
@@ -472,24 +481,24 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
 
 .. important::
 
-  The `REST API of OTC to create a network port <https://docs.otc.t-systems.com/virtual-private-cloud/api-ref/native_openstack_neutron_apis_v2.0/port/creating_a_port.html>`_ is not fully compliant with the OpenStack API. Therefore, the Machine API of OpenShift fails to create network ports on OTC. Follow the instructions below to apply the patch `cluster-api-provider-openstack:4.18-patched <https://github.com/opentelekomcloud-blueprints/machine-api-provider-openstack/tree/4.18-patched>`_ so that the Machine API can work with the REST API of OTC. When the compliant issues are fixed, this patch is not necessary.
+  The `REST API of OTC to create a network port <https://docs.otc.t-systems.com/virtual-private-cloud/api-ref/native_openstack_neutron_apis_v2.0/port/creating_a_port.html>`_ is not fully compliant with the OpenStack API. Therefore, the Machine API of OpenShift fails to create network ports on OTC. Follow the **steps below** to apply the `patch <https://github.com/opentelekomcloud-blueprints/machine-api-provider-openstack/tree/4.18-patched>`_ so that the Machine API can work with the REST API of OTC. When the compliant issues are fixed, this patch is not necessary.
 
 .. code-block:: bash
 
-    # Pause the CVO to stop it from overwriting
+    # 1. Pause the CVO to stop it from overwriting
     $ oc scale deploy cluster-version-operator -n openshift-cluster-version --replicas=0
 
-    # Edit the configmap machine-api-operator-images
+    # 2. Edit the configmap machine-api-operator-images
     $ oc edit configmap/machine-api-operator-images -n openshift-machine-api
     # Replace:
     "clusterAPIControllerOpenStack": "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:8df78826ffbf29ea291cde12a4eb81b8d63103ddb15b01c5af55d22e80448989",
     # With:
     "clusterAPIControllerOpenStack": "swr.eu-de.otc.t-systems.com/cloud-create/machine-api-provider-openstack@sha256:60a7811b80265a731d45bdf47c5492398ddc6ef4da02aad6c2a7f67ab66e4247",
 
-    # Update the machine-controller to use our patched image
+    # 3. Update the machine-controller to use our patched image
     $ oc -n openshift-machine-api set image deployment/machine-api-controllers machine-controller=swr.eu-de.otc.t-systems.com/cloud-create/machine-api-provider-openstack@sha256:60a7811b80265a731d45bdf47c5492398ddc6ef4da02aad6c2a7f67ab66e4247
 
-    # Wait a few minutes for the machine-controller to start
+    # 4. Wait a few minutes for the machine-controller to start
     $ oc logs -n openshift-machine-api deployment/machine-api-controllers -c machine-controller
     I1125 16:31:36.679739       1 controller.go:215] "msg"="Starting workers" "controller"="machine-controller" "worker count"=1
 
@@ -501,14 +510,14 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
 .. figure:: /_static/images/service-catalogs/openshift_machinset1.png
   :width: 600
 
-  Figure 20. Copy cluster_os_image and infra_id
+  Figure 21. Copy cluster_os_image and infra_id
 
-2. Click on the **Private** network and copy the subnet_name (e.g., :code:`cc-environment-openshift03-private-subnet`).
+2. Click on the **Private** network and copy the **subnet_id** (e.g., :code:`1423eb8d-c552-410b-9b10-8f0f87b9f7d6`). This is the subnet of the worker nodes.
 
 .. figure:: /_static/images/service-catalogs/openshift_machinset2.png
   :width: 600
 
-  Figure 21. Copy subnet_name
+  Figure 22. Copy subnet_id
 
 3. Create the file :code:`machineset-example-eu-de-01.yaml` with the copied values:
 
@@ -519,7 +528,7 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
     kind: MachineSet
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: openshift-vts4p # <infra_id>
+        machine.openshift.io/cluster-api-cluster: openshift-vts4p # <infra_id>, see Figure 21 above
         machine.openshift.io/cluster-api-machine-role: worker # <role>
         machine.openshift.io/cluster-api-machine-type: worker # <role>
       name: openshift-vts4p-worker # <infra_id>-<role>
@@ -552,10 +561,10 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
               - filter: {}
                 subnets:
                 - filter:
-                    name: cc-environment-openshift03-private-subnet # <subnet_name>
+                    id: 1423eb8d-c552-410b-9b10-8f0f87b9f7d6 # <subnet_id>, see Figure 22 above
               rootVolume:
                 diskSize: 120 # minimum 100
-                sourceUUID: rhcos-418.94.202501221327-0-openstack.x86_64 # <cluster_os_image>
+                sourceUUID: rhcos-418.94.202501221327-0-openstack.x86_64 # <cluster_os_image>, see Figure 21 above
                 volumeType: SSD
               securityGroups:
               - filter: {}
