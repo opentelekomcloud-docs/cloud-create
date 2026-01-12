@@ -10,8 +10,8 @@ OpenShift template
 The following tutorial shows you how to register a (trial) subscription key from Red Hat and uses it to create an OpenShift cluster using the OpenShift template.
 
 .. important::
-  * This template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL). It follows the same setup from `the documentation OpenStack User Provisioned Infrastructure <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_on_openstack/installing-openstack-user>`_.
-  * Your license/subscription will cover technical support from Red Hat as well as upgrades between OpenShift versions. `Read more <https://www.redhat.com/en/about/value-of-Red-Hat>`_.
+  * This template deploys a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide>`_ on Open Telekom Cloud (OTC) with Bring Your Own License (BYOL). It has the same setup from the document `OpenStack User Provisioned Infrastructure <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_on_openstack/installing-openstack-user>`_.
+  * Your license/subscription covers technical support from Red Hat for the OpenShift product itself (e.g., OpenShift core components, Red Hat Enterprise Linux CoreOS, upgrades/patches within OpenShift). For any issues related to the cloud infrastructure (compute, network, storages, etc.), you contact OTC separately. It means, there are no joint support between Red Hat and OTC. `Read more <https://access.redhat.com/articles/third-party-software-support>`_.
   * Versions available in the template: :code:`4.16.19` and :code:`4.18.30`. Please contact us if you need a specific version.
 
 2. How to use
