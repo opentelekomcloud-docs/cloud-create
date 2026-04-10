@@ -83,15 +83,15 @@ The deploy setup logs display messages in 3 categories: error, warning, and info
 v2.15
 =====
 
-Swiss Open Telekom Cloud
-------------------------
+Swiss T-Cloud Public
+--------------------
 
-Users can now login with IAM accounts from Swiss Open Telekom Cloud as well. When you login with an IAM account from Open Telekom Cloud (or Swiss Open Telekom Cloud) and deploy a template, the template will be deployed on Open Telekom Cloud (or Swiss Open Telekom Cloud), respectively.
+Users can now login with IAM accounts from Swiss T-Cloud Public as well. When you login with an IAM account from T-Cloud Public (or Swiss T-Cloud Public) and deploy a template, the template will be deployed on T-Cloud Public (or Swiss T-Cloud Public), respectively.
 
 .. figure:: /_static/images/features/v2.15-login-swiss-otc.png
   :width: 800
 
-  Figure 6. Login with domain name from Swiss Open Telekom Cloud.
+  Figure 6. Login with domain name from Swiss T-Cloud Public.
 
 Read more about :ref:`Swiss OTC`.
 
@@ -144,7 +144,7 @@ v2.13
 OpenShift template
 ------------------
 
-Users can create a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on Open Telekom Cloud from the :ref:`OpenShift`.
+Users can create a `Self-managed OpenShift Container Platform <https://www.redhat.com/en/technologies/cloud-computing/openshift/container-platform>`_ on T-Cloud Public from the :ref:`OpenShift`.
 
 .. figure:: /_static/images/features/openshift.png
   :width: 800

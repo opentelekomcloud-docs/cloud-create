@@ -34,7 +34,7 @@ Figure 2 shows an example: At the beginning of the workflow, the orchestrator cr
 1.2 Key Management System supported
 -----------------------------------
 
-When users deploy their applications, the orchestration engine uses the user OpenStack token to work on behalf of them and provision resources on Open Telekom Cloud. It means, the orchestration engine itself cannot make any changes to the tenant without the user authentication. This is similar to the :code:`OpenStack Heat` orchestration engine, which also uses the OpenStack token to provision resource on behalf of the authenticated users.
+When users deploy their applications, the orchestration engine uses the user OpenStack token to work on behalf of them and provision resources on T-Cloud Public. It means, the orchestration engine itself cannot make any changes to the tenant without the user authentication. This is similar to the :code:`OpenStack Heat` orchestration engine, which also uses the OpenStack token to provision resource on behalf of the authenticated users.
 
 Recall that the orchestrator uses ansible to deploy service catalogs on the computes via SSH. For this purpose, the orchestrator auto-generates an SSH key for each deployment. The public part of the SSH key (name :code:`yorc`) is installed on the VMs. The private part is encrypted in our Key Management System using the user OpenStack token. Without the user OpenStack token, the orchestrator itself cannot decrypt this private key.
 
@@ -57,7 +57,7 @@ The orchestrator retries a workflow step when the following errors occur:
 The backend server is unreachable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* The backend server of Open Telekom Cloud is temporarily not available and the REST API responses an HTTP error message :code:`The backend server is unreachable`.
+* The backend server of T-Cloud Public is temporarily not available and the REST API responses an HTTP error message :code:`The backend server is unreachable`.
 * Retry: 5 times.
 
 2.3 Error during VM bootstrap

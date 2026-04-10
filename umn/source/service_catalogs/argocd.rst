@@ -33,7 +33,7 @@ Whether you’re a startup racing to launch or an enterprise bringing new servic
 
 If this is the first time you use CCE **in a project**, you have to authorize it first.
 
-1. Login to the Web console of `OTC <https://console.otc.t-systems.com>`_ / or `Swiss OTC <https://console.sc.otc.t-systems.com>`_.
+1. Login to the Web console of `T-Cloud Public <https://console.otc.t-systems.com>`_ / or `Swiss T-Cloud Public <https://console.sc.otc.t-systems.com>`_.
 2. Switch to the project you want to deploy CCE / go to **Cloud Container Engine**.
 3. The Web console shows an **Authorization Description** > Click OK.
 
@@ -137,7 +137,7 @@ If you do not wish to expose Argo CD to public access, disable **access_with_elb
 
 You can access the example app with a public IP address from type Load Balancer as follows:
 
-1. On the OTC Web console, you can see a new CCE cluster is up and running.
+1. On the Web console, you can see a new CCE cluster is up and running.
 2. Go to **Services** and copy the **ELB Public IP** of the service **front-end-elb**. This is the service from type Load Balancer of our example app, which is `defined on the Github repository <https://github.com/opentelekomcloud-blueprints/argocd-example-apps/blob/master/sock-shop/base/front-end-elb-svc.yaml>`_.
 
 .. figure:: /_static/images/service-catalogs/argocd6.png

@@ -7,7 +7,7 @@ How to create an Object Storage
 1. About
 ========
 
-* Use this component to deploy an Object Storage (OBS) on Open Telekom Cloud.
+* Use this component to deploy an Object Storage (OBS) on T-Cloud Public.
 * To create an OBS, an access key is required. Users can either create an access key manually or use the property **auto_create_access_key** of the component.
 
 2. Requirements
@@ -44,7 +44,7 @@ Users who deploy an application with OBS, they must have the permission :code:`O
 4. Specify the **access_key** and **secret_key** (Step 4). If you do not want to expose the keys in plaintext, set it as a secret (Step 4b).
 
 .. tip::
-  The access key is required for a user to create an Object Storage. You can create your access key in the Open Telekom Cloud Console in the :code:`My Credentials` section.
+  The access key is required for a user to create an Object Storage. You can create your access key in the T-Cloud Public Console in the :code:`My Credentials` section.
 
 .. figure:: /_static/images/obs1.png
   :width: 800
@@ -74,12 +74,12 @@ Before the deployment, an access key is auto-created for the user (who deploys t
 
   Figure 3. An access key is auto-created before the deployment starts
 
-In the :code:`My Credentials` Section of the Open Telekom Cloud console, you can see the new access key is created:
+In the :code:`My Credentials` Section of the T-Cloud Public console, you can see the new access key is created:
 
 .. figure:: /_static/images/obs4.png
   :width: 800
 
-  Figure 4. View access key on the Open Telekom Cloud console
+  Figure 4. View access key on the T-Cloud Public console
 
 In the topology, you can reference to the access key by using the intrinsic function :code:`get_secret: access_key` and :code:`get_secret: secret_key`.
 

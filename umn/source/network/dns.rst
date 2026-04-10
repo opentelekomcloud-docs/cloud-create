@@ -26,7 +26,7 @@ You can create a Domain Name Service so that users can access your compute via t
 
 .. important::
 
-  * The domain must be globally unique in the Domain Name Service of Open Telekom Cloud.
+  * The domain must be globally unique in the Domain Name Service of T-Cloud Public.
 
 .. note::
 
@@ -47,7 +47,7 @@ Expect result
 Test
 ----
 
-1. Update your domain name at the registration service to the nameservers of Open Telekom Cloud: :code:`ns1.open-telekom-cloud.com` and :code:`ns2.open-telekom-cloud.com`. Or to test on localhost, update the nameservers of your localhost to the nameservers of Open Telekom Cloud.
+1. Update your domain name at the registration service to the nameservers of T-Cloud Public: :code:`ns1.open-telekom-cloud.com` and :code:`ns2.open-telekom-cloud.com`. Or to test on localhost, update the nameservers of your localhost to the nameservers of T-Cloud Public.
 2. Test your domain is resolved to the floating IP:
 
 .. code-block:: bash
@@ -66,7 +66,7 @@ Test
 
 .. important::
 
-  **Swiss Open Telekom Cloud** does not support DNS public zone, but only DNS private zone. When you set a dns_name to a network port, a DNS private zone will be created instead.
+  **Swiss T-Cloud Public** does not support DNS public zone, but only DNS private zone. When you set a dns_name to a network port, a DNS private zone will be created instead.
 
 .. _DNS Private:
 

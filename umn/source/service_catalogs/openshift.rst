@@ -10,7 +10,7 @@ OpenShift template
 The following tutorial shows you how to register a (trial) subscription key from Red Hat and uses it to create an OpenShift cluster using the OpenShift template.
 
 .. important::
-  * This template deploys a `self-managed OpenShift Container Platform <https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide>`_ on Open Telekom Cloud (OTC) with Bring Your Own Subscription (BYOS). OpenShift is installed following the `OpenShift on OpenStack (User-Provisioned Infrastructure) procedure defined by Red Hat <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_on_openstack/installing-openstack-user>`_.
+  * This template deploys a `self-managed OpenShift Container Platform <https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide>`_ on T-Cloud Public with Bring Your Own Subscription (BYOS). OpenShift is installed following the `OpenShift on OpenStack (User-Provisioned Infrastructure) procedure defined by Red Hat <https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_on_openstack/installing-openstack-user>`_.
   * The subscription covers support from Red Hat for the OpenShift product itself (e.g., OpenShift core components, Red Hat Enterprise Linux CoreOS, upgrades/patches within OpenShift) on the `third party infrastructure <https://access.redhat.com/articles/third-party-software-support>`_.
   * Versions available in the template: :code:`4.16.19` and :code:`4.18.30`. Please contact us if you need a specific version.
 
@@ -34,7 +34,7 @@ The following tutorial shows you how to register a (trial) subscription key from
 a. Specify base_domain
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. You can specify any domain names you prefer. Your domain name will be registered on the nameservers of OTC. After the deployment completes, you can add the nameservers of OTC on your local machine, then the domain can be resolved (See Section :ref:`access_openshift_console`). Alternatively, you can register a public domain name (e.g., a free domain from ClouDNS) and input it here. In the later case, you do not need to add the nameservers of OTC.
+Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain name that you will use to access the OpenShift console after the deployment completes. You can specify any domain names you prefer. Your domain name will be registered on the nameservers of T-Cloud Public. After the deployment completes, you can add the nameservers of T-Cloud Public on your local machine, then the domain can be resolved (See Section :ref:`access_openshift_console`). Alternatively, you can register a public domain name (e.g., a free domain from ClouDNS) and input it here. In the later case, you do not need to add the nameservers of T-Cloud Public.
 
 .. figure:: /_static/images/service-catalogs/openshift_config1.png
   :width: 700
@@ -43,7 +43,7 @@ Specify the **base_domain** (e.g., :code:`tri-test.com`). This is the domain nam
 
 .. important::
 
-  **Swiss OTC** does not support a DNS Public Zone. However, you can bring your own domain name and set it here. For example, you can register a free domain name on ClouDNS (e.g., tri-test.ddns-ip.net). Then you set it to the base_domain. After the deployment completes, you can use this domain name to access the OpenShift console. See instruction in :ref:`access with nameservers`.
+  **Swiss T-Cloud Public** does not support a DNS Public Zone. However, you can bring your own domain name and set it here. For example, you can register a free domain name on ClouDNS (e.g., tri-test.ddns-ip.net). Then you set it to the base_domain. After the deployment completes, you can use this domain name to access the OpenShift console. See instruction in :ref:`access with nameservers`.
 
 
 b. Specify pull_secret
@@ -75,7 +75,7 @@ d. (Optional) Specify ssh_public_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Specify the **ssh_public_key** with your SSH public key (e.g., :code:`ssh-ed25519 AAAAC3N...`). This public key will be injected in the bastion host, master and worker nodes so that you can SSH to them later on.
-* If ssh_public_key is **not specified**, we will auto-select one of your **existing key pair** from the OTC console instead.
+* If ssh_public_key is **not specified**, we will auto-select one of your **existing key pair** from the Web console instead.
 
 .. figure:: /_static/images/service-catalogs/openshift_config2.png
   :width: 700
@@ -97,7 +97,7 @@ e. (Optional) Specify other paramters
 3. Expect result
 ================
 
-* It takes about 2 minutes to create all compute resources on OTC. Afterwards, the OpenShift bootstrap process continues to setup the master and worker nodes.
+* It takes about 2 minutes to create all compute resources on T-Cloud Public. Afterwards, the OpenShift bootstrap process continues to setup the master and worker nodes.
 * After about 31 minutes, the **CheckOpenShiftStatus** job checks the OpenShift boostrap process and reports the status.
 
 .. figure:: /_static/images/service-catalogs/openshift_check_result.png
@@ -135,17 +135,17 @@ Option 1. Add hostname in /etc/host
 Option 2. Add nameservers
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On OTC, a DNS public zone is created with the record sets type A pointing to the ingress VIP address of the OpenShift cluster as follows:
+On T-Cloud Public, a DNS public zone is created with the record sets type A pointing to the ingress VIP address of the OpenShift cluster as follows:
 
 .. figure:: /_static/images/service-catalogs/openshift-dns.png
   :width: 900
 
-  Figure 9. A DNS public zone is created on OTC
+  Figure 9. A DNS public zone is created on T-Cloud Public
 
 It means, if you add the nameservers :code:`ns1.open-telekom-cloud.com` (80.158.48.19) or :code:`ns2.open-telekom-cloud.com` (93.188.242.252) to your machine, you can access the OpenShift console URL.
 
 .. important::
-  **Swiss OTC** does not support a DNS Public Zone. However, you can register a DNS somewhere else. For example, first you register a domain name on a free DNS like `ClouDNS <https://www.cloudns.net>`_ (e.g., :code:`tri-test.ddns-ip.net`). Then you set it to the input **base_domain** (in Step 2.2a). Finally, you set a record set type A on ClouDNS pointing to the ingress VIP of the OpenShift cluster:
+  **Swiss T-Cloud Public** does not support a DNS Public Zone. However, you can register a DNS somewhere else. For example, first you register a domain name on a free DNS like `ClouDNS <https://www.cloudns.net>`_ (e.g., :code:`tri-test.ddns-ip.net`). Then you set it to the input **base_domain** (in Step 2.2a). Finally, you set a record set type A on ClouDNS pointing to the ingress VIP of the OpenShift cluster:
 
   .. figure:: /_static/images/service-catalogs/openshift-dns2.png
     :width: 600
@@ -263,7 +263,7 @@ The **bootstrap** VM is only needed during the installation. After the installat
 4.2. Update os_password
 -----------------------
 
-On OTC, an IAM user password is expired every 3 months (by default). After it is expired, OpenShift cannot authenticate to OTC to provision volumes so you may get the following error:
+On T-Cloud Public, an IAM user password is expired every 3 months (by default). After it is expired, OpenShift cannot authenticate to T-Cloud Public to provision volumes so you may get the following error:
 
 .. code-block:: bash
 
@@ -302,7 +302,7 @@ The Cloud Credential Operator (CCO) will `rotate the secret <https://docs.redhat
 5.1. Elastic Volume Service (EVS)
 ---------------------------------
 
-In OpenShift you can provision an EVS on OTC dynamically:
+In OpenShift you can provision an EVS on T-Cloud Public dynamically:
 
 1. Create a new **storage class** (e.g., :code:`ssd-csi`) with a volume type (e.g., :code:`SSD`):
 
@@ -336,7 +336,7 @@ In OpenShift you can provision an EVS on OTC dynamically:
     - matchLabelExpressions:
       - key: topology.cinder.csi.openstack.org/zone
         values:
-        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for OTC), 'eu-ch2a' and 'eu-ch2b' (for Swiss OTC).
+        - eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for T-Cloud Public), 'eu-ch2a' and 'eu-ch2b' (for Swiss T-Cloud Public).
 
 2. Create a **PersistentVolumeClaim** (e.g., :code:`ssd-pvc`) with the storage class :code:`ssd-csi`:
 
@@ -398,7 +398,7 @@ In OpenShift you can provision an EVS on OTC dynamically:
 
   Figure 16. Pod example is running
 
-5. On OTC, see EVS is created:
+5. On T-Cloud Public, see EVS is created:
 
 .. figure:: /_static/images/service-catalogs/openshift_evs.png
 
@@ -407,9 +407,9 @@ In OpenShift you can provision an EVS on OTC dynamically:
 5.2. Scalable File Service & SFS Turbo
 --------------------------------------
 
-You can create a SFS on OTC manually and create a `PersistentVolume using NFS <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_ in OpenShift, which connects to SFS via NFS protocol:
+You can create a SFS on T-Cloud Public manually and create a `PersistentVolume using NFS <https://docs.openshift.com/container-platform/4.13/storage/persistent_storage/persistent-storage-nfs.html>`_ in OpenShift, which connects to SFS via NFS protocol:
 
-1. Go to the `webconsole of OTC <https://console.otc.t-systems.com/>`_.
+1. Go to the `Web console <https://console.otc.t-systems.com/>`_.
 2. Go to **Scalable File Service** / **Create File System**
 
 * Choose the **VPC** and **subnet** so that the SFS is created in the same subnet of the OpenShift worker nodes. During the deployment, Cloud Create created a VPC with the prefix :code:`cc`, followed by the environement name :code:`enviroment` and the application name :code:`openshift00`. In our example, the VPC is :code:`cc-environment-openshift00`. The subnet of our OpenShift worker nodes is :code:`cc-environment-openshift00-private-subnet`.
@@ -474,14 +474,14 @@ You can create a SFS on OTC manually and create a `PersistentVolume using NFS <h
 6. MachineSet API
 =================
 
-You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as follows.
+You can use the MachineSet API from OpenShift to spawn worker nodes on T-Cloud Public as follows.
 
 6.1 Apply patch (temporal)
 --------------------------
 
 .. important::
 
-  The `REST API of OTC to create a network port <https://docs.otc.t-systems.com/virtual-private-cloud/api-ref/native_openstack_neutron_apis_v2.0/port/creating_a_port.html>`_ is not fully compliant with the OpenStack API. Therefore, the Machine API of OpenShift fails to create network ports on OTC. Follow the **steps below** to apply the `patch <https://github.com/opentelekomcloud-blueprints/machine-api-provider-openstack/tree/4.18-patched>`_ so that the Machine API can work with the REST API of OTC. When the compliant issues are fixed, this patch is not necessary.
+  The `REST API of T-Cloud Public to create a network port <https://docs.otc.t-systems.com/virtual-private-cloud/api-ref/native_openstack_neutron_apis_v2.0/port/creating_a_port.html>`_ is not fully compliant with the OpenStack API. Therefore, the Machine API of OpenShift fails to create network ports on T-Cloud Public. Follow the **steps below** to apply the `patch <https://github.com/opentelekomcloud-blueprints/machine-api-provider-openstack/tree/4.18-patched>`_ so that the Machine API can work with the REST API of T-Cloud Public. When the compliant issues are fixed, this patch is not necessary.
 
 .. code-block:: bash
 
@@ -554,7 +554,7 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
               cloudsSecret:
                 name: openstack-cloud-credentials
                 namespace: openshift-machine-api
-              flavor: s3.xlarge.4 # Choose a flavor from OTC with minimum 4 vCPU and 16GB RAM
+              flavor: s3.xlarge.4 # Choose a flavor from T-Cloud Public with minimum 4 vCPU and 16GB RAM
               image: ""
               kind: OpenstackProviderSpec
               networks:
@@ -572,7 +572,7 @@ You can use the MachineSet API from OpenShift to spawn worker nodes on OTC as fo
               trunk: false
               userDataSecret:
                 name: worker-user-data
-              availabilityZone: eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for OTC), 'eu-ch2a' and 'eu-ch2b' (for Swiss OTC).
+              availabilityZone: eu-de-01 # Choose 'eu-de-01', 'eu-de-02', and 'eu-de-03' (for T-Cloud Public), 'eu-ch2a' and 'eu-ch2b' (for Swiss T-Cloud Public).
 
 4. and apply
 

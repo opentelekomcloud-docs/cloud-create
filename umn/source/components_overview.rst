@@ -6,13 +6,13 @@ Components overview
 
 This section shows an overview of all components that you can use to design your application. Some components are not yet supported but we can add more upon requests.
 
-.. hint:: If you want to suggest a feature or ask a quick question, please `ask a question in the Open Telekom Cloud Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
+.. hint:: If you want to suggest a feature or ask a quick question, please `ask a question in the T-Cloud Public Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
 
 Network
 =======
 
 ======================  ===========================================================================================  ====================  ==============
-Components              Scenarios                                                                                    Open Telekom Cloud    Google Cloud
+Components              Scenarios                                                                                    T-Cloud Public        Google Cloud
 ======================  ===========================================================================================  ====================  ==============
 Public network          :ref:`Connect a compute to a public network <public network>`                                Yes                   Yes
 Public network          Reuse an existing floating IP and assign to a compute                                        Yes                   No
@@ -33,7 +33,7 @@ Storage
 =======
 
 ================  =====================================================================================================  ====================  ==============
-Components        Scenarios                                                                                              Open Telekom Cloud    Google Cloud
+Components        Scenarios                                                                                              T-Cloud Public        Google Cloud
 ================  =====================================================================================================  ====================  ==============
 Block storage     :ref:`Create a block storage with given size <EVS>`                                                    Yes                   Yes
 Block storage     :ref:`Mount and format a block storage <EVS>`                                                          Yes                   Yes
@@ -45,7 +45,7 @@ PaaS
 ====
 
 +-----------------------------+------------------------------------------+--------------------+--------------+
-| Components                  | Scenarios                                | Open Telekom Cloud | Google Cloud |
+| Components                  | Scenarios                                | T-Cloud Public     | Google Cloud |
 +=============================+==========================================+====================+==============+
 | Relational Database Service | :ref:`Create a RDS with databases <rds>` | Yes                | No           |
 +-----------------------------+------------------------------------------+--------------------+--------------+

@@ -18,10 +18,10 @@ Create the following file **openrc**:
 
 .. code-block:: bash
 
-  #For OTC, use this IAM endpoint:
+  #For T-Cloud Public, use this IAM endpoint:
   export OS_AUTH_URL=https://iam.eu-de.otc.t-systems.com:443/v3
 
-  #For Swiss OTC, use this IAM endpoint:
+  #For Swiss T-Cloud Public, use this IAM endpoint:
   #export OS_AUTH_URL=https://iam-pub.eu-ch2.sc.otc.t-systems.com/v3
 
   export OS_IDENTITY_API_VERSION=3
@@ -47,8 +47,8 @@ Get the OSTOKEN
 
 For all REST requests,  set the `OSTOKEN` in the HTTP header `X-Auth-Token` to authenticate it. For examples:
 
-2.1. Requests for OTC
-^^^^^^^^^^^^^^^^^^^^^
+2.1. Requests for T-Cloud Public
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -58,16 +58,16 @@ For all REST requests,  set the `OSTOKEN` in the HTTP header `X-Auth-Token` to a
     --request GET \
     https://designer.otc-service.com/api/v2/templates
 
-2.2. Requests for Swiss OTC
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2. Requests for Swiss T-Cloud Public
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
   curl \
     --header "X-Auth-Token: $OSTOKEN" \
-    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss OTC
+    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss T-Cloud Public
     --request GET \
     https://designer.otc-service.com/api/v2/templates
 
 .. important::
-  **TTL token limit**: The OSTOKEN issued by Open Telekom Cloud has a default TTL of 24 hours. However, Cloud Create only accepts the OSTOKEN with the TTL of 30 minutes to limit a stolen token. After 30 minutes, you should get a new one.
+  **TTL token limit**: The OSTOKEN issued by T-Cloud Public has a default TTL of 24 hours. However, Cloud Create only accepts the OSTOKEN with the TTL of 30 minutes to limit a stolen token. After 30 minutes, you should get a new one.

@@ -36,7 +36,7 @@ Step 2. Input the secret value
 
   Figure 2. Create the root_password secret
 
-.. important:: Only users from Open Telekom Cloud with the :code:`Tenant Administrator` role in the same project has the permission to view and edit the secret value.
+.. important:: Only users from T-Cloud Public with the :code:`Tenant Administrator` role in the same project has the permission to view and edit the secret value.
 
 3. Expected result
 ==================

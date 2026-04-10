@@ -5,7 +5,7 @@ How to deploy & debug
 1. Deploy the app
 =================
 
-1. When the app is deployed, the **Review** tab shows which cloud resources are being created on Open Telekom Cloud. In this example, a virtual router, network, port, floating IP, and a Virtual Machine (VM) are created.
+1. When the app is deployed, the **Review** tab shows which cloud resources are being created on T-Cloud Public. In this example, a virtual router, network, port, floating IP, and a Virtual Machine (VM) are created.
 
 2. Click on a component (e.g., **Compute**) to show the deployment logs of it:
 
@@ -16,12 +16,12 @@ How to deploy & debug
 
 3. In the above example, the logs show that the Terraform configuration for the Compute is generated and being applied.
 
-4. In the console of Open Telekom Cloud, you can see the VM :code:`ctd-Compute-0` is created as well:
+4. In the console of T-Cloud Public, you can see the VM :code:`ctd-Compute-0` is created as well:
 
 .. figure:: /_static/images/2-compute-deploy-review-2.png
   :width: 800
 
-  Figure 2. OTC Console shows the new VM ctd-Compute-0
+  Figure 2. The Web console shows the new VM ctd-Compute-0
 
 5. After the VM is created, the orchestration engine tests the SSH connection to the VM. After the test, the VM is ready to install a service catalog.
 

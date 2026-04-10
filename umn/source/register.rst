@@ -41,7 +41,7 @@ The following tutorial shows how to create an IAM user and assign the given user
 2.1. Create a project (optional, if you don't have one)
 -------------------------------------------------------
 
-* Login to the Web console of `OTC <https://console.otc.t-systems.com>`_ / `Swiss OTC <https://console.sc.otc.t-systems.com>`_.
+* Login to the Web console of `T-Cloud Public <https://console.otc.t-systems.com>`_ / `Swiss T-Cloud Public <https://console.sc.otc.t-systems.com>`_.
 * Go to: **Identity Management**
 
 .. figure:: /_static/images/register-iam-button.png

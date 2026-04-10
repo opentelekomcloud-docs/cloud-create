@@ -35,7 +35,7 @@ Quick introduction
 
 Cloud Create is a free-to-use **visual cloud management platform** that helps you **reduce cloud engineering footprint**, **accelerate time-to-market**, and deploy everything **from infrastructure to applications** in just one click.
 
-Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a visual designer with **a growing premade templates** that enables you to deploy complex environments such as OpenShift and Argo CD in minutes. Whether you're working on Open Telekom Cloud or Swiss Open Telekom Cloud, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
+Unlike traditional cloud platforms that require deep infrastructure knowledge and manual setup, Cloud Create offers a visual designer with **a growing premade templates** that enables you to deploy complex environments such as OpenShift and Argo CD in minutes. Whether you're working on T-Cloud Public or Swiss T-Cloud Public, Cloud Create empowers you to go from idea to running applications with speed and simplicity.
 
 Cloud Create is built on open standards and powered by open-source TOSCA templates. Every deployment is transparent - **no hidden scripts, no black boxes**. You can inspect, customize, and extend each template directly from `our public GitHub repository <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_ for **full transparency and reproducibility**.
 
@@ -63,7 +63,7 @@ Launch your app with a single click. Need to make changes later? Redeploy update
 
 **4. Save and share your work**
 
-Turn your customized app into a private template for your team, or publish it publicly on Open Telekom Cloud so others can benefit from your expertise.
+Turn your customized app into a private template for your team, or publish it publicly on T-Cloud Public so others can benefit from your expertise.
 
 .. figure:: /_static/images/features/overview.png
   :width: 1000
@@ -100,16 +100,16 @@ In the design, you can seamlessly combine **infrastructure components** (e.g., c
 2.3. Deploy and update
 ----------------------
 
-When your design is ready, simply hit “Deploy” - and Cloud Create will provision everything for you on Open Telekom Cloud in just minutes. Deploying apps with Cloud Create is simple, controlled, and fully transparent:
+When your design is ready, simply hit “Deploy” - and Cloud Create will provision everything for you on T-Cloud Public in just minutes. Deploying apps with Cloud Create is simple, controlled, and fully transparent:
 
 **1. Select, Configure, and Launch**
 
-In the **Deploy** section, you choose the desired **application version**, fill in required **inputs**, and select a **cloud provider** - like Open Telekom Cloud. Before launching, they can easily **review the deployment workflow** to ensure everything is ready.
+In the **Deploy** section, you choose the desired **application version**, fill in required **inputs**, and select a **cloud provider** - like T-Cloud Public. Before launching, they can easily **review the deployment workflow** to ensure everything is ready.
 
 .. figure:: /_static/images/features/overview-deploy.png
   :width: 800
 
-  Figure 6. Administrators select Open Telekom Cloud to deploy
+  Figure 6. Administrators select T-Cloud Public to deploy
 
 **2. Interactive, Step-by-Step Execution**
 
@@ -166,7 +166,7 @@ An overview of all supported components is available in Section :ref:`Components
 3.3. Is Cloud Create opensource
 -------------------------------
 
-Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At Open Telekom Cloud, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, the :ref:`openshift`, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
+Cloud Create is based on two opensource projects Application Lifecycle Enablement for Cloud (Alien4cloud) and Ystia Orchestrator (Yorc). At T-Cloud Public, we further integrate it with OpenStack and Google Cloud, provide an easy-to-use UI, added features (e.g., secrets management, deployment update, the :ref:`openshift`, etc.), and enforce the strictest Privacy and Security Assessment (PSA) process of Deutsche Telekom.
 
 All premade templates and service catalogs are `opensource and available on Github <https://github.com/opentelekomcloud-blueprints/tosca-service-catalogs>`_ for transparency and contributions.
 
@@ -201,7 +201,7 @@ We currently support Ansible :code:`10.5.0` (i.e., Ansible core :code:`2.17.4`),
 3.6. How can I suggest a feature or ask a quick question
 --------------------------------------------------------
 
-Please `ask a question in the Open Telekom Cloud Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
+Please `ask a question in the T-Cloud Public Community <https://community.open-telekom-cloud.com/community?id=community_ask_question>`_. Choose the forum **Orchestration and Automation** and select topic **Cloud Create** to ask a question.
 
 .. figure:: /_static/images/ask-question.png
   :width: 800

@@ -2,8 +2,8 @@
 Examples
 ********
 
-1. Example to quick deploy OpenShift on Swiss OTC
-=================================================
+1. Example to quick deploy OpenShift on Swiss T-Cloud Public
+============================================================
 
 Step 1. (Optional) Show the template
 ------------------------------------
@@ -15,7 +15,7 @@ Request
     curl \
     --header "Accept: application/json" \
     --header "X-Auth-Token: $OSTOKEN" \
-    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss OTC
+    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss T-Cloud Public
     --request GET \
     https://designer.otc-service.com/api/v2/templates/OpenShift:4.16.19
 
@@ -31,7 +31,7 @@ Response
         "template_author": "Dr. Tri Vo",
         "public_template": true,
         "documentation_link": "https://docs.otc.t-systems.com/cloud-create/umn/service_catalogs/openshift.html",
-        "description": "This template deploys a Self-managed OpenShift Container Platform on Open Telekom Cloud with worker nodes in one availability zone...",
+        "description": "This template deploys a Self-managed OpenShift Container Platform on T-Cloud Public with worker nodes in one availability zone...",
         "creation_date": "2024-11-27T14:56:00.353+00:00",
         "last_update_date": "2024-11-27T14:56:00.353+00:00",
         "inputs": {
@@ -184,7 +184,7 @@ Request
     --header "Content-Type: application/JSON" \
     --header "Accept: application/JSON" \
     --header "X-Auth-Token: $OSTOKEN" \
-    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss OTC
+    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss T-Cloud Public
     --request POST \
     --data @payload.json \
     https://designer.otc-service.com/api/v2/deployments
@@ -213,7 +213,7 @@ Request
     curl \
     --header "Accept: application/json" \
     --header "X-Auth-Token: $OSTOKEN" \
-    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss OTC
+    --header "X-Auth-Location: OTC-EU-CH2" \ # Add this header for Swiss T-Cloud Public
     --request GET \
     https://designer.otc-service.com/api/v2/deployments/c853667c-2901-4274-aaec-f747e6649cdd
 

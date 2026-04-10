@@ -40,7 +40,7 @@ Nextcloud is deployed in two VM:
 Template v3.0.0
 ^^^^^^^^^^^^^^^
 
-Nextcloud app uses the Open Telekom Cloud service :ref:`rds` offered by Open Telekom Cloud as the MySQL Server.
+Nextcloud app uses the T-Cloud Public service :ref:`rds` offered by T-Cloud Public as the MySQL Server.
 
 .. figure:: /_static/images/service-catalogs/nextcloud2v3.png
   :width: 800
@@ -50,7 +50,7 @@ Nextcloud app uses the Open Telekom Cloud service :ref:`rds` offered by Open Tel
 Template v4.0.0
 ^^^^^^^^^^^^^^^
 
-Nextcloud app uses the Open Telekom Cloud services :ref:`obs` and :ref:`rds` as the storage back-end and the MySQL Server, respectively.
+Nextcloud app uses the T-Cloud Public services :ref:`obs` and :ref:`rds` as the storage back-end and the MySQL Server, respectively.
 
 .. figure:: /_static/images/service-catalogs/nextcloud2v4.png
   :width: 800
@@ -105,7 +105,7 @@ Nextcloud app uses the Open Telekom Cloud services :ref:`obs` and :ref:`rds` as 
 
 3. Access nextcloud using DNS:
 
-If :code:`dns_name` is specified, one DNS public zone :code:`myexample.com.` with 2 record sets type A :code:`myexample.com.` and :code:`www.myexample.com.`  will be created on Open Telekom Cloud. The record sets point to the floating IP (e.g., :code:`80.158.45.177`):
+If :code:`dns_name` is specified, one DNS public zone :code:`myexample.com.` with 2 record sets type A :code:`myexample.com.` and :code:`www.myexample.com.`  will be created on T-Cloud Public. The record sets point to the floating IP (e.g., :code:`80.158.45.177`):
 
 .. figure:: /_static/images/service-catalogs/nextcloud4b.png
   :width: 800

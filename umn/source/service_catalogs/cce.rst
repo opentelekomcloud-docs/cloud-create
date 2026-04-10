@@ -32,7 +32,7 @@ Whether you're testing a new idea or deploying a production-grade environment, t
 
 If this is the first time you use CCE **in a project**, you have to authorize it first.
 
-1. Login to the Web console of `OTC <https://console.otc.t-systems.com>`_ / or `Swiss OTC <https://console.sc.otc.t-systems.com>`_.
+1. Login to the Web console of `T-Cloud Public <https://console.otc.t-systems.com>`_ / or `Swiss T-Cloud Public <https://console.sc.otc.t-systems.com>`_.
 2. Switch to the project you want to deploy CCE / go to **Cloud Container Engine**.
 3. The Web console shows an **Authorization Description** > Click OK.
 
