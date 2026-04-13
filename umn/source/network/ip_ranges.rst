@@ -17,7 +17,7 @@ How to create or reuse a private network
 
 .. important::
 
-  OTC allows the following network ranges:
+  T-Cloud Public allows the following network ranges:
 
   * 10.0.0.0/8-24
   * 172.16.0.0/12-24

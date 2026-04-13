@@ -40,7 +40,7 @@ Sample responses
           "template_name": "OpenShift",
           "template_version": "4.16.19",
           "public_template": true,
-          "description": "This template deploys a Self-managed OpenShift Container Platform on Open Telekom Cloud with worker nodes in one availability zone..."
+          "description": "This template deploys a Self-managed OpenShift Container Platform on T-Cloud Public with worker nodes in one availability zone..."
         },
         {
           "id": "08e591c9-d241-4334-be0a-dba4dee0b6a6",
@@ -93,7 +93,7 @@ Sample responses
         "template_author": "Dr. Tri Vo",
         "public_template": true,
         "documentation_link": "https://docs.otc.t-systems.com/cloud-create/umn/service_catalogs/openshift.html",
-        "description": "This template deploys a Self-managed OpenShift Container Platform on Open Telekom Cloud with worker nodes in one availability zone...",
+        "description": "This template deploys a Self-managed OpenShift Container Platform on T-Cloud Public with worker nodes in one availability zone...",
         "creation_date": "2024-11-27T14:56:00.353+00:00",
         "last_update_date": "2024-11-27T14:56:00.353+00:00",
         "inputs": {

@@ -39,7 +39,7 @@ Define a new node type (e.g., :code:`myservice.nodes.SoftwareComponent.Python`) 
       tags:
         icon: /images/python.png
 
-.. important:: A node type starting with :code:`otc.*` is not allowed. We reserve this domain for all types defined by the Open Telekom Cloud.
+.. important:: A node type starting with :code:`otc.*` is not allowed. We reserve this domain for all types defined by the T-Cloud Public.
 
 By deriving from the :code:`tosca.nodes.SoftwareComponent`, your component can be hosted on a compute node as follows:
 

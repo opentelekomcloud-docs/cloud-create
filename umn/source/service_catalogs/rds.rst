@@ -7,9 +7,9 @@ Relational Database Service
 1. About
 ========
 
-* Use this component to deploy the Relational Database Service (RDS) on Open Telekom Cloud. With RDS, you can deploy a MySQL, PostgreSQL, or Microsoft SQL Server.
-* RDS is a cloud service with auto-backup, auto-upgrade and high availability features, which are fully managed via Open Telekom Cloud console.
-* Because the cloud service is fully managed by Open Telekom Cloud, users cannot SSH to the RDS Virtual Machine. If you wish to have a full control of the VM, use the :ref:`mysql` instead.
+* Use this component to deploy the Relational Database Service (RDS) on T-Cloud Public. With RDS, you can deploy a MySQL, PostgreSQL, or Microsoft SQL Server.
+* RDS is a cloud service with auto-backup, auto-upgrade and high availability features, which are fully managed via the Web console .
+* Because the cloud service is fully managed by T-Cloud Public, users cannot SSH to the RDS Virtual Machine. If you wish to have a full control of the VM, use the :ref:`mysql` instead.
 
 2. How to use
 =============
@@ -52,7 +52,7 @@ Relational Database Service
 
   Figure 2. Set output for RDS
 
-The deployment will output the private IP of RDS. Alternatively, you can get the IP via the Open Telekom Cloud console.
+The deployment will output the private IP of RDS. Alternatively, you can get the IP via the T-Cloud Public console.
 
 2.4. How to create MySQL database and user
 ------------------------------------------

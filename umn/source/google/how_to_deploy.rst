@@ -106,7 +106,7 @@ Step 4. Choose an availability zone and keypair (optional)
 
   Figure 6. Choose a zone and keypair
 
-.. tip:: If the keypair dropbox is empty, you can create a keypair from the Open Telekom Cloud console and refresh the page to display it.
+.. tip:: If the keypair dropbox is empty, you can create a keypair from the T-Cloud Public console and refresh the page to display it.
 
 Step 5. Deploy
 --------------

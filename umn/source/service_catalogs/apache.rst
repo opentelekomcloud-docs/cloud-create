@@ -65,7 +65,7 @@ Expect result
 Expect result
 ^^^^^^^^^^^^^
 
-1. One DNS public zone :code:`myexample.com.` with 2 record sets type A :code:`myexample.com.` and :code:`www.myexample.com.`  will be created on Open Telekom Cloud.
+1. One DNS public zone :code:`myexample.com.` with 2 record sets type A :code:`myexample.com.` and :code:`www.myexample.com.`  will be created on T-Cloud Public.
 2. The record sets point to the floating IP of the public compute, which hosts the Apache Webserver (e.g., :code:`80.158.62.203`).
 
 .. figure:: /_static/images/service-catalogs/dns2.png
